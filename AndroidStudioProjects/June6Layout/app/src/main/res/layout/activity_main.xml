@@ -1,0 +1,89 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableRow android:paddingTop="10px" android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10px" android:gravity="center"
+            android:text="Login"
+            android:layout_span="2"
+            android:textColor="#890000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20dip">
+
+        <TextView
+            android:text="Username"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:layout_marginLeft="20dip"
+        />
+
+        <EditText
+            android:width="200px"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_weight="1"
+        />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20dip">
+
+        <TextView
+            android:text="Password"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:layout_marginLeft="20dip"
+        />
+
+        <EditText
+            android:width="100px"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_weight="1"
+        />
+
+    </TableRow>
+
+
+
+    <TableRow android:gravity="center" android:layout_marginTop="20px">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10px" android:gravity="center"
+            android:text="Submit"
+            android:id="@+id/button"
+        />
+
+    </TableRow>
+
+
+    <!--https://www.javadrive.jp/android/imageview/index5.html-->
+    <!--CENTER_CROP  エリアの横幅まで画像を拡大し中央に表示-->
+    <!--FIT_CENTER   エリアの縦幅まで画像を拡大し中央に表示-->
+
+    <ImageView
+        android:id="@+id/simpleImageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
+
+    <ImageView
+        android:id="@+id/simpleImageView2"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        />
+
+
+</TableLayout>
