@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.senafunakubo.assignment1_2.RelativeLayoutAssignment">
+
+    <!--http://www.agyou.com/technical/422.html-->
+　　　<!--wrap_content」は幅を自動調整してくれます。-->
+    　<!--CSSでいう「width:auto」の状態です！-->
+
+    　<!--「fill_parent」は画面最大まで広がってくれます。-->
+    　<!--CSSでいう「width:100%」の状態です！-->
+
+    　<!--「matc_parent」は画面最大まで広がってくれます。-->
+    　<!--CSSでいう「width:100%」の状態です！-->
+
+    <!--http://chariderpato.blogspot.ca/2011/09/chapter02-relativelayout.html-->
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentLeft="true"
+        android:background="#009FB7"
+        android:text="I'm in this corner" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentRight="true"
+        android:background="#009FB7"
+        android:text="No, up here" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="#009FB7"
+        android:text="Wait, I'm here" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="#009FB7"
+        android:text="Actuallly, I'm here" />
+
+
+</RelativeLayout>

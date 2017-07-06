@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.senafunakubo.assignment1_1.LinearLayoutAssignment">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="50">
+
+        <TextView
+          android:id="@+id/text1"
+          android:background="#EC368D"
+          android:layout_width="0dp"
+          android:layout_weight="50"
+          android:layout_height="match_parent"
+          android:text="A"
+          android:textSize="15sp"
+          android:gravity="center" />
+
+        <TextView
+          android:id="@+id/text2"
+          android:background="#440381"
+          android:layout_width="0dp"
+          android:layout_weight="50"
+          android:layout_height="match_parent"
+          android:text="B"
+          android:textSize="15sp"
+          android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="50">
+
+      <TextView
+          android:id="@+id/text3"
+          android:background="#51E5FF"
+          android:layout_width="0dp"
+          android:layout_weight="50"
+          android:layout_height="match_parent"
+          android:text="C"
+          android:textSize="15sp"
+          android:gravity="center" />
+
+      <TextView
+          android:id="@+id/text4"
+          android:background="#FFA5A5"
+          android:layout_width="0dp"
+          android:layout_weight="50"
+          android:layout_height="match_parent"
+          android:text="D"
+          android:textSize="15sp"
+          android:gravity="center" />
+
+    </LinearLayout>
+</LinearLayout>
