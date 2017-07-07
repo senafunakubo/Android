@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">June6Activity</string>
+    <string name="action_settings">Settings</string>
 </resources>

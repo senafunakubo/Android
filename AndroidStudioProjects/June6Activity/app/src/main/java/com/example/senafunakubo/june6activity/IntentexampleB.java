@@ -12,9 +12,33 @@ import android.widget.TextView;
 import android.widget.Button;
 
 public class IntentexampleB extends MainActivity{
+    //1. declare all the controls
+    TextView t2;
+    Button b2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intentexample2);
+
+        //2. bind all the controls
+        t2 = (TextView) findViewById(R.id.txtB);
+        b2 = (Button) findViewById(R.id.btnB);
+
+        Bundle bundle = getIntent().getExtras();
+        String message = bundle.getString("message");
+
+        TextView txtView = (TextView) findViewById(R.id.txtC);
+        txtView.setText(message);
+
+        //3. define the onClickListener event
+        b2.setOnClickListener( new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(IntentexampleB.this,IntentexapmleA.class);
+                startActivity(i);
+            }
+        });
     }
 }
