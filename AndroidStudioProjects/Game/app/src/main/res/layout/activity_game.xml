@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.senafunakubo.game.game"
+    android:background="#FFBA49"
+    >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/teamA"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:text="TEAM A"
+        android:layout_marginLeft="50dip"
+        android:layout_marginTop="30dip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:textColor="#616161"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/pointA"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dip"
+        android:layout_marginTop="80dip"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:paddingBottom="24dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="56sp"/>
+
+
+    <TextView
+        android:id="@+id/teamB"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:text="TEAM B"
+        android:layout_marginLeft="220dip"
+        android:layout_marginTop="30dip"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:textColor="#616161"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/pointB"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dip"
+        android:layout_marginTop="80dip"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:paddingBottom="24dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="56sp"/>
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="+3 POINTS"
+            android:layout_marginTop="180dip"
+            android:id="@+id/buttonA3point"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="24dp"
+            />
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="+2 POINTS"
+            android:layout_marginTop="250dip"
+            android:id="@+id/buttonA2point"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="24dp"
+            />
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="FREE THROW"
+            android:layout_marginTop="320dip"
+            android:id="@+id/buttonAfree"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="24dp"
+            />
+
+
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="+3 POINTS"
+            android:layout_marginTop="180dip"
+            android:id="@+id/buttonB3point"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="225dp"
+            android:layout_marginRight="24dp"
+            />
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="+2 POINTS"
+            android:layout_marginTop="250dip"
+            android:id="@+id/buttonB2point"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="225dp"
+            android:layout_marginRight="24dp"
+            />
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="FREE THROW"
+            android:layout_marginTop="320dip"
+            android:id="@+id/buttonBfree"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="225dp"
+            android:layout_marginRight="24dp"
+            />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="400dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50sp"
+                android:layout_marginLeft="0dip"
+                android:background="#CC5A71" />
+
+        </LinearLayout>
+
+        <Button
+            android:minHeight="0dp"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:text="RESET"
+            android:layout_marginTop="455dip"
+            android:layout_marginLeft="145dip"
+            android:id="@+id/button_re"
+            android:background="#FB8B24"
+            android:textColor="#333"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
