@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/popup"
+        android:title="popup">
+
+        <group android:checkableBehavior="single" >
+
+    <!--<menu>-->
+        <item android:id="@+id/menu_bookmark"
+            android:title="Bookmark"
+            android:icon="@drawable/android_logo"
+            app:showAsAction="ifRoom|withText"/>
+
+        <item android:id="@+id/menu_save"
+            android:title="Save"
+            android:icon="@drawable/android_logo"
+            app:showAsAction="ifRoom|withText"/>
+
+        <item android:id="@+id/menu_search"
+            android:title="Search"
+            android:icon="@drawable/blackberry_logo"
+            app:showAsAction="ifRoom|withText" />
+
+        <item android:id="@+id/menu_share"
+            android:title="Share"
+            android:icon="@drawable/blackberry_logo"
+            app:showAsAction="ifRoom|withText"/>
+
+        <item android:id="@+id/menu_delete"
+            android:title="Delete"
+            android:icon="@drawable/ios_logo"
+            app:showAsAction="ifRoom|withText"/>
+
+        <item android:id="@+id/menu_preferences"
+            android:title="Preferences"
+            android:icon="@drawable/ios_logo"
+            app:showAsAction="ifRoom|withText"/>
+    <!--</menu>-->
+        </group>
+
+    </item>
+
+</menu>
