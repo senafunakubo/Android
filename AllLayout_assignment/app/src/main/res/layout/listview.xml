@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ListViewEx"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="LISTVIEW" />
+
+    <ImageView
+        android:id="@+id/ListViewImg"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:src="@drawable/listview" />
+
+    <TextView
+        android:id="@+id/ListViewSe"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="30sp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:text="@string/listView" />
+
+    <TextView
+        android:id="@+id/ListViewSe2"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="0sp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:text="" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/ListBtnA"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="10sp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:minHeight="0dp"
+            android:text="PREVIOUS"
+            android:background="@color/blue"
+            />
+
+        <Button
+            android:id="@+id/ListBtnB"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="225sp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:minHeight="0dp"
+            android:text="NEXT"
+            android:background="@color/blue"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

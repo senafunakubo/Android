@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">AllLayout_assignment</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="linear1">LinearLayout is a view group that aligns all children
+         in a single direction, vertically or horizontally.
+          You can specify the layout direction with the android:orientation attribute.</string>
+
+    <string name="linear2">All children of a LinearLayout are stacked one after the other,
+        so a vertical list will only have one child per row, no matter how wide they are,
+        and a horizontal list will only be one row high (the height of the tallest child, plus padding).
+        A LinearLayout respects margins between children and the gravity (right, center, or left alignment) of each child.
+    </string>
+
+    <string name="relative1">RelativeLayout is a view group that displays child views in relative positions.
+        The position of each view can be specified as relative to sibling elements (such as to the left-of or below another view)
+        or in positions relative to the parent RelativeLayout area (such as aligned to the bottom, left or center).
+    </string>
+
+    <string name="relative2">A RelativeLayout is a very powerful utility for designing a user interface
+        because it can eliminate nested view groups and keep your layout hierarchy flat,
+        which improves performance. If you find yourself using several nested LinearLayout groups,
+        you may be able to replace them with a single RelativeLayout.
+    </string>
+
+    <string name="table1">TableLayout is a ViewGroup that displays child View elements in rows and columns.</string>
+
+    <string name="table2">TableLayout positions its children into rows and columns.
+        TableLayout containers do not display border lines for their rows, columns, or cells.
+        The table will have as many columns as the row with the most cells. A table can leave cells empty.
+        Cells can span multiple columns, as they can in HTML. You can span columns by using the span field in the TableRow.
+        LayoutParams class.
+    </string>
+
+    <string name="frame1">FrameLayout is designed to block out an area on the screen to display a single item.
+        Generally, FrameLayout should be used to hold a single child view,
+        because it can be difficult to organize child views in a way that is scalable to different screen sizes without the children overlapping each other.
+        You can, however, add multiple children to a FrameLayout and control their position within the FrameLayout by assigning gravity to each child,
+        using the android:layout_gravity attribute.
+    </string>
+
+    <string name="frame2">
+        Child views are drawn in a stack, with the most recently added child on top.
+        The size of the FrameLayout is the size of its largest child (plus padding),
+        visible or not (if the FrameLayout is parent permits).
+        Views that are GONE are used for sizing only if setConsiderGoneChildrenWhenMeasuring() is set to true.
+    </string>
+
+    <string name="listView">
+        ListView is a view group that displays a list of scrollable items.
+        The list items are automatically inserted to the list using an Adapter that
+        pulls content from a source such as an array or database query and converts each item result into a view
+        that is placed into the list.
+    </string>
+
+    <string name="gridView">
+        GridView is a ViewGroup that displays items in a two-dimensional, scrollable grid.
+        The grid items are automatically inserted to the layout using a ListAdapter.
+    </string>
+
+    <string name="re">
+        Many apps need to display user-interface elements based on large data sets, or data that frequently changes.
+        For example, a music app might need to display information about thousands of albums,
+        but only a dozen of those albums might be on-screen at a time.
+    </string>
+
+    <string name="re2">
+        If the app created UI widgets for each of those albums, the app would end up using a lot of memory and storage,
+        potentially making the app slow and crash-prone. On the other hand,
+        if the app created UI widgets each time a new album scrolled onto the screen and destroyed the widgets
+        when it scrolled off, that would also cause the app to run slowly,
+        since creating UI objects is a resource-intensive operation.
+    </string>
+
+</resources>

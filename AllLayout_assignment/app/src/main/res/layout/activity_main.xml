@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.senafunakubo.alllayout_assignment.MainActivity">
+
+    <TextView
+        android:id="@+id/Linear"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="LINEAR LAYOUT"
+        android:background="@color/green"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/Relative"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="RELATIVE LAYOUT"
+        android:background="@color/blue"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/Table"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="TABLE LAYOUT"
+        android:background="@color/green"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/Frame"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="FRAME LAYOUT"
+        android:background="@color/blue"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/List"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="LISTVIEW"
+        android:background="@color/green"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/Grid"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="GRIDVIEW"
+        android:background="@color/blue"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/Recycler"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="RECYCLER VIEW"
+        android:background="@color/green"
+        />
+
+</TableLayout>

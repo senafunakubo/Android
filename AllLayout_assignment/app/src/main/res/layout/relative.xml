@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/relativeEx"
+        android:layout_width="match_parent"
+        android:layout_height="72sp"
+        android:gravity="center"
+        android:text="RELATIVE LAYOUT" />
+
+    <ImageView
+        android:id="@+id/relativeImg"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:src="@drawable/relativelayout" />
+
+    <TextView
+        android:id="@+id/relativeSe"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="30sp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:text="@string/relative1" />
+
+    <TextView
+        android:id="@+id/relativeSe2"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="0sp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:text="@string/relative2" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/relativeBtnA"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="10sp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:minHeight="0dp"
+            android:text="PREVIOUS"
+            android:background="@color/blue"
+            />
+
+        <Button
+            android:id="@+id/relativeBtnB"
+            android:layout_marginTop="5sp"
+            android:layout_marginLeft="225sp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:minHeight="0dp"
+            android:text="NEXT"
+            android:background="@color/blue"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
