@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.net.Uri;
 
 public class IntentexampleB extends MainActivity{
     //1. declare all the controls
@@ -38,6 +39,23 @@ public class IntentexampleB extends MainActivity{
             public void onClick(View v) {
                 Intent i = new Intent(IntentexampleB.this,IntentexapmleA.class);
                 startActivity(i);
+
+//                Intent gmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","kumasum178@yahoo.co.jp",null));
+//                gmail.putExtra(Intent.EXTRA_SUBJECT, "subject");
+//                gmail.putExtra(Intent.EXTRA_TEXT,"body");
+//                gmail.setType("text/plain");
+//                startActivity(Intent.createChooser(gmail,"SendEmail"));
+
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                intent.putExtra(Intent.EXTRA_EMAIL, "inabacker24@gmail.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                intent.putExtra(Intent.EXTRA_TEXT, "Type something here");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+
             }
         });
     }
