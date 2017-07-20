@@ -7,12 +7,14 @@ package com.example.senafunakubo.movielist;
 public class Movie {
 
     private String title,genre,year;
+    private int imageUrl;
 
     //constructor
-    public Movie(String title, String genre, String year){
+    public Movie(String title, String genre, String year, int imageUrl){
         this.title = title;
         this.genre = genre;
         this.year = year;
+        this.imageUrl = imageUrl;
     }
 
     //getter
@@ -26,5 +28,9 @@ public class Movie {
 
     public String getYear(){
         return year;
+    }
+
+    public int getImageUrl(){
+        return imageUrl;
     }
 }

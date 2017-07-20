@@ -2,9 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+    <Button
+        android:id="@+id/clear_all"
+        android:text="clearAll"
+        android:layout_marginLeft="30dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/select_all"
+        android:text="selectAll"
+        android:layout_width="100dp"
+        android:layout_marginLeft="140dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/delete"
+        android:text="Delete"
+        android:layout_width="100dp"
+        android:layout_marginLeft="250dp"
+        android:layout_height="wrap_content"/>
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

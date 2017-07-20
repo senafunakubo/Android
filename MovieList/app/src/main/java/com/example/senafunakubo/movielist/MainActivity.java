@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView)findViewById(R.id.rv1);
-        LinearLayoutManager lv = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(lv);
         recyclerView.setHasFixedSize(true);
-
         mAdapter = new MovieAdapter(movieList);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
+        prepareMovieData();
     }
 
     @Override
@@ -55,4 +58,43 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void prepareMovieData(){
+        Movie movie = new Movie("Mad Max: Fury Road", "Action & Adventure", "2015",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Inside Out", "Animation, Kids & Family", "2015",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Split", "Horror, Thriller", "2017",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Get Out", "Horror, Mystery", "2017",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Don't Breathe", "Crime, Horror, Thriller", "2016",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("The Conjuring", "Horror, Mystery, Thriller", "2013",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Fight Club", "Drama", "1999",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("3 Idiots", "Adventure, Comedy, Drama", "2009",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("PK", "Comedy, Drama, Fantasy", "2014",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Life", "Horror, Sci-Fi, Thriller", "2017",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("Moonlight", "Drama", "2016",R.drawable.sushimenicon);
+        movieList.add(movie);
+
+        movie = new Movie("The Wolf of Wall Street", "Biography, Comedy, Crime", "2013",R.drawable.sushimenicon);
+        movieList.add(movie);
+    }
+
 }
