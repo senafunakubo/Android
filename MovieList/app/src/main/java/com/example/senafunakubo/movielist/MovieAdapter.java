@@ -5,6 +5,7 @@ package com.example.senafunakubo.movielist;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -189,6 +190,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 //                AnimationUtils.loadAnimation(c, R.anim.slide);
 //        button.startAnimation(animation2);
 //    }
+
 
 
 }

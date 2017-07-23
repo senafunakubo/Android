@@ -1,6 +1,7 @@
 package com.example.senafunakubo.movielist;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -122,13 +123,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void delete(View view){
-        for (int i=0; i<movieList.size(); i++){
-            if (movieList.get(i).isSelected()){
+//        for (int i=0; i<movieList.size(); i++){
+//            if (movieList.get(i).isSelected()){
+//                movieList.remove(i);
+//            }
+//        }
+//        mAdapter.notifyDataSetChanged();
+
+        int arraySize = movieList.size();
+        for(int i=0; i<arraySize; i++){
+            if( movieList.get(i).isSelected()){
                 movieList.remove(i);
+                i -= 1;
+                arraySize -= 1;
+
+                mAdapter.notifyDataSetChanged();
             }
         }
-        mAdapter.notifyDataSetChanged();
     }
+
+
 
 
 }

@@ -11,6 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:onClick="clearAll"
+        android:background="@drawable/ripple_effect"
         />
 
     <Button
@@ -19,7 +20,9 @@
         android:layout_width="100dp"
         android:layout_marginLeft="140dp"
         android:layout_height="wrap_content"
-        android:onClick="selectAll"/>
+        android:onClick="selectAll"
+        android:background="@drawable/ripple_effect"
+        />
 
     <Button
         android:id="@+id/delete"
@@ -27,7 +30,9 @@
         android:layout_width="100dp"
         android:layout_marginLeft="250dp"
         android:layout_height="wrap_content"
-        android:onClick="delete"/>
+        android:onClick="delete"
+        android:background="@drawable/ripple_effect"
+        />
 
 
     <android.support.v7.widget.RecyclerView
