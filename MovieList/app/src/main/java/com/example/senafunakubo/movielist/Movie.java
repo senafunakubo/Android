@@ -8,6 +8,7 @@ public class Movie {
 
     private String title,genre,year;
     private int imageUrl;
+    private boolean isSelected; // boolean variable for a movie
 
     //constructor
     public Movie(String title, String genre, String year, int imageUrl){
@@ -15,6 +16,16 @@ public class Movie {
         this.genre = genre;
         this.year = year;
         this.imageUrl = imageUrl;
+        this.isSelected = false;
+    }
+
+    public void setSelected(boolean selected){
+        isSelected = selected;
+    }
+
+    //getter for isSelected
+    public boolean isSelected(){
+        return isSelected;
     }
 
     //getter
@@ -32,5 +43,9 @@ public class Movie {
 
     public int getImageUrl(){
         return imageUrl;
+    }
+
+    public void setImageUrl(int imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

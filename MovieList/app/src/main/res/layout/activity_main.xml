@@ -10,6 +10,7 @@
         android:layout_marginLeft="30dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:onClick="clearAll"
         />
 
     <Button
@@ -17,14 +18,16 @@
         android:text="selectAll"
         android:layout_width="100dp"
         android:layout_marginLeft="140dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="selectAll"/>
 
     <Button
         android:id="@+id/delete"
         android:text="Delete"
         android:layout_width="100dp"
         android:layout_marginLeft="250dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="delete"/>
 
 
     <android.support.v7.widget.RecyclerView

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/movie_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="left"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="MovieTitle"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="210dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="MovieYear"
+        android:textColor="#000"
+        android:textSize="8sp"
+        android:layout_marginTop="60sp"
+        android:layout_marginLeft="210dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="MovieHour"
+        android:textColor="#000"
+        android:textSize="8sp"
+        android:layout_marginTop="70sp"
+        android:layout_marginLeft="210dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Movie_director"
+        android:textColor="#000"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:layout_marginTop="90sp"
+        android:layout_marginLeft="210dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_cast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Movie_cast"
+        android:textColor="#000"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:layout_marginTop="100sp"
+        android:layout_marginLeft="210dp"
+        />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/score"
+        tools:text="Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tv_title"
+        android:layout_toRightOf="@+id/tv_title"
+        />
+
+    <TextView
+        android:id="@+id/explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Explanation"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:layout_marginTop="360sp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        />
+
+</RelativeLayout>
