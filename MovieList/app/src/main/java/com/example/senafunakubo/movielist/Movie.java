@@ -4,48 +4,71 @@ package com.example.senafunakubo.movielist;
  * Created by senafunakubo on 2017-07-18.
  */
 
-public class Movie {
 
-    private String title,genre,year;
-    private int imageUrl;
-    private boolean isSelected; // boolean variable for a movie
+import java.io.Serializable;
 
-    //constructor
-    public Movie(String title, String genre, String year, int imageUrl){
-        this.title = title;
-        this.genre = genre;
-        this.year = year;
-        this.imageUrl = imageUrl;
-        this.isSelected = false;
-    }
+/**
+ * Created by CICCC-CIRAC on 2017-07-17.
+ */
 
-    public void setSelected(boolean selected){
-        isSelected = selected;
-    }
+public class Movie implements Serializable {
+    private String title;
+    private String  genre, year;
+    private int thumbnail;
+    private boolean isSelected; //boolean varaiable for a movie
 
-    //getter for isSelected
-    public boolean isSelected(){
-        return isSelected;
-    }
+//
+//    public Movie(String title, String genre, String year, String cast) {
+//        this.title = title;
+//        this.genre = genre;
+//        this.year = year;
+//        this.cast = cast;
+//        this.isSelected = false;
+//    }
 
-    //getter
-    public String getTitle(){
+
+    public String getTitle() {
         return title;
     }
 
-    public String getGenre(){
-        return genre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getYear(){
+    public String getYear() {
+
         return year;
     }
 
-    public int getImageUrl(){
-        return imageUrl;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public void setImageUrl(int imageUrl) {
-        this.imageUrl = imageUrl;
+    public String getGenre() {
+        return genre;
     }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+//    public String getCast() {
+//        return cast;
+//    }
+//
+//    public void setCast(String cast) {
+//        this.cast = cast;
+//    }
+
+    public boolean isSelected() {
+
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+
+        isSelected = selected;
+    }
+
+
 }

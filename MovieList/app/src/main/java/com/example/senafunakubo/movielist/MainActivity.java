@@ -1,148 +1,136 @@
 package com.example.senafunakubo.movielist;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.Toast;
-
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
 
-//implements GreenAdapter2.ListItemClickListener
 public class MainActivity extends AppCompatActivity {
-
-    private List<Movie> movieList = new ArrayList<>();
+    private static String TAG = MainActivity.class.getSimpleName();
+    private List<Movie> movieList1 = new ArrayList<>();
     private RecyclerView recyclerView;
-    private  MovieAdapter mAdapter;
-    private int[] selectedMovies;
+    private MovieAdapter mAdapter;
+    private List<ArrayList<Integer>> MoviesChecked;
+    // json array response url
+    private String urlJsonArray = "http://192.168.57.1/moviedata.json";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        recyclerView = (RecyclerView)findViewById(R.id.rv1);
+        recyclerView = (RecyclerView) findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
-        mAdapter = new MovieAdapter(movieList);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
-        prepareMovieData();
-
+        Log.d("error ", "in onCreate");
+        makeJsonArrayRequest();
     }
 
+    /**
+     * Method to make json array request where response starts with [
+     */
+    private void makeJsonArrayRequest() {
+        JsonArrayRequest req = new JsonArrayRequest(urlJsonArray,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+                        try {
+                            Movie moviedata = null;
+                            for (int i = 0; i < response.length(); i++) {
+                                moviedata = new Movie();
+                                JSONObject movie = (JSONObject) response.get(i);
+                                String title = movie.getString("title");
+                                String genre = movie.getString("genre");
+                                String year = movie.getString("year");
+//                                String cast = movie.getString("cast");
+                                moviedata.setTitle(title);
+                                moviedata.setGenre(genre);
+                                moviedata.setYear(year);
+//                                moviedata.setCast(cast);
+                                movieList1.add(moviedata);
+                            }
+                            mAdapter = new MovieAdapter(movieList1);
+                            recyclerView.setAdapter(mAdapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+    }
+
+
+    public void deleteMovie(View view) {
+        for (int i = 0; i < movieList1.size(); i++) {
+            if (movieList1.get(i).isSelected()) {
+                movieList1.remove(i);
+            }
+        }
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void selectAll(View view) {
+        for (Movie m : movieList1) {
+            m.setSelected(true);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void clearAll(View view) {
+        for (Movie m : movieList1) {
+            m.setSelected(false);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(id == R.id.action_settings){
-            return true;
-        }
-        else if(id == R.id.action_refresh){
-            mAdapter = new MovieAdapter(movieList);
-            //recyclerView object
-            recyclerView.setAdapter(mAdapter);
-            return true;
-        }
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    public void prepareMovieData(){
-        Movie movie = new Movie("Mad Max: Fury Road", "Action & Adventure", "2015",R.drawable.madmax);
-        movieList.add(movie);
-
-        movie = new Movie("Inside Out", "Animation, Kids & Family", "2015",R.drawable.inside);
-        movieList.add(movie);
-
-        movie = new Movie("Split", "Horror, Thriller", "2017",R.drawable.split);
-        movieList.add(movie);
-
-        movie = new Movie("Get Out", "Horror, Mystery", "2017",R.drawable.getout);
-        movieList.add(movie);
-
-        movie = new Movie("Don't Breathe", "Crime, Horror, Thriller", "2016",R.drawable.dont);
-        movieList.add(movie);
-
-        movie = new Movie("The Conjuring", "Horror, Mystery, Thriller", "2013",R.drawable.conjuring);
-        movieList.add(movie);
-
-        movie = new Movie("Fight Club", "Drama", "1999",R.drawable.fight);
-        movieList.add(movie);
-
-        movie = new Movie("3 Idiots", "Adventure, Comedy, Drama", "2009",R.drawable.idiots);
-        movieList.add(movie);
-
-        movie = new Movie("PK", "Comedy, Drama, Fantasy", "2014",R.drawable.pk);
-        movieList.add(movie);
-
-        movie = new Movie("Life", "Horror, Sci-Fi, Thriller", "2017",R.drawable.life);
-        movieList.add(movie);
-
-        movie = new Movie("Moonlight", "Drama", "2016",R.drawable.moon);
-        movieList.add(movie);
-
-        movie = new Movie("The Wolf of Wall Street", "Biography, Comedy, Crime", "2013",R.drawable.thewolf);
-        movieList.add(movie);
-
-        mAdapter.notifyDataSetChanged();
-    }
-
-    public void selectAll(View view){
-        for (Movie m : movieList){
-            m.setSelected(true); //select is true, clear is false
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public void clearAll(View view){
-        for (Movie m : movieList){
-            m.setSelected(false); //select is true, clear is false
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public void delete(View view){
-//        for (int i=0; i<movieList.size(); i++){
-//            if (movieList.get(i).isSelected()){
-//                movieList.remove(i);
-//            }
-//        }
-//        mAdapter.notifyDataSetChanged();
-
-        int arraySize = movieList.size();
-        for(int i=0; i<arraySize; i++){
-            if( movieList.get(i).isSelected()){
-                movieList.remove(i);
-                i -= 1;
-                arraySize -= 1;
-
-                mAdapter.notifyDataSetChanged();
-            }
-        }
-    }
-
-
-
 
 }
