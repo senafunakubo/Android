@@ -43,4 +43,31 @@
         android:layout_below="@+id/btn1"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="18dp"
+        android:layout_below="@+id/btn2"
+        android:text="Choose a planet"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <Spinner
+        android:id="@+id/sp_planet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"/>
+
+    <!--<Spinner-->
+        <!--android:id="@+id/sp_date"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_below="@+id/sp_planet"-->
+        <!--android:layout_centerHorizontal="true"/>-->
+
 </RelativeLayout>
