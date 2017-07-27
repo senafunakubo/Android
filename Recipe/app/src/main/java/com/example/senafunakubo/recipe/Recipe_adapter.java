@@ -6,9 +6,12 @@ package com.example.senafunakubo.recipe;
 
 //import android.support.v7.app.AlertController;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -24,6 +27,8 @@ import java.util.List;
  */
 
 //extends recyclerView adapter with dataType as classname.InnerClassName
+
+//    implements RecyclerView.OnItemTouchListener
 public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHolder>{
 
     private List<Recipe> recipe_list;
@@ -32,7 +37,12 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     int lastPosition = -1;
     boolean[] checkBoxState;
     CardView cv;
+//    private OnItemClickListener mListener;
+//    GestureDetector mGestureDetector;
 
+
+//    into constructor
+//    ,Context context, OnItemClickListener listener
     public Recipe_adapter(List<Recipe> recipe_list){
 
         this.recipe_list = recipe_list;
@@ -41,7 +51,41 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         //For background color
         colorNo = 0;
 
+//        mListener = listener;
+//        mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+//            @Override
+//            public boolean onSingleTapUp(MotionEvent e) {
+//                return true;
+//            }
+//        });
+
     }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+
+
+//    @Override
+//    public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
+//        View childView = view.findChildViewUnder(e.getX(), e.getY());
+//        if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
+//            mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
+//        }
+//        return false;
+//    }
+//
+//    @Override
+//    public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
+//    }
+//
+//    @Override
+//    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//    }
+
+
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -100,6 +144,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         setAnimation(holder.itemView, position);
         setFadeAnimation (holder.itemView);
     }
+
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

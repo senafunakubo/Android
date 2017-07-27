@@ -11,7 +11,7 @@
         android:id="@+id/cv"
         card_view:contentPadding="10dp"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="5dp"
+        card_view:cardCornerRadius="10dp"
         >
 
         <ImageView
