@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+   <EditTextPreference
+       android:title="Your name"
+       android:key="username"
+       android:summary="Please provide your username" />
+
+    <CheckBoxPreference
+        android:title="Application Updates"
+        android:key="update"
+        android:summary="Choose the update"
+        android:defaultValue="true" />
+
+    <ListPreference
+        android:title="Download Details"
+        android:key="downloadType"
+        android:summary="Select the option"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues"/>
+</PreferenceScreen>
