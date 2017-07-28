@@ -1,5 +1,6 @@
 package com.example.senafunakubo.recipe;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +8,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
     private Recipe_adapter rAdapter;
-    private int[] selectedRecipes;
+    Recipe recipe;
 
 
     @Override
@@ -43,6 +46,63 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(rAdapter);
         prepareRecipeData();
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this,recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+
+
+                    @Override public void onLongClick(View view, int position) {
+
+                        switch (position) {
+                            case 0:
+//                                Toast.makeText(MainActivity.this, "Recycle Click" + position, Toast.LENGTH_SHORT).show();
+                                Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins","http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", R.drawable.friedudon);
+                                recipeList.add(recipe);
+                                rAdapter.notifyDataSetChanged();
+                                break;
+
+                            default:
+//                                Toast.makeText(MainActivity.this, "Recycle Click" + " ", Toast.LENGTH_SHORT).show();
+                                recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://www.vegrecipesofindia.com/bhindi-masala/",R.drawable.bhindi);
+                                recipeList.add(recipe);
+                                rAdapter.notifyDataSetChanged();
+                                break;
+                        }
+
+                    }
+
+                    @Override public void onItemClick(View view, int position) {
+
+                        Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
+                        Recipe recipe = recipeList.get(position);
+                        String recipeUrl = recipe.getWebUrl();
+                        intent.putExtra("recipeUrl",recipeUrl);
+                        startActivity(intent);
+
+//                        copyに対応できないので保留
+//                        Intent intent;
+//                        switch (position){
+//                            case 0:
+//                                intent = new Intent(MainActivity.this, Recipe_detail.class);
+//                                String udon = "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork";
+//                                intent.putExtra("udon", udon);
+//                                break;
+//
+//                            case 1:
+//                                intent = new Intent(MainActivity.this, Recipe_detail.class);
+//                                String masala = "http://www.vegrecipesofindia.com/bhindi-masala/";
+//                                intent.putExtra("masala", masala);
+//                                break;
+//
+//                            default:
+//                                intent =  new Intent(MainActivity.this, MainActivity.class);
+//                                break;
+//                        }
+//                        startActivity(intent);
+                    }
+
+                })
+        );
 
     }
 
@@ -69,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void prepareRecipeData(){
-        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins",R.drawable.friedudon);
+        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins","http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", R.drawable.friedudon);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins",R.drawable.bhindi);
+        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://www.vegrecipesofindia.com/bhindi-masala/",R.drawable.bhindi);
         recipeList.add(recipe);
 
         rAdapter.notifyDataSetChanged();

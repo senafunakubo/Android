@@ -29,8 +29,8 @@ public class ItemsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.items_list);
 
-        listViewLeft = (ListView) findViewById(R.id.list_view_left);
-        listViewRight = (ListView) findViewById(R.id.list_view_right);
+        listViewLeft = findViewById(R.id.list_view_left);
+        listViewRight = findViewById(R.id.list_view_right);
 
         loadItems();
 

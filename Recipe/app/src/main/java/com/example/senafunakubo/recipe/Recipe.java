@@ -8,14 +8,16 @@ public class Recipe {
 
     private String recipe_title,recipe_ingredients,recipe_time;
     private int imageUrl;
+    private String webUrl;
     private boolean isSelected;
 
     //constructor
-    public Recipe(String recipe_title, String recipe_ingredients, String recipe_time, int imageUrl){
+    public Recipe(String recipe_title, String recipe_ingredients, String recipe_time,String webUrl, int imageUrl){
         this.recipe_title = recipe_title;
         this.recipe_ingredients = recipe_ingredients;
         this.recipe_time = recipe_time;
         this.imageUrl = imageUrl;
+        this.webUrl = webUrl;
         this.isSelected = false;
     }
 
@@ -43,6 +45,14 @@ public class Recipe {
 
     public int getImageUrl(){
         return imageUrl;
+    }
+
+    public String getWebUrl(){
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl){
+        this.webUrl = webUrl;
     }
 
     public void setImageUrl(int imageUrl) {

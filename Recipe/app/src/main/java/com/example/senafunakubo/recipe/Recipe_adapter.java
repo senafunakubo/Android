@@ -4,14 +4,10 @@ package com.example.senafunakubo.recipe;
  * Created by senafunakubo on 2017-07-24.
  */
 
-//import android.support.v7.app.AlertController;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -28,7 +24,6 @@ import java.util.List;
 
 //extends recyclerView adapter with dataType as classname.InnerClassName
 
-//    implements RecyclerView.OnItemTouchListener
 public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHolder>{
 
     private List<Recipe> recipe_list;
@@ -37,12 +32,8 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     int lastPosition = -1;
     boolean[] checkBoxState;
     CardView cv;
-//    private OnItemClickListener mListener;
-//    GestureDetector mGestureDetector;
 
 
-//    into constructor
-//    ,Context context, OnItemClickListener listener
     public Recipe_adapter(List<Recipe> recipe_list){
 
         this.recipe_list = recipe_list;
@@ -51,39 +42,11 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         //For background color
         colorNo = 0;
 
-//        mListener = listener;
-//        mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-//            @Override
-//            public boolean onSingleTapUp(MotionEvent e) {
-//                return true;
-//            }
-//        });
-
     }
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
+        void onItemClick(View view, int position);
     }
-
-
-//    @Override
-//    public boolean onInterceptTouchEvent(RecyclerView view, MotionEvent e) {
-//        View childView = view.findChildViewUnder(e.getX(), e.getY());
-//        if (childView != null && mListener != null && mGestureDetector.onTouchEvent(e)) {
-//            mListener.onItemClick(childView, view.getChildAdapterPosition(childView));
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public void onTouchEvent(RecyclerView view, MotionEvent motionEvent) {
-//    }
-//
-//    @Override
-//    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//    }
-
 
 
 
@@ -97,13 +60,13 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
         MyViewHolder(View view) {
             super(view);
-            recipe_title = (TextView) view.findViewById(R.id.re_title);
-            recipe_ingredients = (TextView) view.findViewById(R.id.re_ingre);
-            recipe_time = (TextView) view.findViewById(R.id.re_time);
+            recipe_title = view.findViewById(R.id.re_title);
+            recipe_ingredients = view.findViewById(R.id.re_ingre);
+            recipe_time = view.findViewById(R.id.re_time);
 
-            cv = (CardView) view.findViewById(R.id.cv);
-            imageView = (ImageView) view.findViewById(R.id.recipe_image);
-            checkBox = (CheckBox) view.findViewById(R.id.checkbox);
+            cv = view.findViewById(R.id.cv);
+            imageView = view.findViewById(R.id.recipe_image);
+            checkBox = view.findViewById(R.id.checkbox);
 
         }
     }
@@ -146,6 +109,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     }
 
 
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
@@ -179,10 +143,12 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
     public void slide(View view){
         Context c = view.getContext();
-        ImageView image = (ImageView)view.findViewById(R.id.recipe_image);
+        ImageView image = view.findViewById(R.id.recipe_image);
         Animation animation1 =
                 AnimationUtils.loadAnimation(c, R.anim.slide);
         image.startAnimation(animation1);
     }
+
+
 
 }

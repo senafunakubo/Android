@@ -31,7 +31,7 @@ public class Item_adapter extends ArrayAdapter<Integer>{
         this.layoutResourceId = layoutResourceId;
 
         float width = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
-        float margin = (int)convertDpToPixel(10f, (Activity)context);
+        float margin = (int)convertDpToPixel(10f, context);
         // two images, three margins of 10dips
         imageWidth = ((width - (3 * margin)) / 2);
     }
@@ -46,7 +46,7 @@ public class Item_adapter extends ArrayAdapter<Integer>{
             holder = new ItemHolder();
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = (FrameLayout) inflater.inflate(layoutResourceId, parent, false);
-            ImageView itemImage = (ImageView)row.findViewById(R.id.item_image);
+            ImageView itemImage = row.findViewById(R.id.item_image);
             holder.itemImage = itemImage;
         } else {
             holder = (ItemHolder) row.getTag();
@@ -65,7 +65,7 @@ public class Item_adapter extends ArrayAdapter<Integer>{
     // resize the image proportionately so it fits the entire space
     private void setImageBitmap(Integer item, ImageView imageView){
         Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), item);
-        float i = ((float) imageWidth) / ((float) bitmap.getWidth());
+        float i = imageWidth / ((float) bitmap.getWidth());
         float imageHeight = i * (bitmap.getHeight());
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) imageView.getLayoutParams();
         params.height = (int) imageHeight;
