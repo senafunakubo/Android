@@ -22,7 +22,7 @@ public class Recipe_detail extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_detail);
 
-
+//        Copyに対処できないので停止
 //        Bundle bundle = getIntent().getExtras();
 //            String udon = bundle.getString("udon");
 //            webView.loadUrl(udon);

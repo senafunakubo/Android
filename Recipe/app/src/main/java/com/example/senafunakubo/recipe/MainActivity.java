@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Recipe_adapter rAdapter;
     Recipe recipe;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                             default:
 //                                Toast.makeText(MainActivity.this, "Recycle Click" + " ", Toast.LENGTH_SHORT).show();
-                                recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://www.vegrecipesofindia.com/bhindi-masala/",R.drawable.bhindi);
+                                recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://foodviva.com/indian-recipes/bhindi-masala-gravy/",R.drawable.bhindi);
                                 recipeList.add(recipe);
                                 rAdapter.notifyDataSetChanged();
                                 break;
@@ -73,13 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override public void onItemClick(View view, int position) {
 
-                        Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
-                        Recipe recipe = recipeList.get(position);
-                        String recipeUrl = recipe.getWebUrl();
-                        intent.putExtra("recipeUrl",recipeUrl);
-                        startActivity(intent);
+                            Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
+                            Recipe recipe = recipeList.get(position);
+                            String recipeUrl = recipe.getWebUrl();
+                            intent.putExtra("recipeUrl", recipeUrl);
+                            startActivity(intent);
 
-//                        copyに対応できないので保留
+
+//                        copyに対応できないので停止
 //                        Intent intent;
 //                        switch (position){
 //                            case 0:
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins","http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", R.drawable.friedudon);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://www.vegrecipesofindia.com/bhindi-masala/",R.drawable.bhindi);
+        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://foodviva.com/indian-recipes/bhindi-masala-gravy/",R.drawable.bhindi);
         recipeList.add(recipe);
 
         rAdapter.notifyDataSetChanged();
