@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="listArray">
+    <string-array name="guesses_list">
       <item>2</item>
       <item>4</item>
       <item>6</item>
       <item>8</item>
     </string-array>
 
-    <string-array name="listValues">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-
-    <string-array name="listArray2">
+    <string-array name="regions_list">
         <item>Africa</item>
         <item>Asia</item>
         <item>Europe</item>
@@ -24,7 +17,7 @@
         <item>South America</item>
     </string-array>
 
-    <string-array name="listValues2">
+    <string-array name="regions_list_settings">
         <item>Africa</item>
         <item>Asia</item>
         <item>Europe</item>
