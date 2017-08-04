@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import android.preference.*;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.logging.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +24,7 @@ public class MainActivity extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         PreferenceManager.setDefaultValues(this,R.xml.preferences,false);
-//        SharedPreferences sp  =  PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
-       // Log.d("in main value"," = "+ sp.getString("pref_numberOfChoices","na"));
-       // Log.d("in main value"," = "+ sp.getString(MainActivity.REGIONS,"na"));
     }
 
     @Override
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         //インスタンス作成
         MainActivityFragment quizFragment = (MainActivityFragment)
-                getSupportFragmentManager().findFragmentById(R.id.quizFragment);
+                getFragmentManager().findFragmentById(R.id.quizFragment);
 
         Context context = getApplicationContext();
         quizFragment.updateGuessRows(PreferenceManager.getDefaultSharedPreferences(context));
@@ -56,4 +53,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(preferencesIntent);
         return super.onOptionsItemSelected(item);
     }
+
 }
