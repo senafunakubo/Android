@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="basic">#FF3C38</color>
+    <color name="dark_basic">#E83733</color>
     <color name="material50Green">#FFC9C9</color>
     <color name="material100Green">#FFBBBB</color>
     <color name="material150Green">#FFAEAE</color>
@@ -21,6 +23,6 @@
     <color name="material750Green">#5D2727</color>
     <color name="material800Green">#461E1E</color>
     <color name="material850Green">#292F36</color>
-    <color name="material900Green">#292F36</color>
-</resources>
+    <color name="material">#292F36</color>
 
+</resources>

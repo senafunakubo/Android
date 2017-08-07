@@ -13,6 +13,7 @@ import android.widget.TextView;
  * Created by senafunakubo on 2017-07-27.
  */
 
+//レシピ詳細
 public class Recipe_detail extends AppCompatActivity{
 
     WebView webView;

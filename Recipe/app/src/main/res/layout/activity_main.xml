@@ -1,47 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:design="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent">
-        
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NavBot"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        design:menu="@menu/menu_nav"
+        design:itemIconTint="#FF3C38"/>
+
         <Button
             android:id="@+id/clear_all"
-            android:text="clearAll"
-            android:layout_marginLeft="40dp"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:onClick="clearAll"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/ripple_effect"
-            />
+            android:onClick="clearAll"
+            android:text="clearAll" />
 
         <Button
             android:id="@+id/select_all"
-            android:text="selectAll"
             android:layout_width="100dp"
-            android:layout_marginLeft="150dp"
             android:layout_height="wrap_content"
-            android:onClick="selectAll"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/ripple_effect"
-            />
+            android:onClick="selectAll"
+            android:text="selectAll" />
 
         <Button
             android:id="@+id/delete"
-            android:text="Delete"
             android:layout_width="100dp"
-            android:layout_marginLeft="250dp"
             android:layout_height="wrap_content"
-            android:onClick="delete"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/ripple_effect"
-            />
+            android:onClick="delete"
+            android:text="Delete" />
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="55dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="95dp"
+        />
 
-    </RelativeLayout>
 
-</LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

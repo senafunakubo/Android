@@ -76,13 +76,13 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.search_recipe,parent,false);
+        View view = inflater.inflate(R.layout.fav_recipe,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
         //For background color
-        int bgColorNo = ColorUtils.getViewHolderBackgroundColorFromInstance(context,colorNo);
-        viewHolder.itemView.setBackgroundColor(bgColorNo);
-        colorNo++;
+//        int bgColorNo = ColorUtils.getViewHolderBackgroundColorFromInstance(context,colorNo);
+//        viewHolder.itemView.setBackgroundColor(bgColorNo);
+//        colorNo++;
 
         return viewHolder;
     }
