@@ -31,6 +31,7 @@ public class Recipe_detail extends AppCompatActivity{
 //            String masala = bundle.getString("masala");
 //            webView.loadUrl(masala);
 
+        //WebView
         String recipeUrlIntent = getIntent().getStringExtra("recipeUrl");
         webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);

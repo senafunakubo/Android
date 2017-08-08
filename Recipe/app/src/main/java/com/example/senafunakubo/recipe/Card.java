@@ -8,11 +8,13 @@ public class Card {
     private String imgURL;
     private String title;
     private int cooking_time;
+    private String webUrl;
 
-    public Card(String imgURL, String title, int cooking_time) {
+    public Card(String imgURL, String title, int cooking_time, String webUrl) {
         this.imgURL = imgURL;
         this.title = title;
         this.cooking_time = cooking_time;
+        this.webUrl = webUrl;
     }
 
     public String getImgURL() {
@@ -37,6 +39,14 @@ public class Card {
 
     public void setCooking_time(int cooking_time) {
         this.cooking_time = cooking_time;
+    }
+
+    public String getWebUrl(){
+        return webUrl;
+    }
+
+    public void setWebUrl(String webUrl){
+        this.webUrl = webUrl;
     }
 
 }

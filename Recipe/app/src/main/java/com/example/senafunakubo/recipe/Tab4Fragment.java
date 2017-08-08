@@ -1,10 +1,12 @@
 package com.example.senafunakubo.recipe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -24,12 +26,12 @@ public class Tab4Fragment extends Fragment {
         View view4 = inflater.inflate(R.layout.tab4_fragment, container, false);
         mListView4 = (ListView)view4.findViewById(R.id.listView_others);
 
-        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10));
-        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30));
-        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25));
-        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20));
-        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50));
-        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30));
+        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/"));
+        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30, "https://mykoreankitchen.com/sundubu-jjigae/"));
+        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/"));
+        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/"));
+        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50, "https://norecipes.com/vegan-gyoza-recipe"));
+        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30, "http://www.justonecookbook.com/karaage/"));
 
         final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
         mListView4.setAdapter(adapter4);
@@ -108,16 +110,27 @@ public class Tab4Fragment extends Fragment {
             }
         });
 
+        mListView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+
+                Intent intent = new Intent(getActivity(), Recipe_detail.class);
+                Card card = list4.get(position);
+                String recipeUrl = card.getWebUrl();
+                intent.putExtra("recipeUrl", recipeUrl);
+                startActivity(intent);
+            }
+        });
+
         return view4;
     }
 
     public void addList(){
-        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10));
-        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30));
-        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25));
-        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20));
-        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50));
-        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30));
+        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/"));
+        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30, "https://mykoreankitchen.com/sundubu-jjigae/"));
+        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/"));
+        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/"));
+        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50, "https://norecipes.com/vegan-gyoza-recipe"));
+        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30, "http://www.justonecookbook.com/karaage/"));
 
         final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
         mListView4.setAdapter(adapter4);
