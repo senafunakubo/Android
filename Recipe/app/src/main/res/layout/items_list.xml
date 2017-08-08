@@ -18,8 +18,9 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:paddingRight="20dp"
+        android:paddingBottom="50dp"
         android:scrollbars="none"
-        android:layout_marginBottom="?attr/actionBarSize">
+        >
     </ListView>
 
     <ListView
@@ -28,8 +29,9 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:paddingLeft="200dp"
+        android:paddingBottom="50dp"
         android:scrollbars="none"
-        android:layout_marginBottom="?attr/actionBarSize">
+        >
     </ListView>
 
     <android.support.design.widget.BottomNavigationView
