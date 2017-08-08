@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/cardview_shadow_start_color">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/alarm" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Tab1"
-        android:layout_marginTop="50dp"
+        android:text="Choose preferred cooking time!"
+        android:layout_marginTop="90dp"
         android:id="@+id/textTab1"/>
 
+    <Button
+        android:id="@+id/mini"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="165dp"
+        android:text="3-15mins" />
+
+    <Button
+        android:id="@+id/mid"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="165dp"
+        android:text="15-30mins" />
+
+    <Button
+        android:id="@+id/longTime"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="165dp"
+        android:text="30mins+" />
+
+    <ListView
+        android:id="@+id/list_view_left1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="220dp"
+        android:scrollbars="none"
+        android:layout_marginBottom="?attr/actionBarSize"
+        >
+    </ListView>
+
+    <ListView
+        android:id="@+id/list_view_right1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="220dp"
+        android:paddingLeft="200dp"
+        android:scrollbars="none"
+        android:layout_marginBottom="?attr/actionBarSize"
+        >
+    </ListView>
 </RelativeLayout>

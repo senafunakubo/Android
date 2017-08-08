@@ -60,14 +60,18 @@ public class ItemsActivity extends Activity {
                 switch (item.getItemId()) {
 
                     case R.id.search_ic:
+                        Intent intent1 = new Intent(ItemsActivity.this, SearchPage.class);
+                        startActivity(intent1);
                         break;
 
                     case R.id.recipe_ic:
+                        Toast.makeText(ItemsActivity.this, "This is Recipe page!",
+                                Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.fav_ic:
-                        Intent intent = new Intent(ItemsActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        Intent intent2 = new Intent(ItemsActivity.this, MainActivity.class);
+                        startActivity(intent2);
                         break;
                 }
 
@@ -235,6 +239,12 @@ public class ItemsActivity extends Activity {
         recipe = new Recipe("Karbonara", "Eggs, Pasta, Cheese...", "25 mins",
                 "https://www.bbcgoodfood.com/recipes/1052/ultimate-spaghetti-carbonara",R.drawable.karbonara);
         recipeListRight.add(recipe);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
 
