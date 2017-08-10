@@ -40,6 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+            <!--<com.like.LikeButton-->
+                <!--app:icon_type="heart"-->
+                <!--app:icon_size="20dp"-->
+                <!--android:layout_alignRight="@id/cardTitle"-->
+                <!--android:id="@+id/star_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
+
             <ProgressBar
                 android:layout_width="50dp"
                 android:layout_height="50dp"

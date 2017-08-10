@@ -28,7 +28,7 @@ import java.util.List;
  * Created by senafunakubo on 2017-08-07.
  */
 
-public class CustomListAdapter extends ArrayAdapter<Card> {
+public class CustomListAdapter extends ArrayAdapter<Recipe> {
     private static final String TAG = "CustomListAdapter";
 
     private Context mContext;
@@ -50,7 +50,7 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
      * @param resource
      * @param objects
      */
-    public CustomListAdapter(Context context, int resource, ArrayList<Card> objects) {
+    public CustomListAdapter(Context context, int resource, ArrayList<Recipe> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -64,9 +64,8 @@ public class CustomListAdapter extends ArrayAdapter<Card> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         //get the persons information
-        String title = getItem(position).getTitle();
-        String imgUrl = getItem(position).getImgURL();
-
+        String title = getItem(position).getRecipe_title();
+        String imgUrl = getItem(position).getImageUrl();
 
         try{
 

@@ -19,19 +19,25 @@ public class Tab4Fragment extends Fragment {
     private static final String TAG4 = "Tab4Fragment";
 
     private ListView mListView4;
-    ArrayList<Card> list4 = new ArrayList<>();
+    ArrayList<Recipe> list4 = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view4 = inflater.inflate(R.layout.tab4_fragment, container, false);
         mListView4 = (ListView)view4.findViewById(R.id.listView_others);
 
-        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/"));
-        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30, "https://mykoreankitchen.com/sundubu-jjigae/"));
-        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/"));
-        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/"));
-        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50, "https://norecipes.com/vegan-gyoza-recipe"));
-        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30, "http://www.justonecookbook.com/karaage/"));
+        list4.add(new Recipe("Bhindi Masala", "", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/",
+                "drawable://" + R.drawable.bhindi));
+        list4.add(new Recipe("Sundubu-jjigae", "", 30, "https://mykoreankitchen.com/sundubu-jjigae/",
+                "drawable://" + R.drawable.chige));
+        list4.add(new Recipe("Kadai Masala", "", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/",
+                "drawable://" + R.drawable.kadai));
+        list4.add(new Recipe("Ginger Pork", "", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/",
+                "drawable://" + R.drawable.gingerpork));
+        list4.add(new Recipe("Vegan Gyoza", "", 50, "https://norecipes.com/vegan-gyoza-recipe",
+                "drawable://" + R.drawable.gyozave));
+        list4.add(new Recipe("Japanese Fried Chicken", "", 30, "http://www.justonecookbook.com/karaage/",
+                "drawable://" + R.drawable.karaage));
 
         final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
         mListView4.setAdapter(adapter4);
@@ -114,7 +120,7 @@ public class Tab4Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
-                Card card = list4.get(position);
+                Recipe card = list4.get(position);
                 String recipeUrl = card.getWebUrl();
                 intent.putExtra("recipeUrl", recipeUrl);
                 startActivity(intent);
@@ -125,12 +131,18 @@ public class Tab4Fragment extends Fragment {
     }
 
     public void addList(){
-        list4.add(new Card("drawable://" + R.drawable.bhindi, "Bhindi Masala", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/"));
-        list4.add(new Card("drawable://" + R.drawable.chige, "Sundubu-jjigae", 30, "https://mykoreankitchen.com/sundubu-jjigae/"));
-        list4.add(new Card("drawable://" + R.drawable.kadai, "Kadai Masala", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/"));
-        list4.add(new Card("drawable://" + R.drawable.gingerpork, "Ginger Pork", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/"));
-        list4.add(new Card("drawable://" + R.drawable.gyozave, "Vegan Gyoza", 50, "https://norecipes.com/vegan-gyoza-recipe"));
-        list4.add(new Card("drawable://" + R.drawable.karaage, "Japanese Fried Chicken", 30, "http://www.justonecookbook.com/karaage/"));
+        list4.add(new Recipe("Bhindi Masala", "", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/",
+                "drawable://" + R.drawable.bhindi));
+        list4.add(new Recipe("Sundubu-jjigae", "", 30, "https://mykoreankitchen.com/sundubu-jjigae/",
+                "drawable://" + R.drawable.chige));
+        list4.add(new Recipe("Kadai Masala", "", 25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/",
+                "drawable://" + R.drawable.kadai));
+        list4.add(new Recipe("Ginger Pork", "", 20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/",
+                "drawable://" + R.drawable.gingerpork));
+        list4.add(new Recipe("Vegan Gyoza", "", 50, "https://norecipes.com/vegan-gyoza-recipe",
+                "drawable://" + R.drawable.gyozave));
+        list4.add(new Recipe("Japanese Fried Chicken", "", 30, "http://www.justonecookbook.com/karaage/",
+                "drawable://" + R.drawable.karaage));
 
         final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
         mListView4.setAdapter(adapter4);

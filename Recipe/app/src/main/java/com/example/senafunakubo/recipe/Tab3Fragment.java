@@ -19,19 +19,26 @@ public class Tab3Fragment extends Fragment {
     private static final String TAG3 = "Tab3Fragment";
 
     private ListView mListView3;
-    ArrayList<Card> list3 = new ArrayList<>();
+    ArrayList<Recipe> list3 = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view3 = inflater.inflate(R.layout.tab3_fragment, container, false);
         mListView3 = (ListView)view3.findViewById(R.id.listView_bread);
 
-        list3.add(new Card("drawable://" + R.drawable.eggsand, "Egg Sandwich", 10, "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997"));
-        list3.add(new Card("drawable://" + R.drawable.breadchana, "Bread Channa", 15, "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/"));
-        list3.add(new Card("drawable://" + R.drawable.tacopi, "Taco Pizza", 45, "http://www.food.com/recipe/taco-pizza-174145"));
-        list3.add(new Card("drawable://" + R.drawable.frencht, "French Toast", 30, "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408"));
-        list3.add(new Card("drawable://" + R.drawable.vegansand, "Vegan Sandwich with Tofu", 20, "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html"));
-        list3.add(new Card("drawable://" + R.drawable.eggbene, "Eggs Benedict", 30, "https://norecipes.com/eggs-benedict-recipe"));
+        list3.add(new Recipe("Egg Sandwich", "", 10, "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
+                "drawable://" + R.drawable.eggsand));
+        list3.add(new Recipe("Bread Channa", "", 15, "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
+                "drawable://" + R.drawable.breadchana));
+        list3.add(new Recipe("Taco Pizza", "", 45, "http://www.food.com/recipe/taco-pizza-174145",
+                "drawable://" + R.drawable.tacopi));
+        list3.add(new Recipe("French Toast", "", 30, "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
+                "drawable://" + R.drawable.frencht));
+        list3.add(new Recipe("Vegan Sandwich with Tofu", "", 20,
+                "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
+                "drawable://" + R.drawable.vegansand));
+        list3.add(new Recipe("Eggs Benedict", "", 30, "https://norecipes.com/eggs-benedict-recipe",
+                "drawable://" + R.drawable.eggbene));
 
         final CustomListAdapter adapter3 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list3);
         mListView3.setAdapter(adapter3);
@@ -114,7 +121,7 @@ public class Tab3Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
-                Card card = list3.get(position);
+                Recipe card = list3.get(position);
                 String recipeUrl = card.getWebUrl();
                 intent.putExtra("recipeUrl", recipeUrl);
                 startActivity(intent);
@@ -125,12 +132,19 @@ public class Tab3Fragment extends Fragment {
     }
 
     public void addList(){
-        list3.add(new Card("drawable://" + R.drawable.eggsand, "Egg Sandwich", 10, "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997"));
-        list3.add(new Card("drawable://" + R.drawable.breadchana, "Bread Channa", 15, "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/"));
-        list3.add(new Card("drawable://" + R.drawable.tacopi, "Taco Pizza", 45, "http://www.food.com/recipe/taco-pizza-174145"));
-        list3.add(new Card("drawable://" + R.drawable.frencht, "French Toast", 30, "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408"));
-        list3.add(new Card("drawable://" + R.drawable.vegansand, "Vegan Sandwich with Tofu", 20, "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html"));
-        list3.add(new Card("drawable://" + R.drawable.eggbene, "Eggs Benedict", 30, "https://norecipes.com/eggs-benedict-recipe"));
+        list3.add(new Recipe("Egg Sandwich", "", 10, "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
+                "drawable://" + R.drawable.eggsand));
+        list3.add(new Recipe("Bread Channa", "", 15, "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
+                "drawable://" + R.drawable.breadchana));
+        list3.add(new Recipe("Taco Pizza", "", 45, "http://www.food.com/recipe/taco-pizza-174145",
+                "drawable://" + R.drawable.tacopi));
+        list3.add(new Recipe("French Toast", "", 30, "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
+                "drawable://" + R.drawable.frencht));
+        list3.add(new Recipe("Vegan Sandwich with Tofu", "", 20,
+                "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
+                "drawable://" + R.drawable.vegansand));
+        list3.add(new Recipe("Eggs Benedict", "", 30, "https://norecipes.com/eggs-benedict-recipe",
+                "drawable://" + R.drawable.eggbene));
 
         final CustomListAdapter adapter = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list3);
         mListView3.setAdapter(adapter);

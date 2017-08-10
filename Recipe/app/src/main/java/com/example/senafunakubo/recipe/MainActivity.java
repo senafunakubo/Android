@@ -183,10 +183,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void prepareRecipeData(){
-        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins","http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", R.drawable.friedudon);
+        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", 15,"http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", "drawable://" + R.drawable.friedudon);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://foodviva.com/indian-recipes/bhindi-masala-gravy/",R.drawable.bhindi);
+        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", 10,"http://foodviva.com/indian-recipes/bhindi-masala-gravy/", "drawable://" + R.drawable.bhindi);
         recipeList.add(recipe);
 
         rAdapter.notifyDataSetChanged();

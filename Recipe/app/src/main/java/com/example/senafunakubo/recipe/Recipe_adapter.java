@@ -7,6 +7,7 @@ package com.example.senafunakubo.recipe;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,8 +94,16 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         final Recipe recipe = recipe_list.get(position);
         holder.recipe_title.setText(recipe.getRecipe_title());
         holder.recipe_ingredients.setText(recipe.getRecipe_ingredients());
-        holder.recipe_time.setText(recipe.getRecipe_time());
-        holder.imageView.setImageResource(recipe.getImageUrl());
+        int cooking_time_int = recipe.getCooking_time();
+        String cooking_time = Integer.toString(cooking_time_int);
+        holder.recipe_time.setText(cooking_time + " mins");
+
+//        Log.d("Test",Integer.toString(R.drawable.bhindi));
+        String getImage_st = recipe.getImageUrl().substring(11);
+        Log.d("Drawable",getImage_st);
+        int getImage = Integer.parseInt(getImage_st);
+        holder.imageView.setImageResource(getImage);
+
         holder.checkBox.setChecked(recipe_list.get(position).isSelected());
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
