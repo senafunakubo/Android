@@ -8,10 +8,18 @@ public class Book {
     private int id;
     private String title, author;
 
-    public Book(String title, String author){
+    //default
+    public Book(){
+//        this.title = title;
+//        this.author = author;
+    }
+
+    public Book(String title, String author)
+    {
         this.title = title;
         this.author = author;
     }
+
 
     //getter & setter Methods
     public int getId(){
@@ -40,6 +48,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return Integer.toString(getId()) + getAuthor() + getTitle();
+        return  "BOOK [ id = " + id +" ,title = "+
+                title + " ,Author  = "+author + " ]";
     }
 }

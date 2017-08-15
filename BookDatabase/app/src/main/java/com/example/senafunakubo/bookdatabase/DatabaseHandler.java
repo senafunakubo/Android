@@ -3,8 +3,13 @@ package com.example.senafunakubo.bookdatabase;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by senafunakubo on 2017-08-14.
@@ -72,6 +77,42 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
         //close the database connection
         db1.close();
+
+    }
+
+    public List<Book> getAllBooks(){
+        //order
+        List<Book> books = new LinkedList<Book>();
+
+        //TODO 8) Create a select query
+        String query = "SELECT * FROM " + TABLE_NAME;
+
+        //TODO 9) Get instance of data in Readable mode
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //TODO 10) Get cursor object for result of query
+        Cursor cursor = db.rawQuery(query,null);
+        //rawQuery directly accepts SQL statement
+        //as its input and it returns cursor object
+        //which will point to one row of query result
+
+        //TODO 11) Go over result and build BOOK object and add it to the list
+        //add it to the list
+        Book book = null;
+        if(cursor.moveToFirst()){
+
+            do {
+                book = new Book();
+                // it means a first column
+                book.setId(Integer.parseInt(cursor.getString(0)));
+                book.setTitle(cursor.getString(1));
+                book.setAuthor(cursor.getString(2));
+                books.add(book);
+            }
+            while (cursor.moveToNext());
+        }
+
+        return books;
 
     }
 }
