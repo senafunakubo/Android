@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.senafunakubo.bookdatabase.MainActivity">
+    tools:context="com.example.senafunakubo.bookdatabase.MainActivity"
+    >
 
     <EditText
         android:id="@+id/titleEdit"
@@ -26,12 +27,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
-        android:layout_below="@+id/authorEdit"/>
+        android:layout_below="@+id/authorEdit"
+        android:layout_toLeftOf="@+id/update"/>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_below="@+id/authorEdit"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:layout_below="@+id/authorEdit"
+        android:layout_toRightOf="@+id/update"/>
+
+    <Button
+        android:id="@+id/sortByT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SORT BY TITLE"
+        android:layout_below="@+id/button_add"
+        android:layout_alignLeft="@+id/button_add"/>
+
+    <Button
+        android:id="@+id/sortByA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SORT BY AUTHOR"
+        android:layout_below="@+id/delete"
+        android:layout_toRightOf="@+id/sortByT"/>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/button_add"/>
+        android:layout_below="@+id/sortByT"
+        android:descendantFocusability="blocksDescendants"
+        />
 
 </RelativeLayout>

@@ -1,9 +1,11 @@
 package com.example.senafunakubo.bookdatabase;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -12,30 +14,48 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ListView.OnItemClickListener{
     //listView needs a separete layout to show data in row ... array adapter
+//    Context context;
     DatabaseHandler dbHandler = new DatabaseHandler(this);
-    Button addBook;
+    String tag = "book";
+    Button addBook,updateButton,deleteButton,sortByTitle,sortByAuthor;
     EditText bookTitle, bookAuthor;
     ListView lv_books;
     BookAdapter bookAdapter;
     List<Book> listBooks; //Book is the model class
-
+    static Integer selectedID;
+    // global variable that stores
+    // selected book's id
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         addBook = (Button)findViewById(R.id.button_add);
+        updateButton = (Button)findViewById(R.id.update);
+        deleteButton = (Button)findViewById(R.id.delete);
+        sortByTitle = (Button)findViewById(R.id.sortByT);
+        sortByAuthor = (Button)findViewById(R.id.sortByA);
         bookTitle = (EditText)findViewById(R.id.titleEdit);
         bookAuthor = (EditText)findViewById(R.id.authorEdit);
         lv_books = (ListView)findViewById(R.id.listView);
-        addBook.setOnClickListener(this);
 
+        //clickListener
+        addBook.setOnClickListener(this);
+        updateButton.setOnClickListener(this);
+        deleteButton.setOnClickListener(this);
+        sortByTitle.setOnClickListener(this);
+        sortByAuthor.setOnClickListener(this);
+        lv_books.setOnItemClickListener(this);
+
+
+        //todo 8) Read all books from database and add it into the list.
         listBooks = dbHandler.getAllBooks();
         List<Integer> listID = new ArrayList<Integer>();
-        List<String> listTitle = new ArrayList<String>();
-        List<String> listAuthor = new ArrayList<String>();
+        final List<String> listTitle = new ArrayList<String>();
+        final List<String> listAuthor = new ArrayList<String>();
 
         for (int i=0; i<listBooks.size(); i++){
 
@@ -47,11 +67,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bookAdapter = new BookAdapter(this,listID,listTitle,listAuthor);
         lv_books.setAdapter(bookAdapter);
 
+
+        if (bookTitle.isSelected() || bookAuthor.isSelected()){
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        }
+
 //        dbHandler.addBook(new Book("WINGS OF FIRE", "APJ KALAM"));
 //        dbHandler.addBook(new Book("THE WAVES", "VIRGINIA WOOLF"));
 //        Toast.makeText(this, "DATABASE CREATED  SUCCESSFULLY", Toast.LENGTH_SHORT).show();
 
-        //data > data > com.example.sena~ > 該当のファイル
+        //How to check?
+        //Tools > Android > Android Device Monitor > data > data > com.example.sena~ > 該当のファイル
     }
 
     @Override
@@ -60,6 +86,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.button_add:
                 add(v);
+//                if (bookTitle.length()!=0 && bookAuthor.length()!=0) {
+//                    dbHandler.addBook(new Book(bookTitle.getText().toString(), bookAuthor.getText().toString()));
+//                    Toast.makeText(this, "Added", Toast.LENGTH_LONG).show();
+//                    Intent intent = new Intent(MainActivity.this,ListDataActivity.class);
+//                    startActivity(intent);
+//                }
+//                else{
+//                    Toast.makeText(this,"You must put something in the text field!",Toast.LENGTH_SHORT).show();
+//                }
+                break;
+
+            //create a book object with selected ID
+            //Pass this book object to update method
+            //to DatabaseHandler.java
+            case R.id.update:
+                //empty object of book
+                Book book = new Book();
+                Log.d("selectedID", Integer.toString(selectedID));
+                book.setId(selectedID);
+                book.setTitle(bookTitle.getText().toString());
+                book.setAuthor(bookAuthor.getText().toString());
+                int rowAffected = dbHandler.updateBook(book);
+                Toast.makeText(this,"ROWS" + rowAffected + "ARE UPDATED",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.delete:
+                Book book1 = new Book();
+                book1.setId(selectedID);
+                book1.setTitle(bookTitle.getText().toString());
+                book1.setAuthor(bookAuthor.getText().toString());
+                int rowAffected1 = dbHandler.deleteBook(book1);
+                Toast.makeText(this,"ROWS" + rowAffected1 + "ARE DELETED",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.sortByT:
+                listBooks = dbHandler.sortByTitle();
+                Toast.makeText(this,"ROWS ARE SORTED BY TITLE", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.sortByA:
+                listBooks = dbHandler.sortByAuthor();
+                Toast.makeText(this,"ROWS ARE SORTED BY AUTHOR", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -69,8 +137,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String title = bookTitle.getText().toString();
         String author = bookAuthor.getText().toString();
         dbHandler.addBook(new Book(title,author));
-        Toast.makeText(this, "BOOK ADDED SUCCESFULLY",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "BOOK ADDED SUCCESSFULLY",
+                Toast.LENGTH_SHORT).show();
 
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        selectedID = listBooks.get(position).getId();
+        Book b = dbHandler.readBook(selectedID);
+        bookTitle.setText(b.getTitle());
+        bookAuthor.setText(b.getAuthor());
+        Toast.makeText(this, "BOOK READ SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+    }
+
 }
