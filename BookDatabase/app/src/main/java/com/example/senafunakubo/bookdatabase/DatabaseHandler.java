@@ -79,65 +79,18 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
     }
 
-    public List<Book> sortByTitle(){
 
-        List<Book> books = new ArrayList<Book>();
-
-        String selectQuery = "SELECT * FROM "+ TABLE_NAME + " ORDER BY " + KEY_NAME + " COLLATE NOCASE ASC";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(selectQuery,null);
-
-        Book book = null;
-        if (cursor.moveToFirst()) {
-            do {
-                book = new Book();
-                book.setId(Integer.parseInt(cursor.getString(0)));
-                book.setTitle(cursor.getString(1));
-                book.setAuthor(cursor.getString(2));
-                books.add(book);
-            } while (cursor.moveToNext());
-        }
-
-        db.close();
-
-        return books;
-    }
-
-    public List<Book> sortByAuthor(){
-
-        List<Book> books = new ArrayList<Book>();
-
-        String selectQuery = "SELECT * FROM "+ TABLE_NAME + " ORDER BY " + KEY_AUTHOR + " COLLATE NOCASE ASC";
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery(selectQuery,null);
-
-        Book book = null;
-        if (cursor.moveToFirst()) {
-            do {
-                book = new Book();
-                book.setId(Integer.parseInt(cursor.getString(0)));
-                book.setTitle(cursor.getString(1));
-                book.setAuthor(cursor.getString(2));
-                books.add(book);
-            } while (cursor.moveToNext());
-        }
-
-        db.close();
-
-        return books;
-    }
-
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks(String sort){
 
         //order
         List<Book> books = new LinkedList<Book>();
 
         //TODO 8) Create a select query
         String query = "SELECT * FROM " + TABLE_NAME;
+
+        if(sort.length()!=0){
+            query += " ORDER BY "+ sort + " ASC";
+        }
 
         //TODO 9) Get instance of data in Readable mode
         SQLiteDatabase db = this.getReadableDatabase();
@@ -225,14 +178,6 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         db.close();
 
         return book;
-    }
-
-
-    public Cursor getData(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
-        Cursor data = db.rawQuery(query,null);
-        return data;
     }
 
 }
