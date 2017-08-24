@@ -55,6 +55,9 @@ public class AddEditFragment extends Fragment
     private TextInputLayout zipTextInput;
     private FloatingActionButton saveContactFAB;
 
+    //check whether insert or update
+    private boolean addingNewContact = true;
+
     //create a View for Fragment
 
 
@@ -62,7 +65,7 @@ public class AddEditFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        //inflate the GUI and get the reference for EditTExxt
+        //inflate the GUI and get the reference for EditText
         View view = inflater.inflate(
                 R.layout.add_edit_fragment,
                 container,
@@ -85,6 +88,23 @@ public class AddEditFragment extends Fragment
         saveContactFAB = (FloatingActionButton) view.findViewById(
                 R.id.saveFloatingActionButton);
         saveContactFAB.setOnClickListener(saveDataListner);
+
+        //will have selected contact ID if editing
+        //otherwise a null
+        Bundle argument = getArguments();
+        if (argument!= null){
+            addingNewContact = false;
+            contactUri = argument.getParcelable(MainActivity.CONTACT_URI);
+        }
+        //load the data fr selected contact from content
+        //database reading operation
+        if (contactUri != null){
+            getLoaderManager().initLoader(
+                    CONTACT_LOADER,
+                    null,
+                    this
+            );
+        }
         return view;
     }
 
@@ -107,23 +127,65 @@ public class AddEditFragment extends Fragment
                 nameTextInput.getEditText().getText().toString() );
         contentValues.put(DatabaseDescription.Contact.COLUMN_PHONE,
                 phoneTextInput.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_EMAIL,
+                emailTextInput.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_STREET,
+                streetTextInput.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_CITY,
+                cityTextInput.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_STATE,
+                stateTextInput.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_ZIP,
+                zipTextInput.getEditText().getText().toString());
         //Complete for all remaining column
 
-        // you need a URI
-        // this Uri is used yo call contentResolver
-        // insert the data into addressBook Content
-        Uri newContactUri = getActivity().
-                getContentResolver()
-                .insert(DatabaseDescription.Contact.CONTENT_URI
-                        ,contentValues);
-        Toast.makeText(getActivity(),"Data inserted Succesfully",
-                Toast.LENGTH_SHORT).show();
-        //Change the Toast to SnackBar
-        //SnackBar = notification feedback to the user
-        // and you add actions to snackBar like undo, cancel, ok
+        if (addingNewContact) {
+            // you need a URI
+            // this Uri is used yo call contentResolver
+            // insert the data into addressBook Content
+            Uri newContactUri = getActivity().
+                    getContentResolver()
+                    .insert(DatabaseDescription.Contact.CONTENT_URI
+                            , contentValues);
+            Toast.makeText(getActivity(), "Data inserted Successfully",
+                    Toast.LENGTH_SHORT).show();
+            //Change the Toast to SnackBar
+            //SnackBar = notification feedback to the user
+            // and you add actions to snackBar like undo, cancel, ok
+            addEditFragmentInterface.onAddEditComplete(newContactUri);
+        }
+        else
+        {
+            //Use ContentResolvers' Update mehod
+            //int will returns the int
+            int updateRows = getActivity()
+                    .getContentResolver()
+                    .update(
+                            contactUri,
+                            contentValues,
+                            null,
+                            null
+                    );
 
-        addEditFragmentInterface.onAddEditComplete(newContactUri);
-
+            //success
+            if (updateRows > 0){
+                Toast.makeText(
+                        getContext(),R.string.contact_updated,
+                        Toast.LENGTH_SHORT
+                ).show();
+                addEditFragmentInterface
+                        .onAddEditComplete(contactUri);
+                //onAddEdit() implemented in MainActivity
+            }
+            //failure
+            else{
+                Toast.makeText(
+                        getContext(),
+                        R.string.contact_not_updated,
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        }
     }
 
     @Override
@@ -167,16 +229,35 @@ public class AddEditFragment extends Fragment
             int nameIndex = data.getColumnIndex(
                     DatabaseDescription.Contact.COLUMN_NAME);
             int phoneIndex = data.getColumnIndex(
-                    DatabaseDescription.Contact.COLUMN_PHONE
-            );
+                    DatabaseDescription.Contact.COLUMN_PHONE);
+            int emailIndex = data.getColumnIndex(
+                    DatabaseDescription.Contact.COLUMN_EMAIL);
+            int streetIndex = data.getColumnIndex(
+                    DatabaseDescription.Contact.COLUMN_STREET);
+            int cityIndex = data.getColumnIndex(
+                    DatabaseDescription.Contact.COLUMN_CITY);
+            int stateIndex = data.getColumnIndex(
+                    DatabaseDescription.Contact.COLUMN_STATE);
+            int zipIndex = data.getColumnIndex(
+                    DatabaseDescription.Contact.COLUMN_ZIP);
+
             // Find the remaining column iNdex
             //Fill my Edittext with retrieved data
             nameTextInput.getEditText().setText(
-                    data.getString(nameIndex)
-            );
+                    data.getString(nameIndex));
             phoneTextInput.getEditText().setText(
-                    data.getString(phoneIndex)
-            );
+                    data.getString(phoneIndex));
+            emailTextInput.getEditText().setText(
+                    data.getString(emailIndex));
+            streetTextInput.getEditText().setText(
+                    data.getString(streetIndex));
+            cityTextInput.getEditText().setText(
+                    data.getString(cityIndex));
+            stateTextInput.getEditText().setText(
+                    data.getString(stateIndex));
+            zipTextInput.getEditText().setText(
+                    data.getString(zipIndex));
+
             // Fill the editText for remaining columns
 
         }

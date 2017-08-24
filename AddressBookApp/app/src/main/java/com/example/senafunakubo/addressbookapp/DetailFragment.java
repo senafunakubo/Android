@@ -1,7 +1,6 @@
 package com.example.senafunakubo.addressbookapp;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -10,10 +9,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
 
@@ -30,6 +30,19 @@ import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
 
 public class DetailFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Cursor>{
+
+    FragmentManager fragmentManager = getFragmentManager();
+
+    //callback methods implemented by MainActivity
+    public interface DetailFragmentInterface{
+        //2 methods for Edit & Delete
+        //pass uri of the selected contact for editing
+        void onEditContact(Uri uri);
+        void onContactDeleted();
+    }
+
+    //object for interface
+    public DetailFragmentInterface detailFragmentInterface;
 
     //create an ID for loader
     private static final int CONTACT_LOADER = 0;
@@ -72,9 +85,24 @@ public class DetailFragment extends Fragment
         contactUri = arg.getParcelable(MainActivity.CONTACT_URI);
 
         //get the loader to load the contact
-        getLoaderManager().initLoader(CONTACT_LOADER,
-                null,this);
+        getLoaderManager().initLoader(CONTACT_LOADER, null, this);
+
+
         return view;
+    }
+
+    //initialize the interface when fragment is attached
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        detailFragmentInterface = (DetailFragmentInterface)context;
+    }
+
+    //Destroyed when fragment is detach
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        detailFragmentInterface = null;
     }
 
     //this method is called by loaderManager to create a loader
@@ -90,6 +118,47 @@ public class DetailFragment extends Fragment
         );
         return cursorLoader;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_details_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case  R.id.action_edit :
+                // it will take you to MainActivity
+                detailFragmentInterface.onEditContact(contactUri);
+                return  true;
+
+            case R.id.action_delete:
+                AlertDialog ad = new AlertDialog.Builder(getActivity())
+                        .setTitle("Alert Dialog")
+                        .setMessage("Do you want to delete this data?")
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // deleteContact();
+                                Toast.makeText(getActivity().getApplicationContext(),"DELETE",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getActivity().getApplicationContext(),"CANCEL ",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .create();
+                ad.show();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
@@ -121,4 +190,5 @@ public class DetailFragment extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
+
 }

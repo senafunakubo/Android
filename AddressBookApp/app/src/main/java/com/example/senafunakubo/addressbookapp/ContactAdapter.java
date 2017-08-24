@@ -39,7 +39,7 @@ public class ContactAdapter extends
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //infalte the layout for list
+        //inflate the layout for list
         // (create a layout)
         View view = LayoutInflater.from(
                 parent.getContext())

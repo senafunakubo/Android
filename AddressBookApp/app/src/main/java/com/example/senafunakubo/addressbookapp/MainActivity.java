@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
 
 public class MainActivity extends AppCompatActivity
         implements ContactsFragment.ContactFragmentInterface,
-        AddEditFragment.AddEditFragmentInterface{
+        AddEditFragment.AddEditFragmentInterface,
+        DetailFragment.DetailFragmentInterface{
 
     private ContactsFragment contactsFragment;
     public static final String CONTACT_URI = "contact_uri";
@@ -41,6 +44,12 @@ public class MainActivity extends AppCompatActivity
         public void displayAddEditFragment(int ViewId, Uri contactUri){
 
             AddEditFragment addEditFragment = new AddEditFragment();
+
+            if (contactUri!=null){
+                Bundle argument = new Bundle();
+                argument.putParcelable(CONTACT_URI,contactUri);
+                addEditFragment.setArguments(argument);
+            }
 
             //create the fragment using FragmentTransaction
             FragmentTransaction fragmentTransaction =
@@ -79,5 +88,16 @@ public class MainActivity extends AppCompatActivity
     public void onAddEditComplete(Uri uri) {
         getSupportFragmentManager()
                 .popBackStack();
+//        contactsFragment.updateContactList();
+    }
+
+    @Override
+    public void onEditContact(Uri uri) {
+        displayAddEditFragment(R.id.fragmentContainer,uri);
+    }
+
+    @Override
+    public void onContactDeleted() {
+
     }
 }
