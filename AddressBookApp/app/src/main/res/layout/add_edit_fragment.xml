@@ -23,9 +23,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText"
                     android:hint="@string/hint_name_required"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords|textPersonName"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -38,9 +37,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText2"
                     android:hint="@string/hint_phone"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="phone"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -53,9 +51,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText3"
                     android:hint="@string/hint_email"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -68,9 +65,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText4"
                     android:hint="@string/hint_street"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords|textPostalAddress"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -83,9 +79,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText5"
                     android:hint="@string/hint_city"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords|textPostalAddress"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -98,9 +93,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText6"
                     android:hint="@string/hint_state"
-                    android:imeOption="actionNext"
+                    android:imeOptions="actionNext"
                     android:inputType="textPostalAddress|textCapCharacters"/>
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -113,22 +107,18 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editText7"
                     android:hint="@string/hint_zip"
-                    android:imeOption="actionDone"
+                    android:imeOptions="actionDone"
                     android:inputType="number"/>
-
             </android.support.design.widget.TextInputLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
-    <action.support.design.widget.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/saveFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_save_24dp"
-        />
+        android:src="@drawable/ic_save"/>
 
 </FrameLayout>

@@ -3,8 +3,6 @@ package com.example.senafunakubo.addressbookapp.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.senafunakubo.addressbookapp.DatabaseDescription;
 //this class creates and upgrade the database
 
 /**
@@ -26,7 +24,7 @@ public class AddressBookDatabaseHelper extends SQLiteOpenHelper {
        //SQL query for creating the contact table
        //for primary key_id
 
-        final String CREATE_CONTACT_TABLE = "CREATE TABLE" +
+        final String CREATE_CONTACT_TABLE = "CREATE TABLE " +
                 DatabaseDescription.Contact.TABLE_NAME + " ( " +
                 DatabaseDescription.Contact._ID + " integer primary key, " +
                 DatabaseDescription.Contact.COLUMN_NAME + " TEXT, " +
@@ -35,7 +33,7 @@ public class AddressBookDatabaseHelper extends SQLiteOpenHelper {
                 DatabaseDescription.Contact.COLUMN_STREET + " TEXT, " +
                 DatabaseDescription.Contact.COLUMN_CITY + " TEXT, " +
                 DatabaseDescription.Contact.COLUMN_STATE + " TEXT, " +
-                DatabaseDescription.Contact.COLUMN_ZIP + " TEXT): ";
+                DatabaseDescription.Contact.COLUMN_ZIP + " TEXT); ";
 
         sqLiteDatabase.execSQL(CREATE_CONTACT_TABLE);
     }
