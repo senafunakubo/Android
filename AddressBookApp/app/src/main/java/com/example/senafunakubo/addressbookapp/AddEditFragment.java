@@ -2,6 +2,7 @@ package com.example.senafunakubo.addressbookapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -153,10 +154,12 @@ public class AddEditFragment extends Fragment
             //SnackBar = notification feedback to the user
             // and you add actions to snackBar like undo, cancel, ok
             addEditFragmentInterface.onAddEditComplete(newContactUri);
+                    Intent intent = new Intent(getActivity(),MainActivity.class);
+                    startActivity(intent);
         }
         else
         {
-            //Use ContentResolvers' Update mehod
+            //Use ContentResolvers' Update method
             //int will returns the int
             int updateRows = getActivity()
                     .getContentResolver()
@@ -175,6 +178,8 @@ public class AddEditFragment extends Fragment
                 ).show();
                 addEditFragmentInterface
                         .onAddEditComplete(contactUri);
+                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        startActivity(intent);
                 //onAddEdit() implemented in MainActivity
             }
             //failure

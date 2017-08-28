@@ -1,12 +1,18 @@
 package com.example.senafunakubo.addressbookapp;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
 
@@ -17,6 +23,7 @@ public class MainActivity extends AppCompatActivity
 
     private ContactsFragment contactsFragment;
     public static final String CONTACT_URI = "contact_uri";
+    public boolean phoneDevice = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,37 +35,75 @@ public class MainActivity extends AppCompatActivity
 //        setSupportActionBar(toolbar);
 
         contactsFragment = new ContactsFragment();
-        //add the fragment into framelayout
-        //use Fragment Transaction
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer,contactsFragment);
-        fragmentTransaction.commit();
 
-//         displayAddEditFragment(R.id.fragmentContainer, null);
-    }
+        //define a screen size
+        int screenSize = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 
-        //display fragment for adding a new or editing an existing contact
-        // ViewID is layoutID
-        // contactUri is the path for contentProvider
+        //if device is a tablet, set phoneDevice to false
+        // if running on phone-sized device, allow only portrait orientation
+        if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE || screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE)
+            phoneDevice = false;
 
-        public void displayAddEditFragment(int ViewId, Uri contactUri){
-
-            AddEditFragment addEditFragment = new AddEditFragment();
-
-            if (contactUri!=null){
-                Bundle argument = new Bundle();
-                argument.putParcelable(CONTACT_URI,contactUri);
-                addEditFragment.setArguments(argument);
-            }
-
-            //create the fragment using FragmentTransaction
-            FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager()
-                            .beginTransaction();
-            fragmentTransaction.replace(ViewId, addEditFragment);
-            fragmentTransaction.addToBackStack(null);
+        if (phoneDevice){
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.fragmentContainer,contactsFragment);
             fragmentTransaction.commit();
         }
+        else { //Tablet & portrait_mode
+
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.fragmentContainer,contactsFragment);
+                fragmentTransaction.commit();
+            }
+            else { //Tablet & landscape_mode
+
+                FragmentTransaction fragmentTransactionForTab = getSupportFragmentManager().beginTransaction();
+                fragmentTransactionForTab.add(R.id.left_fragment, contactsFragment);
+
+                FloatingActionButton actionButton =
+                        (FloatingActionButton)findViewById(R.id.addButton);
+                actionButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this,"Click add button",Toast.LENGTH_SHORT).show();
+
+                        if (findViewById(R.id.right_fragment) != null) {
+                            AddEditFragment addEdit = new AddEditFragment();
+                            FragmentTransaction fragmentTransactionForTab = getSupportFragmentManager().beginTransaction();
+                            fragmentTransactionForTab.add(R.id.right_fragment, addEdit);
+                            fragmentTransactionForTab.commit();
+                        }
+                    }
+                });
+
+//               displayAddEditFragment(R.id.fragmentContainer, null);
+            }
+        }
+    }
+
+    //display fragment for adding a new or editing an existing contact
+    // ViewID is layoutID
+    // contactUri is the path for contentProvider
+
+    public void displayAddEditFragment(int ViewId, Uri contactUri){
+
+        AddEditFragment addEditFragment = new AddEditFragment();
+
+        if (contactUri!=null){
+            Bundle argument = new Bundle();
+            argument.putParcelable(CONTACT_URI,contactUri);
+            addEditFragment.setArguments(argument);
+        }
+
+        //create the fragment using FragmentTransaction
+        FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager()
+                        .beginTransaction();
+        fragmentTransaction.replace(ViewId, addEditFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public void onAddContact() {

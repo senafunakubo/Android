@@ -213,8 +213,8 @@ public class AddressBookContentProvider extends ContentProvider{
                 //get the id from uri using getlastpathsegmemt
                 String id = uri.getLastPathSegment();
                 //update the data
-                // 1. tablename
-                // 2. contentvalue
+                // 1. tableName
+                // 2. contentValue
                 // 3. where clause
                 // 4. values
                 noOfRowsUpdated = dbHelper.getWritableDatabase().update(
@@ -229,7 +229,7 @@ public class AddressBookContentProvider extends ContentProvider{
                         getContext().getString(R.string.invalid_update_uri)
                 );
         }
-        //if changes are succcessful notify the
+        //if changes are successful notify the
         // changes in cursor
         if(noOfRowsUpdated > 0)
         {

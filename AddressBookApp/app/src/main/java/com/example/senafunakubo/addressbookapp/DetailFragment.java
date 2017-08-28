@@ -3,6 +3,7 @@ package com.example.senafunakubo.addressbookapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +23,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.senafunakubo.addressbookapp.data.AddressBookContentProvider;
 import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
+
 
 /**
  * Created by senafunakubo on 2017-08-23.
@@ -136,12 +139,12 @@ public class DetailFragment extends Fragment
 
             case R.id.action_delete:
                 AlertDialog ad = new AlertDialog.Builder(getActivity())
-                        .setTitle("Alert Dialog")
+                        .setTitle("ALERT")
                         .setMessage("Do you want to delete this data?")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // deleteContact();
+                                deleteContact();
                                 Toast.makeText(getActivity().getApplicationContext(),"DELETE",Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -183,6 +186,10 @@ public class DetailFragment extends Fragment
             zipTextView.setText(cursor.getString(zipIndex));
 
         }
+
+    }
+
+    public void deleteContact(){
 
     }
 

@@ -30,7 +30,7 @@ public class ContactAdapter extends
     }
     public ContactAdapterInterface contactAdapterInterface;
 
-    //this takes data from loader from contactfragment
+    //this takes data from loader from contactFragment
     public void notifyChange(Cursor cursor)
     {
         this.cursor = cursor;
@@ -82,7 +82,7 @@ public class ContactAdapter extends
     {
         //every row is having two data
         //1. Name 2)ID
-        //Recyclerview is showing the Name only
+        //RecyclerView is showing the Name only
         // We need Id for database operation
         public TextView textContact;
         private  long rowID;
@@ -96,7 +96,7 @@ public class ContactAdapter extends
                         @Override
                         public void onClick(View v) {
                             //adapter is attached with contactFragment
-                            //so implemnet the interface in ContactFragment
+                            //so implement the interface in ContactFragment
                             //not in MainActivity
                             contactAdapterInterface.onClick(
                                     DatabaseDescription.Contact
