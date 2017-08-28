@@ -120,6 +120,8 @@ public class MainActivityFragment extends Fragment{
     // TODO 12 ) set up and start the next quiz
     public void startQuiz() {
         int i=0;
+        resetQuiz();
+
         // use AssetManager to get image file names for enabled regions
         AssetManager assets = getActivity().getAssets();
         try {
@@ -136,6 +138,8 @@ public class MainActivityFragment extends Fragment{
         int flagCounter = 1;
 
         int numberOfFlags = fileNameList.size();
+        Log.d("number of flag ","value "+ numberOfFlags);
+        Log.d("number of flag ","value "+ fileNameList.size());
         // add FLAGS_IN_QUIZ random file names to the quizCountriesList
         while (flagCounter <= FLAGS_IN_QUIZ) {
             int randomIndex = random.nextInt(numberOfFlags);
@@ -284,6 +288,14 @@ public class MainActivityFragment extends Fragment{
         AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(1000);
         view.startAnimation(anim);
+    }
+
+    public void resetQuiz(){
+//        count = 1;
+        totalGuess = 0;
+        questionNumberTextView.setText(getString(R.string.question,count,FLAGS_IN_QUIZ));
+        fileNameList.clear();
+        quizCountriesList.clear();
     }
 
 
