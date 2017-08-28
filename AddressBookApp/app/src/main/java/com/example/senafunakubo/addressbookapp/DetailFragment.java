@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +60,8 @@ public class DetailFragment extends Fragment
     private TextView cityTextView;
     private TextView stateTextView;
     private TextView zipTextView;
+
+    public boolean phoneDevice = true;
 
     @Nullable
     @Override
@@ -125,7 +128,9 @@ public class DetailFragment extends Fragment
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_details_menu,menu);
+
+        inflater.inflate(R.menu.fragment_details_menu, menu);
+
     }
 
     @Override

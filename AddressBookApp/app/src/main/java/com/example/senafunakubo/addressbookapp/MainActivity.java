@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     private ContactsFragment contactsFragment;
     public static final String CONTACT_URI = "contact_uri";
     public boolean phoneDevice = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,8 @@ public class MainActivity extends AppCompatActivity
                 actionButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(MainActivity.this,"Click add button",Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view,"Click the add button",Snackbar.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this,"Click the add button",Toast.LENGTH_SHORT).show();
 
                         if (findViewById(R.id.right_fragment) != null) {
                             AddEditFragment addEdit = new AddEditFragment();
