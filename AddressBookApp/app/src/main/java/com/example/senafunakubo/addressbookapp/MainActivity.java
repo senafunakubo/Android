@@ -1,5 +1,6 @@
 package com.example.senafunakubo.addressbookapp;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -13,9 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.senafunakubo.addressbookapp.data.DatabaseDescription;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity
         implements ContactsFragment.ContactFragmentInterface,
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private ContactsFragment contactsFragment;
     public static final String CONTACT_URI = "contact_uri";
     public boolean phoneDevice = true;
+    private Button b1;
 
 
     @Override
@@ -115,21 +121,42 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onContactSelected(Uri uri) {
-        DetailFragment detailFragment = new DetailFragment();
+        if (phoneDevice) {
+            DetailFragment detailFragment = new DetailFragment();
 
-        //use FragmentTransaction
-        FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
+            //use FragmentTransaction
+            FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
 
-        fragmentTransaction.replace(R.id.fragmentContainer,detailFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragmentContainer, detailFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
-        //create a bundle object that will pass selected
-        //row uri to detailFragment
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(CONTACT_URI,uri);
-        detailFragment.setArguments(bundle);
+            //create a bundle object that will pass selected
+            //row uri to detailFragment
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(CONTACT_URI, uri);
+            detailFragment.setArguments(bundle);
+        }
+        else{
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                DetailFragment detailFragment = new DetailFragment();
+
+                //use FragmentTransaction
+                FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+
+                fragmentTransaction.replace(R.id.right_fragment, detailFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+                //create a bundle object that will pass selected
+                //row uri to detailFragment
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(CONTACT_URI, uri);
+                detailFragment.setArguments(bundle);
+            }
+        }
     }
 
     @Override
