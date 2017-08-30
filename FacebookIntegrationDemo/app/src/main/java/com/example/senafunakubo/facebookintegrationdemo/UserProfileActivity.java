@@ -41,7 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String firstname = bundle.get("name").toString();
         String lastname = bundle.get("surname").toString();
-        String imgUrl = bundle.get("imageUrl").toString();
+        String imgUrl = bundle.get("imageUri").toString();
 
         name.setText("" + firstname + "" + lastname);
 

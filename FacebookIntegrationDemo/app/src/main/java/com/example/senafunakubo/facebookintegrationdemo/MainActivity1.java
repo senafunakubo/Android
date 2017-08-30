@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -64,23 +65,24 @@ public class MainActivity1 extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-
+                Log.d("cancel", "cancel!");
             }
 
             @Override
             public void onError(FacebookException error) {
 
+                Log.d("error", "error!");
             }
         });
         loginButton.setReadPermissions("user_friends");
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
+//    @Override
+//    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+//        super.onCreate(savedInstanceState, persistentState);
+//
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        AppEventsLogger.activateApp(this);
 
 //        callbackManager = CallbackManager.Factory.create();
 //        setContentView(R.layout.activity_main1);
@@ -122,11 +124,11 @@ public class MainActivity1 extends AppCompatActivity {
 //            }
 //        });
 //        loginButton.setReadPermissions("user_friends");
-    }
-
+//    }
+//
     private void nextActivity(Profile profile){
         if (profile!= null){
-            Intent main = new Intent(MainActivity1.this, UserProfile.class);
+            Intent main = new Intent(MainActivity1.this, UserProfileActivity.class);
             main.putExtra("name", profile.getFirstName());
             main.putExtra("surname", profile.getLastName());
             main.putExtra("imageUri",profile.getProfilePictureUri(200,200));
@@ -138,7 +140,7 @@ public class MainActivity1 extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Profile profile = Profile.getCurrentProfile();
-//        nextActivity(profile);
+        nextActivity(profile);
     }
 
     @Override
@@ -146,5 +148,12 @@ public class MainActivity1 extends AppCompatActivity {
         super.onStop();
         profileTracker.stopTracking();
         accessTokenTracker.stopTracking();
+    }
+
+    //これないと動かないよ！！！！！
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
     }
 }
