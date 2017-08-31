@@ -102,7 +102,9 @@ public class ItemsActivity extends Activity {
                 Intent intent = new Intent(ItemsActivity.this, Recipe_detail.class);
                 Recipe recipe = recipeListLeft.get(position);
                 String recipeUrl = recipe.getWebUrl();
+                String cookingTime = String.valueOf(recipe.getCooking_time());
                 intent.putExtra("recipeUrl", recipeUrl);
+                intent.putExtra("cookingTime", cookingTime);
                 startActivity(intent);
             }
         });
@@ -114,7 +116,9 @@ public class ItemsActivity extends Activity {
                 Intent intent = new Intent(ItemsActivity.this, Recipe_detail.class);
                 Recipe recipe = recipeListRight.get(position);
                 String recipeUrl = recipe.getWebUrl();
+                String cookingTime = String.valueOf(recipe.getCooking_time());
                 intent.putExtra("recipeUrl", recipeUrl);
+                intent.putExtra("cookingTime", cookingTime);
                 startActivity(intent);
             }
         });

@@ -121,9 +121,11 @@ public class Tab2Fragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
-                Recipe card = list2.get(position);
-                String recipeUrl = card.getWebUrl();
+                Recipe recipe = list2.get(position);
+                String recipeUrl = recipe.getWebUrl();
+                String cookingTime = String.valueOf(recipe.getCooking_time());
                 intent.putExtra("recipeUrl", recipeUrl);
+                intent.putExtra("cookingTime", cookingTime);
                 startActivity(intent);
             }
         });

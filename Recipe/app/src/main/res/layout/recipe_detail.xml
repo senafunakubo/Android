@@ -18,7 +18,6 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:id="@+id/start_clock"
-            android:background="@color/colorAccent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Start" />
@@ -47,11 +46,11 @@
         android:textColor="#333"
         android:text="@string/timerVal" />
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="355dp"
-        android:layout_below="@+id/timerValue">
-    </WebView>
+    <!--<WebView-->
+        <!--android:id="@+id/webView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="355dp"-->
+        <!--android:layout_below="@+id/timerValue">-->
+    <!--</WebView>-->
 
 </RelativeLayout>

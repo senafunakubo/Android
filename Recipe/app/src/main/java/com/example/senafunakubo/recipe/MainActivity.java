@@ -76,30 +76,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
                             Recipe recipe = recipeList.get(position);
                             String recipeUrl = recipe.getWebUrl();
+                            String cookingTime = String.valueOf(recipe.getCooking_time());
                             intent.putExtra("recipeUrl", recipeUrl);
+                            intent.putExtra("cookingTime", cookingTime);
                             startActivity(intent);
 
-
-//                        copyに対応できないので停止
-//                        Intent intent;
-//                        switch (position){
-//                            case 0:
-//                                intent = new Intent(MainActivity.this, Recipe_detail.class);
-//                                String udon = "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork";
-//                                intent.putExtra("udon", udon);
-//                                break;
-//
-//                            case 1:
-//                                intent = new Intent(MainActivity.this, Recipe_detail.class);
-//                                String masala = "http://www.vegrecipesofindia.com/bhindi-masala/";
-//                                intent.putExtra("masala", masala);
-//                                break;
-//
-//                            default:
-//                                intent =  new Intent(MainActivity.this, MainActivity.class);
-//                                break;
-//                        }
-//                        startActivity(intent);
                     }
 
                 })
