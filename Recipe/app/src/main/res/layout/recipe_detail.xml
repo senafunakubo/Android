@@ -1,23 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:id="@+id/start_clock"
+            android:background="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Start" />
+
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:id="@+id/cooking_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="History" />
+
+    </LinearLayout>
+
     <TextView
+        android:id="@+id/timerValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Recipe Detail"
-        android:layout_marginTop="10dp"
-        android:id="@+id/text"/>
-
-
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="80dp"
+        android:textSize="40sp"
+        android:textColor="#333"
+        android:text="@string/timerVal" />
 
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="355dp"
+        android:layout_below="@+id/timerValue">
     </WebView>
 
 </RelativeLayout>
