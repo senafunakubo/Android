@@ -1,6 +1,7 @@
 package com.example.senafunakubo.recipe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -14,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 /**
  * Created by senafunakubo on 2017-07-27.
  */
@@ -25,6 +29,9 @@ public class Recipe_detail extends AppCompatActivity{
     private Button historyButton;
     private TextView timer;
     WebView webView;
+    LikeButton likeButton;
+    TextView foodName;
+    ImageView foodImg;
 
     private Handler customHandler = new Handler();
 
@@ -41,6 +48,14 @@ public class Recipe_detail extends AppCompatActivity{
         startButton = (Button)findViewById(R.id.start_clock);
         historyButton = (Button)findViewById(R.id.cooking_history);
         timer = (TextView)findViewById(R.id.timerValue);
+        likeButton = (LikeButton) findViewById(R.id.fav_button);
+        foodName = (TextView) findViewById(R.id.foodName);
+        foodImg = (ImageView)findViewById(R.id.foodImg);
+
+        String foodNameIntent = getIntent().getStringExtra("foodName");
+        String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
+        foodName.setText(foodNameIntent);
+        foodImg.setImageResource(Integer.parseInt(foodImgIntent.substring(11)));
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +63,19 @@ public class Recipe_detail extends AppCompatActivity{
                 startTime = SystemClock.uptimeMillis();
                 customHandler.postDelayed(updateTimer, 0);
 
+            }
+        });
+
+
+        likeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                Toast.makeText(Recipe_detail.this,"You liked it", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                Toast.makeText(Recipe_detail.this,"You unliked it", Toast.LENGTH_SHORT).show();
             }
         });
 

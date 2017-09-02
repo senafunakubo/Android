@@ -1,3 +1,9 @@
+/*
+
+ The Recipe page like Pinterest
+
+*/
+
 package com.example.senafunakubo.recipe;
 
 /**

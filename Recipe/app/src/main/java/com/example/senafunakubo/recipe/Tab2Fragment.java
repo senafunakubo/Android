@@ -122,10 +122,15 @@ public class Tab2Fragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
                 Recipe recipe = list2.get(position);
-                String recipeUrl = recipe.getWebUrl();
+//                         String recipeUrl = recipe.getWebUrl();
+                String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
-                intent.putExtra("recipeUrl", recipeUrl);
+                String foodImgUrl = recipe.getImageUrl();
+
+//                         intent.putExtra("recipeUrl", recipeUrl);
+                intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
+                intent.putExtra("foodImgUrl",foodImgUrl);
                 startActivity(intent);
             }
         });

@@ -1,3 +1,9 @@
+/*
+
+ For cardViews of the search page
+
+*/
+
 package com.example.senafunakubo.recipe;
 
 import android.graphics.Bitmap;
@@ -12,7 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -34,6 +43,7 @@ public class CustomListAdapter extends ArrayAdapter<Recipe> {
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
+    LikeButton likeButton;
 
     /**
      * Holds variables in a View
@@ -68,8 +78,6 @@ public class CustomListAdapter extends ArrayAdapter<Recipe> {
         String imgUrl = getItem(position).getImageUrl();
 
         try{
-
-
             //create the view result for showing the animation
             final View result;
 
@@ -87,6 +95,7 @@ public class CustomListAdapter extends ArrayAdapter<Recipe> {
                 result = convertView;
 
                 convertView.setTag(holder);
+
             }
             else{
                 holder = (ViewHolder) convertView.getTag();

@@ -1,3 +1,10 @@
+/*
+
+ An adapter of the recipe page like Pinterest
+
+*/
+
+
 package com.example.senafunakubo.recipe;
 
 /**

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools">
 
 <!--<LinearLayout-->
     <!--android:layout_width="fill_parent"-->
@@ -14,24 +14,22 @@
 
     <ListView
         android:id="@+id/list_view_left"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:paddingRight="20dp"
-        android:paddingBottom="50dp"
         android:scrollbars="none"
-        >
+        android:layout_marginBottom="?attr/actionBarSize">
     </ListView>
 
     <ListView
         android:id="@+id/list_view_right"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:paddingLeft="200dp"
-        android:paddingBottom="50dp"
-        android:scrollbars="none"
-        >
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:scrollbars="none">
     </ListView>
 
     <android.support.design.widget.BottomNavigationView
@@ -42,6 +40,13 @@
         android:background="#fff"
         design:menu="@menu/menu_nav"
         design:itemIconTint="#FF3C38"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <!--</LinearLayout>-->
 </android.support.design.widget.CoordinatorLayout>

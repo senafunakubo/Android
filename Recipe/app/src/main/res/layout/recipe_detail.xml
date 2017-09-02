@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/foodImg"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodName"
+        android:textSize="15dp"
+        android:text="FoodName"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/foodImg"/>
+
+    <com.like.LikeButton
+        app:icon_type="heart"
+        app:icon_size="20dp"
+        android:id="@+id/fav_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/foodImg"
+        android:layout_alignBottom="@+id/foodName"
+        android:layout_below="@+id/foodImg"
+        />
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" >
+        android:layout_below="@+id/fav_button"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
         <Button
             android:layout_marginLeft="20dp"
@@ -41,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="350dp"
         android:textSize="40sp"
         android:textColor="#333"
         android:text="@string/timerVal" />

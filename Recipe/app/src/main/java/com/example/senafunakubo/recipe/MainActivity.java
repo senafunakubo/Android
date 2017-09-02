@@ -1,6 +1,7 @@
 package com.example.senafunakubo.recipe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -14,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +34,18 @@ public class MainActivity extends AppCompatActivity {
     private Recipe_adapter rAdapter;
 //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
+    private TextView txt;
+    private ImageView img;
 //    private ViewPager mViewPager;
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txt = (TextView)findViewById(R.id.txt);
+        img = (ImageView)findViewById(R.id.img);
 
         recyclerView = (RecyclerView)findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
@@ -47,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(rAdapter);
+
         prepareRecipeData();
 
         recyclerView.addOnItemTouchListener(
@@ -54,20 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                     @Override public void onLongClick(View view, int position) {
-//                       必要ないので停止
-//                        switch (position) {
-//                            case 0:
-//                                Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", "15 mins","http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", R.drawable.friedudon);
-//                                recipeList.add(recipe);
-//                                rAdapter.notifyDataSetChanged();
-//                                break;
-//
-//                            default:
-//                                recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", "10 mins","http://foodviva.com/indian-recipes/bhindi-masala-gravy/",R.drawable.bhindi);
-//                                recipeList.add(recipe);
-//                                rAdapter.notifyDataSetChanged();
-//                                break;
-//                        }
 
                     }
 
@@ -164,14 +160,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void prepareRecipeData(){
-        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...", 15,"http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", "drawable://" + R.drawable.friedudon);
-        recipeList.add(recipe);
+        if (recipeList.isEmpty()){
+            txt.setText("You need to add a recipe!");
+            img.setImageResource(R.drawable.recipenote);
+        }
+        else {
 
-        recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", 10,"http://foodviva.com/indian-recipes/bhindi-masala-gravy/", "drawable://" + R.drawable.bhindi);
-        recipeList.add(recipe);
+        }
 
-        rAdapter.notifyDataSetChanged();
+//        rAdapter.notifyDataSetChanged();
+
     }
+
+//    public void addFavList(){
+//        String recipeUrlIntent = getIntent().getStringExtra("recipeUrlIntent");
+//        Recipe recipe = new Recipe("", "Udon, Cabbage, Pork belly...",Integer.parseInt(recipeUrlIntent),"http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", "drawable://" + R.drawable.friedudon);
+//        recipeList.add(recipe);
+//    }
+
+
+    // 3 Buttons
 
     public void selectAll(View view){
         for (Recipe m : recipeList){

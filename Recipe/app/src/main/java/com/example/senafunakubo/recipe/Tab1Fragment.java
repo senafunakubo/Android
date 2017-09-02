@@ -1,14 +1,29 @@
+/*
+
+ Rice
+
+*/
+
+
 package com.example.senafunakubo.recipe;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 import java.util.ArrayList;
 
 /**
@@ -45,7 +60,8 @@ public class Tab1Fragment extends Fragment {
         mListView.setAdapter(adapter);
 
 
-        //たまにダブルクリックしないと動かなくなる
+
+//     たまにダブルクリックしないと動かなくなる
         Button mini = (Button) view.findViewById(R.id.mini);
         mini.setOnClickListener(new View.OnClickListener()
         {
@@ -123,10 +139,15 @@ public class Tab1Fragment extends Fragment {
 
                          Intent intent = new Intent(getActivity(), Recipe_detail.class);
                          Recipe recipe = list.get(position);
-                         String recipeUrl = recipe.getWebUrl();
+//                         String recipeUrl = recipe.getWebUrl();
+                         String foodName = recipe.getRecipe_title();
                          String cookingTime = String.valueOf(recipe.getCooking_time());
-                         intent.putExtra("recipeUrl", recipeUrl);
+                         String foodImgUrl = recipe.getImageUrl();
+
+//                         intent.putExtra("recipeUrl", recipeUrl);
+                         intent.putExtra("foodName", foodName);
                          intent.putExtra("cookingTime", cookingTime);
+                         intent.putExtra("foodImgUrl",foodImgUrl);
                          startActivity(intent);
              }
         });
@@ -134,10 +155,11 @@ public class Tab1Fragment extends Fragment {
         return view;
     }
 
+
     public void addList(){
         list.add(new Recipe("Shrimp Fried Rice", "" , 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice));
-        list.add(new Recipe("Chicken Biryani", "", 40, "https://www.bbcgoodfood.com/recipes/4686/chicken-biryani",
+        list.add(new Recipe("Chicken Biryani", "", 40, "http://www.food.com/recipe/chicken-biryani-316697",
                 "drawable://" + R.drawable.biryani));
         list.add(new Recipe("Clam Rice", "", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce));
