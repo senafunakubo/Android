@@ -31,7 +31,6 @@ import java.util.ArrayList;
  */
 
 public class Tab1Fragment extends Fragment {
-    private static final String TAG = "Tab1Fragment";
 
     private ListView mListView;
     ArrayList<Recipe> list = new ArrayList<>();
