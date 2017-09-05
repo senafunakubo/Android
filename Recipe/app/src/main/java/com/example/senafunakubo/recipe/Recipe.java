@@ -8,14 +8,21 @@ public class Recipe {
 
     private String recipe_title,recipe_ingredients;
     private int cooking_time;
-    private String imageUrl;
-    private String webUrl;
-    private boolean isSelected;
+    private String step1,step2,step3,step4,step5;
+    private String imageUrl,webUrl;
+    private boolean isSelected, isFavorite;
 
     //constructor
-    public Recipe(String recipe_title, String recipe_ingredients, int cooking_time, String webUrl, String imageUrl){
+    public Recipe(String recipe_title, String recipe_ingredients, String step1, String step2,
+                  String step3, String step4, String step5,
+                  int cooking_time, String webUrl, String imageUrl){
         this.recipe_title = recipe_title;
         this.recipe_ingredients = recipe_ingredients;
+        this.step1 = step1;
+        this.step2 = step2;
+        this.step3 = step3;
+        this.step4 = step4;
+        this.step5 = step5;
         this.cooking_time = cooking_time;
         this.imageUrl = imageUrl;
         this.webUrl = webUrl;
@@ -31,6 +38,10 @@ public class Recipe {
         return isSelected;
     }
 
+    public boolean isFavorite(){
+        return isFavorite;
+    }
+
     //getter
     public String getRecipe_title(){
         return recipe_title;
@@ -38,6 +49,46 @@ public class Recipe {
 
     public String getRecipe_ingredients(){
         return recipe_ingredients;
+    }
+
+    public String getStep1(){
+        return step1;
+    }
+
+    public String getStep2(){
+        return step2;
+    }
+
+    public String getStep3(){
+        return step3;
+    }
+
+    public String getStep4(){
+        return step4;
+    }
+
+    public String getStep5(){
+        return step5;
+    }
+
+    public void setStep1(String step1) {
+        this.step1 = step1;
+    }
+
+    public void setStep2(String step2) {
+        this.step2 = step2;
+    }
+
+    public void setStep3(String step3) {
+        this.step3 = step3;
+    }
+
+    public void setStep4(String step4) {
+        this.step4 = step4;
+    }
+
+    public void setStep5(String step5) {
+        this.step5 = step5;
     }
 
     public int getCooking_time(){

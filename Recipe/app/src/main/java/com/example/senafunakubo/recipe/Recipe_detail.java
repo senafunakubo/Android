@@ -7,6 +7,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -18,12 +21,23 @@ import android.widget.Toast;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by senafunakubo on 2017-07-27.
  */
 
 //レシピ詳細
 public class Recipe_detail extends AppCompatActivity{
+
+    private static String TAG = Recipe_detail.class.getSimpleName();
+    private List<Recipe> recipe = new ArrayList<>();
+    private RecyclerView recyclerView;
+//    private RecipeAdapter recipeAdapter;
+    private List<ArrayList<Integer>> MoviesChecked;
+    // json array response url
+    private String urlJsonArray = "http://192.168.57.1/recipedata.json";
 
     private Button startButton;
     private Button historyButton;
@@ -51,6 +65,13 @@ public class Recipe_detail extends AppCompatActivity{
         likeButton = (LikeButton) findViewById(R.id.fav_button);
         foodName = (TextView) findViewById(R.id.foodName);
         foodImg = (ImageView)findViewById(R.id.foodImg);
+        recyclerView = (RecyclerView)findViewById(R.id.recycleStep);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager myLayoutManager =
+                new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(myLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        Log.d("error ", "in onCreate");
 
         String foodNameIntent = getIntent().getStringExtra("foodName");
         String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
@@ -85,6 +106,10 @@ public class Recipe_detail extends AppCompatActivity{
 //        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.loadUrl(recipeUrlIntent);
 
+    }
+
+    private void makeJsonArrayRequest(){
+        
     }
 
     private Runnable updateTimer = new Runnable() {

@@ -41,17 +41,17 @@ public class Tab1Fragment extends Fragment {
         mListView = (ListView)view.findViewById(R.id.listView_search);
 
         //タコライス,オムライス
-        list.add(new Recipe("Shrimp Fried Rice", "" , 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
+        list.add(new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice));
-        list.add(new Recipe("Chicken Biryani", "", 40, "https://www.bbcgoodfood.com/recipes/4686/chicken-biryani",
+        list.add(new Recipe("Chicken Biryani", "","","","","","", 40, "https://www.bbcgoodfood.com/recipes/4686/chicken-biryani",
                 "drawable://" + R.drawable.biryani));
-        list.add(new Recipe("Clam Rice", "", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
+        list.add(new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce));
-        list.add(new Recipe("Vegetarian Sushi", "", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
+        list.add(new Recipe("Vegetarian Sushi", "","","","","","", 40, "https://www.jvs.org.uk/2012/09/19/vegetarian-sushi/",
                 "drawable://" + R.drawable.vegetariansushi));
-        list.add(new Recipe("Inari Sushi", "", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
+        list.add(new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
                 "drawable://" + R.drawable.inari));
-        list.add(new Recipe("Rice Ball", "", 15,
+        list.add(new Recipe("Rice Ball", "","","","","","", 10,
                 "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
                 "drawable://" + R.drawable.onigiri));
 
@@ -156,17 +156,17 @@ public class Tab1Fragment extends Fragment {
 
 
     public void addList(){
-        list.add(new Recipe("Shrimp Fried Rice", "" , 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
+        list.add(new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice));
-        list.add(new Recipe("Chicken Biryani", "", 40, "http://www.food.com/recipe/chicken-biryani-316697",
+        list.add(new Recipe("Chicken Biryani", "","","","","","", 40, "http://www.food.com/recipe/chicken-biryani-316697",
                 "drawable://" + R.drawable.biryani));
-        list.add(new Recipe("Clam Rice", "", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
+        list.add(new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce));
-        list.add(new Recipe("Vegetarian Sushi", "", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
+        list.add(new Recipe("Vegetarian Sushi", "","","","","","", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
                 "drawable://" + R.drawable.vegetariansushi));
-        list.add(new Recipe("Inari Sushi", "", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
+        list.add(new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
                 "drawable://" + R.drawable.inari));
-        list.add(new Recipe("Rice Ball", "", 15,
+        list.add(new Recipe("Rice Ball", "","","","","","", 15,
                 "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
                 "drawable://" + R.drawable.onigiri));
 

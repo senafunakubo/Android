@@ -1,3 +1,10 @@
+/*
+
+Fav page's adapter
+
+*/
+
+
 package com.example.senafunakubo.recipe;
 
 /**

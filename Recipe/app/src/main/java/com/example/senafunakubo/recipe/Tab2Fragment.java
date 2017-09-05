@@ -27,17 +27,17 @@ public class Tab2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab2_fragment, container, false);
         mListView2 = (ListView)view.findViewById(R.id.listView_noodle);
 
-        list2.add(new Recipe("Fried Udon", "", 15, "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork",
+        list2.add(new Recipe("Fried Udon", "","","","","","", 15, "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork",
                 "drawable://" + R.drawable.friedudon));
-        list2.add(new Recipe("Karbonara", "", 25, "https://www.coolinarika.com/recept/992495/",
+        list2.add(new Recipe("Karbonara", "","","","","","", 25, "https://www.coolinarika.com/recept/992495/",
                 "drawable://" + R.drawable.karbonara));
-        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", 15, "https://www.vegetariantimes.com/recipes/vegan-chicken-noodle-soup",
+        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, "https://www.vegetariantimes.com/recipes/vegan-chicken-noodle-soup",
                 "drawable://" + R.drawable.nooveg));
-        list2.add(new Recipe("Veg Hakka Noodles", "", 35, "http://foodviva.com/chinese-recipes/veg-hakka-noodles/",
+        list2.add(new Recipe("Veg Hakka Noodles", "", "","","","","",35, "http://foodviva.com/chinese-recipes/veg-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka));
-        list2.add(new Recipe("Spaghetti Meat Sauce", "", 30, "https://norecipes.com/spaghetti-meat-sauce-recipe",
+        list2.add(new Recipe("Spaghetti Meat Sauce", "", "","","","","",30, "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "", 40, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
+        list2.add(new Recipe("Curry Udon", "", "","","","","",40, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon));
 
         final CustomListAdapter adapter2 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list2);
@@ -141,17 +141,23 @@ public class Tab2Fragment extends Fragment {
     }
 
     public void addList(){
-        list2.add(new Recipe("Fried Udon", "", 15, "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork",
+        list2.add(new Recipe("Fried Udon", "","","","","","", 15,
+                "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork",
                 "drawable://" + R.drawable.friedudon));
-        list2.add(new Recipe("Karbonara", "", 25, "https://www.coolinarika.com/recept/992495/",
+        list2.add(new Recipe("Karbonara", "","","","","","", 25,
+                "https://www.coolinarika.com/recept/992495/",
                 "drawable://" + R.drawable.karbonara));
-        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", 15, "https://www.vegetariantimes.com/recipes/vegan-chicken-noodle-soup",
+        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15,
+                "https://www.vegetariantimes.com/recipes/vegan-chicken-noodle-soup",
                 "drawable://" + R.drawable.nooveg));
-        list2.add(new Recipe("Veg Hakka Noodles", "", 35, "http://foodviva.com/chinese-recipes/veg-hakka-noodles/",
+        list2.add(new Recipe("Veg Hakka Noodles", "","","","","","", 35,
+                "http://foodviva.com/chinese-recipes/veg-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka));
-        list2.add(new Recipe("Spaghetti Meat Sauce", "", 30, "https://norecipes.com/spaghetti-meat-sauce-recipe",
+        list2.add(new Recipe("Spaghetti Meat Sauce", "","","","","","",30,
+                "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "", 40, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
+        list2.add(new Recipe("Curry Udon", "","","","","","", 40,
+                "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon));
 
         final CustomListAdapter adapter2 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list2);

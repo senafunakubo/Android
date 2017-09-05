@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     Recipe recipe;
     private TextView txt;
     private ImageView img;
-//    private ViewPager mViewPager;
-    public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
 //        rAdapter.notifyDataSetChanged();
 
     }
-
-//    public void addFavList(){
-//        String recipeUrlIntent = getIntent().getStringExtra("recipeUrlIntent");
-//        Recipe recipe = new Recipe("", "Udon, Cabbage, Pork belly...",Integer.parseInt(recipeUrlIntent),"http://www.bonappetit.com/recipe/stir-fried-udon-with-pork", "drawable://" + R.drawable.friedudon);
-//        recipeList.add(recipe);
-//    }
 
 
     // 3 Buttons

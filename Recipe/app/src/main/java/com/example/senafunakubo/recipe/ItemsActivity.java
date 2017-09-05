@@ -107,10 +107,18 @@ public class ItemsActivity extends Activity {
 
                 Intent intent = new Intent(ItemsActivity.this, Recipe_detail.class);
                 Recipe recipe = recipeListLeft.get(position);
-                String recipeUrl = recipe.getWebUrl();
+
+//                String recipeUrl = recipe.getWebUrl();
+//                String cookingTime = String.valueOf(recipe.getCooking_time());
+                String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
-                intent.putExtra("recipeUrl", recipeUrl);
+                String foodImgUrl = recipe.getImageUrl();
+
+//                intent.putExtra("recipeUrl", recipeUrl);
+//                intent.putExtra("cookingTime", cookingTime);
+                intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
+                intent.putExtra("foodImgUrl",foodImgUrl);
                 startActivity(intent);
             }
         });
@@ -121,10 +129,18 @@ public class ItemsActivity extends Activity {
 
                 Intent intent = new Intent(ItemsActivity.this, Recipe_detail.class);
                 Recipe recipe = recipeListRight.get(position);
-                String recipeUrl = recipe.getWebUrl();
+
+                //                String recipeUrl = recipe.getWebUrl();
+//                String cookingTime = String.valueOf(recipe.getCooking_time());
+                String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
-                intent.putExtra("recipeUrl", recipeUrl);
+                String foodImgUrl = recipe.getImageUrl();
+
+//                intent.putExtra("recipeUrl", recipeUrl);
+//                intent.putExtra("cookingTime", cookingTime);
+                intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
+                intent.putExtra("foodImgUrl",foodImgUrl);
                 startActivity(intent);
             }
         });
@@ -218,15 +234,15 @@ public class ItemsActivity extends Activity {
     }
 
     public void prepareRecipeDataLeft(){
-        Recipe recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...", 10,
+        Recipe recipe = new Recipe("Bhindi Masala", "Bhindi(Okura), Tomato...","","","","","",10,
                 "http://foodviva.com/indian-recipes/bhindi-masala-gravy/","drawable://" + R.drawable.bhindi);
         recipeListLeft.add(recipe);
 
-        recipe = new Recipe("Shrimp Fried Rice", "Shrimp, Rice, Egg...", 20,
+        recipe = new Recipe("Shrimp Fried Rice", "Shrimp, Rice, Egg...","","","","","", 20,
                 "http://natashaskitchen.com/2011/02/16/shrimp-fried-rice-recip/","drawable://" + R.drawable.shrimpfriedrice);
         recipeListLeft.add(recipe);
 
-        recipe = new Recipe("Soondubu Jjigae", "Tofu, Pork belly, kimchi...", 30,
+        recipe = new Recipe("Soondubu Jjigae", "Tofu, Pork belly, kimchi...","","","","","", 30,
                 "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
                 "drawable://" + R.drawable.chige);
         recipeListLeft.add(recipe);
@@ -235,20 +251,20 @@ public class ItemsActivity extends Activity {
     }
 
     public void prepareRecipeDataRight(){
-        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...",15,
+        Recipe recipe = new Recipe("Fried Udon", "Udon, Cabbage, Pork belly...","","","","","",15,
                 "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork","drawable://" + R.drawable.friedudon);
         recipeListRight.add(recipe);
 
-        recipe = new Recipe("Kadai masala", "Onions, Tomatoes, Cumin seeds...",20,
+        recipe = new Recipe("Kadai masala", "Onions, Tomatoes, Cumin seeds...","","","","","",20,
                 "http://www.spiceupthecurry.com/kadai-vegetable-recipe/","drawable://" + R.drawable.kadai);
         recipeListRight.add(recipe);
 
-        recipe = new Recipe("Fried Egg Sandwich", "Eggs, breads, hams",10,
+        recipe = new Recipe("Fried Egg Sandwich", "Eggs, breads, hams","","","","","",10,
                 "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
                 "drawable://" + R.drawable.eggsand);
         recipeListRight.add(recipe);
 
-        recipe = new Recipe("Karbonara", "Eggs, Pasta, Cheese...",25,
+        recipe = new Recipe("Karbonara", "Eggs, Pasta, Cheese...","","","","","",25,
                 "https://www.bbcgoodfood.com/recipes/1052/ultimate-spaghetti-carbonara",
                 "drawable://" + R.drawable.karbonara);
         recipeListRight.add(recipe);
