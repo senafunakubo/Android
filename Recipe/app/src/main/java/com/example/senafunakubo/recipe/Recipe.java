@@ -12,6 +12,8 @@ public class Recipe {
     private String imageUrl,webUrl;
     private boolean isSelected, isFavorite;
 
+    public Recipe(){}
+
     //constructor
     public Recipe(String recipe_title, String recipe_ingredients, String step1, String step2,
                   String step3, String step4, String step5,
@@ -38,17 +40,25 @@ public class Recipe {
         return isSelected;
     }
 
-    public boolean isFavorite(){
+    public boolean isFavorite(boolean fav){
         return isFavorite;
     }
 
-    //getter
+
     public String getRecipe_title(){
         return recipe_title;
     }
 
+    public void setRecipe_title(String recipe_title){
+        this.recipe_title = recipe_title;
+    }
+
     public String getRecipe_ingredients(){
         return recipe_ingredients;
+    }
+
+    public void setRecipe_ingredients(String recipe_ingredients){
+        this.recipe_ingredients = recipe_ingredients;
     }
 
     public String getStep1(){
@@ -93,6 +103,10 @@ public class Recipe {
 
     public int getCooking_time(){
         return cooking_time;
+    }
+
+    public void setCooking_time(int cooking_time){
+        this.cooking_time = cooking_time;
     }
 
     public String getImageUrl(){
