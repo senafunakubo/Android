@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="210dp"
         android:textSize="40sp"
         android:textColor="#333"
         android:text="@string/timerVal" />
@@ -80,7 +80,7 @@
         android:id="@+id/recycleStep"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="300dp"/>
+        android:layout_marginTop="260dp"/>
 
     <!--<WebView-->
         <!--android:id="@+id/webView"-->

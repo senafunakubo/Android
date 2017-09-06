@@ -48,7 +48,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         checkBoxState = new boolean[recipe_list.size()];
 
         //For background color
-        colorNo = 0;
+//        colorNo = 0;
 
     }
 
@@ -87,11 +87,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         View view = inflater.inflate(R.layout.fav_recipe,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
-        //For background color
-//        int bgColorNo = ColorUtils.getViewHolderBackgroundColorFromInstance(context,colorNo);
-//        viewHolder.itemView.setBackgroundColor(bgColorNo);
-//        colorNo++;
-
         return viewHolder;
     }
 
@@ -105,7 +100,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         String cooking_time = Integer.toString(cooking_time_int);
         holder.recipe_time.setText(cooking_time + " mins");
 
-//        Log.d("Test",Integer.toString(R.drawable.bhindi));
         String getImage_st = recipe.getImageUrl().substring(11);
         Log.d("Drawable",getImage_st);
         int getImage = Integer.parseInt(getImage_st);
