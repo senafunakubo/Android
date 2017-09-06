@@ -64,6 +64,7 @@ public class Item_adapter extends ArrayAdapter<Integer>{
         return row;
     }
 
+
     public static class ItemHolder
     {
         ImageView itemImage;

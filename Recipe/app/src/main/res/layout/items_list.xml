@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
@@ -15,38 +16,36 @@
     <ListView
         android:id="@+id/list_view_left"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:paddingRight="20dp"
         android:scrollbars="none"
-        android:layout_marginBottom="?attr/actionBarSize">
-    </ListView>
+        android:layout_marginBottom="?attr/actionBarSize"/>
 
     <ListView
         android:id="@+id/list_view_right"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:paddingLeft="200dp"
-        android:layout_marginBottom="?attr/actionBarSize"
-        android:scrollbars="none">
-    </ListView>
+        android:scrollbars="none"
+        android:layout_marginBottom="?attr/actionBarSize"/>
 
-    <android.support.design.widget.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/NavBot"
-        android:layout_gravity="bottom"
-        android:background="#fff"
-        design:menu="@menu/menu_nav"
-        design:itemIconTint="#FF3C38"/>
+    <!--<android.support.design.widget.BottomNavigationView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/NavBot"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="#fff"-->
+        <!--design:menu="@menu/menu_nav"-->
+        <!--design:itemIconTint="#FF3C38"/>-->
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginBottom="?attr/actionBarSize"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
     <!--</LinearLayout>-->
 </android.support.design.widget.CoordinatorLayout>

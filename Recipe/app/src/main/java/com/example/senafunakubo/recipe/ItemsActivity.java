@@ -54,36 +54,36 @@ public class ItemsActivity extends Activity {
         rAdapterLeft = new Recipe_adapter(recipeListLeft);
         rAdapterRight = new Recipe_adapter(recipeListRight);
 
-        BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.NavBot);
-        BottomNavigationViewHelper.disableShiftMode(mBottomNav);
-        Menu menu = mBottomNav.getMenu();
-        MenuItem menuItem = menu.getItem(1);
-        menuItem.setChecked(true);
-        mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-
-                switch (item.getItemId()) {
-
-                    case R.id.search_ic:
-                        Intent intent1 = new Intent(ItemsActivity.this, SearchPage.class);
-                        startActivity(intent1);
-                        break;
-
-                    case R.id.recipe_ic:
-                        Toast.makeText(ItemsActivity.this, "This is Recipe page!",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case R.id.fav_ic:
-                        Intent intent2 = new Intent(ItemsActivity.this, MainActivity.class);
-                        startActivity(intent2);
-                        break;
-                }
-
-                return false;
-            }
-        });
+//        BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.NavBot);
+//        BottomNavigationViewHelper.disableShiftMode(mBottomNav);
+//        Menu menu = mBottomNav.getMenu();
+//        MenuItem menuItem = menu.getItem(1);
+//        menuItem.setChecked(true);
+//        mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem item) {
+//
+//                switch (item.getItemId()) {
+//
+//                    case R.id.search_ic:
+//                        Intent intent1 = new Intent(ItemsActivity.this, SearchPage.class);
+//                        startActivity(intent1);
+//                        break;
+//
+//                    case R.id.recipe_ic:
+//                        Toast.makeText(ItemsActivity.this, "This is Recipe page!",
+//                                Toast.LENGTH_SHORT).show();
+//                        break;
+//
+//                    case R.id.fav_ic:
+//                        Intent intent2 = new Intent(ItemsActivity.this, MainActivity.class);
+//                        startActivity(intent2);
+//                        break;
+//                }
+//
+//                return false;
+//            }
+//        });
 
 
 
@@ -247,7 +247,12 @@ public class ItemsActivity extends Activity {
                 "drawable://" + R.drawable.chige);
         recipeListLeft.add(recipe);
 
-//        rAdapterLeft.notifyDataSetChanged();
+
+        recipe = new Recipe("Chicken Biryani", "","","","","","", 40,
+                "http://www.food.com/recipe/chicken-biryani-316697", "drawable://" + R.drawable.biryani);
+        recipeListLeft.add(recipe);
+
+        rAdapterLeft.notifyDataSetChanged();
     }
 
     public void prepareRecipeDataRight(){
@@ -268,6 +273,12 @@ public class ItemsActivity extends Activity {
                 "https://www.bbcgoodfood.com/recipes/1052/ultimate-spaghetti-carbonara",
                 "drawable://" + R.drawable.karbonara);
         recipeListRight.add(recipe);
+
+        recipe = new Recipe("Clam Rice", "","","","","","", 50,
+                "https://toirokitchen.com/blogs/recipes/47899203-clam-rice", "drawable://" + R.drawable.asaririce);
+        recipeListRight.add(recipe);
+
+        rAdapterRight.notifyDataSetChanged();
     }
 
     @Override

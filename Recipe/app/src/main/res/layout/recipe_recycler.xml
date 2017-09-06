@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/quickreturn_coordinator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:background="@color/background">
+
+<!--これを上に書くとbottomが動かなくなる-->
+    <!--xmlns:design="http://schemas.android.com/tools"-->
+
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NavBot"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        design:menu="@menu/menu_nav"
+        design:itemIconTint="#FF3C38"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/masonry_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_scrollFlags="scroll|enterAlways"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

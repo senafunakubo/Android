@@ -45,8 +45,10 @@ public class Recipe_detail extends AppCompatActivity {
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecipeMainAdapter recipeMainAdapter;
-    // json array response url
-    private String urlJsonArray = "http://192.168.57.1/recipedata1.json";
+
+    // json response url
+    private String urlJsonObj = "http://192.168.57.1/recipedata1.json";
+    private String urlJsonArray = "http://192.168.57.1/recipedata.json";
 
     private Button startButton;
     private Button historyButton;
@@ -110,77 +112,96 @@ public class Recipe_detail extends AppCompatActivity {
             }
         });
 
-        makeJsonObjectRequest();
-
-        //WebView
-//        String recipeUrlIntent = getIntent().getStringExtra("recipeUrl");
-//        webView = (WebView) findViewById(R.id.webView);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.loadUrl(recipeUrlIntent);
+//        makeJsonObjectRequest();
+        makeJsonArrayRequest(foodNameIntent);
 
     }
 
-    //    private void makeJsonObjectRequest() {
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,urlJsonArray,
-//                null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        Log.d(TAG, response.toString());
-//                        try {
-//                            Recipe recipeData = null;
-////                            for (int i = 0; i < response.length(); i++) {
-//                                recipeData = new Recipe();
-//                                //recipeData = new Recipe("", "", "", "", "", "", "", 0, "", "");
-////                                JSONObject recipeJson = (JSONObject) response.get(i);
-////                                String title = recipeJson.getString("name");
-////                                String ingredients = recipeJson.getString("ingredients");
-//                                String step1 = response.getString("Step1");
-////                                String step2 = recipeJson.getString("Step2");
-////                                String step3 = recipeJson.getString("Step3");
-////                                String step4 = recipeJson.getString("Step4");
-////                                String step5 = recipeJson.getString("Step5");
-////                                int cookingTime = recipeJson.getInt("cookingTime");
-////                                String imageUrl = recipeJson.getString("imageUrl");
-////                                String webUrl = recipeJson.getString("webUrl");
-////                                boolean favorite = recipeJson.getBoolean("favorite");
-//
-////                                recipeData.setRecipe_title(title);
-////                                recipeData.setRecipe_ingredients(ingredients);
-//                                recipeData.setStep1(step1);
-////                                recipeData.setStep2(step2);
-////                                recipeData.setStep3(step3);
-////                                recipeData.setStep4(step4);
-////                                recipeData.setStep5(step5);
-////                                recipeData.setCooking_time(cookingTime);
-////                                recipeData.setImageUrl(imageUrl);
-////                                recipeData.setWebUrl(webUrl);
-////                                recipeData.isFavorite(favorite);
-//                            recipeList.add(recipeData);
-//                            recipeMainAdapter = new RecipeMainAdapter(recipeList);
-//                            recyclerView.setAdapter(recipeMainAdapter);
-////                            }
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                Toast.makeText(getApplicationContext(),
-//                        error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//
-//        });
-//
-//        AppController.getInstance().addToRequestQueue(jsonObjectRequest);
-//
-//    }
+        private void makeJsonArrayRequest(final String foodNameIntent) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,urlJsonArray,
+                (String) null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+
+                        try {
+                            Recipe recipeData = null;
+                            for (int i = 0; i < response.length(); i++) {
+                                recipeData = new Recipe("", "", "", "", "", "", "", 0, "", "");
+                                JSONObject recipeJson = (JSONObject) response.get(i);
+                                String title = recipeJson.getString("name");
+                                String ingredients =  recipeJson.getString("ingredients");
+                                String step1 = recipeJson.getString("Step1");
+                                String step2 = recipeJson.getString("Step2");
+                                String step3 = recipeJson.getString("Step3");
+                                String step4 = recipeJson.getString("Step4");
+                                String step5 = recipeJson.getString("Step5");
+                                int cookingTime = recipeJson.getInt("cookingTime");
+                                String imageUrl = recipeJson.getString("imageUrl");
+                                String webUrl = recipeJson.getString("webUrl");
+                                boolean favorite = recipeJson.getBoolean("favorite");
+
+                                if (title.equals(foodNameIntent)) {
+                                    Recipe recipeData1 = new Recipe();
+                                    Recipe recipeData2 = new Recipe();
+                                    Recipe recipeData3 = new Recipe();
+                                    Recipe recipeData4 = new Recipe();
+                                    Recipe recipeData5 = new Recipe();
+                                    Recipe recipeData6 = new Recipe();
+
+                                    recipeData1.setStep1(ingredients);
+                                    recipeData2.setStep1(step1);
+                                    recipeData3.setStep1(step2);
+                                    recipeData4.setStep1(step3);
+                                    recipeData5.setStep1(step4);
+                                    recipeData6.setStep1(step5);
+
+//                                    recipeData.setRecipe_title(title);
+//                                    recipeData.setRecipe_ingredients(ingredients);
+//                                    recipeData.setStep1(step1);
+//                                    recipeData.setStep2(step2);
+//                                    recipeData.setStep3(step3);
+//                                    recipeData.setStep4(step4);
+//                                    recipeData.setStep5(step5);
+//                                    recipeData.setCooking_time(cookingTime);
+//                                    recipeData.setImageUrl(imageUrl);
+//                                    recipeData.setWebUrl(webUrl);
+//                                    recipeData.isFavorite(favorite);
+
+                                    recipeList.add(recipeData1);
+                                    recipeList.add(recipeData2);
+                                    recipeList.add(recipeData3);
+                                    recipeList.add(recipeData4);
+                                    recipeList.add(recipeData5);
+                                    recipeList.add(recipeData6);
+                                    recipeMainAdapter = new RecipeMainAdapter(recipeList);
+                                    recyclerView.setAdapter(recipeMainAdapter);
+
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
+    }
+
+
     private void makeJsonObjectRequest() {
-        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.GET,
-                urlJsonArray, (String) null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObj = new JsonObjectRequest(Request.Method.GET,
+                urlJsonObj, (String) null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -189,20 +210,24 @@ public class Recipe_detail extends AppCompatActivity {
                     Recipe recipeData2 = new Recipe();
                     Recipe recipeData3 = new Recipe();
                     Recipe recipeData4 = new Recipe();
+                    Recipe recipeData5 = new Recipe();
                     String step1 = response.getString("Step1");
                     Log.d("data ", "value " + step1);
 
                     String step2 = response.getString("Step2");
                     String step3 = response.getString("Step3");
                     String step4 = response.getString("Step4");
+                    String step5 = response.getString("Step5");
                     recipeData1.setStep1(step1);
                     recipeData2.setStep1(step2);
                     recipeData3.setStep1(step3);
                     recipeData4.setStep1(step4);
+                    recipeData5.setStep1(step5);
                     recipeList.add(recipeData1);
                     recipeList.add(recipeData2);
                     recipeList.add(recipeData3);
                     recipeList.add(recipeData4);
+                    recipeList.add(recipeData5);
                     recipeMainAdapter = new RecipeMainAdapter(recipeList);
                     recyclerView.setAdapter(recipeMainAdapter);
                 } catch (JSONException e) {
@@ -218,7 +243,7 @@ public class Recipe_detail extends AppCompatActivity {
                         error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        AppController.getInstance().addToRequestQueue(jsonobj);
+        AppController.getInstance().addToRequestQueue(jsonObj);
     }
 
 
@@ -228,7 +253,7 @@ public class Recipe_detail extends AppCompatActivity {
 
             String recipeUrlIntent = getIntent().getStringExtra("cookingTime");
             int recipeUrlIntentInt = Integer.parseInt(recipeUrlIntent);
-            Log.d("CookingTime", recipeUrlIntent);
+//            Log.d("CookingTime", recipeUrlIntent);
 
             timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
             updatedTime = timeInMilliseconds;

@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <ImageView
-        android:layout_width="fill_parent"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/foodImg"
         android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
         android:text="FoodName"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/foodImg"/>
+        android:layout_toRightOf="@+id/foodImg"/>
 
     <com.like.LikeButton
         app:icon_type="heart"
@@ -30,27 +30,25 @@
         android:id="@+id/fav_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/foodImg"
-        android:layout_alignBottom="@+id/foodName"
-        android:layout_below="@+id/foodImg"
-        />
+        android:layout_toRightOf="@+id/foodName"/>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/fav_button"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+    <!--<LinearLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_marginTop="130dp"-->
+        <!--android:layout_below="@+id/fav_button">-->
 
         <Button
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:id="@+id/start_clock"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/foodName"
+            android:layout_below="@+id/fav_button"
             android:text="Start" />
 
 
@@ -58,13 +56,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
             android:id="@+id/cooking_history"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/foodName"
+            android:layout_below="@+id/start_clock"
             android:text="History" />
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <TextView
         android:id="@+id/timerValue"
@@ -72,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="230dp"
         android:textSize="40sp"
         android:textColor="#333"
         android:text="@string/timerVal" />
@@ -81,7 +80,7 @@
         android:id="@+id/recycleStep"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="400dp"/>
+        android:layout_marginTop="300dp"/>
 
     <!--<WebView-->
         <!--android:id="@+id/webView"-->

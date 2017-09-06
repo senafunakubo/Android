@@ -74,7 +74,7 @@ public class RecipeMainAdapter extends RecyclerView.Adapter<RecipeMainAdapter.My
         public MyViewHolder(View view) {
             super(view);
             cardView = (CardView) view.findViewById(R.id.cardView);
-            content = (TextView) view.findViewById(R.id.stepContent);
+            content = (TextView) view.findViewById(R.id.stepNum);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -67,7 +67,7 @@ public class SearchPage extends AppCompatActivity {
                         break;
 
                     case R.id.recipe_ic:
-                        Intent intent1 = new Intent(SearchPage.this, ItemsActivity.class);
+                        Intent intent1 = new Intent(SearchPage.this, ItemActivity.class);
                         startActivity(intent1);
                         break;
 

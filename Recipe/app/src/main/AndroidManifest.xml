@@ -25,7 +25,8 @@
         </activity>
 
         <activity android:name=".SearchPage" android:label="Search"/>
-        <activity android:name=".ItemsActivity" android:label="RecipeList" />
+        <activity android:name=".ItemActivity" android:label="RecipeList" />
+        <!--<activity android:name=".ItemsActivity" android:label="RecipeList" />-->
         <activity android:name=".Recipe_detail" android:label="Recipe_detail"/>
 
         <!--<activity android:name="com.example.senafunakubo.recipe.ItemsActivity" android:configChanges="orientation|screenSize"/>-->

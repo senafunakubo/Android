@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.search_ic:
-                        Intent intent1 = new Intent(MainActivity.this,SearchPage.class);
+                        Intent intent1 = new Intent(MainActivity.this, SearchPage.class);
                         startActivity(intent1);
                         break;
 
                     case R.id.recipe_ic:
-                        Intent intent2 = new Intent(MainActivity.this, ItemsActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, ItemActivity.class);
                         startActivity(intent2);
                         break;
 
