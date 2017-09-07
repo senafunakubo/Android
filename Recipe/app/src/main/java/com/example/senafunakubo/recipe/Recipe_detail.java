@@ -1,5 +1,6 @@
 package com.example.senafunakubo.recipe;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -56,7 +57,11 @@ public class Recipe_detail extends AppCompatActivity {
     WebView webView;
     LikeButton likeButton;
     TextView foodName;
+    TextView cookingTime;
     ImageView foodImg;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyFavs";
+    public static final String Fav = "favKey";
 
     private Handler customHandler = new Handler();
 
@@ -75,7 +80,9 @@ public class Recipe_detail extends AppCompatActivity {
         timer = (TextView) findViewById(R.id.timerValue);
         likeButton = (LikeButton) findViewById(R.id.fav_button);
         foodName = (TextView) findViewById(R.id.foodName);
+        cookingTime = (TextView) findViewById(R.id.cookingTime);
         foodImg = (ImageView) findViewById(R.id.foodImg);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleStep);
         recyclerView.setHasFixedSize(true);
@@ -85,9 +92,11 @@ public class Recipe_detail extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         Log.d("error ", "in onCreate");
 
-        String foodNameIntent = getIntent().getStringExtra("foodName");
+        final String foodNameIntent = getIntent().getStringExtra("foodName");
         String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
+        String cookingTimeIntent = getIntent().getStringExtra("cookingTime");
         foodName.setText(foodNameIntent);
+        cookingTime.setText(cookingTimeIntent + " mins");
         foodImg.setImageResource(Integer.parseInt(foodImgIntent.substring(11)));
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +112,11 @@ public class Recipe_detail extends AppCompatActivity {
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(Fav, foodNameIntent);
+                editor.apply();
+                Intent intent = new Intent(Recipe_detail.this, MainActivity.class);
+                startActivity(intent);
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
             }
 
@@ -125,9 +139,7 @@ public class Recipe_detail extends AppCompatActivity {
                         Log.d(TAG, response.toString());
 
                         try {
-                            Recipe recipeData = null;
                             for (int i = 0; i < response.length(); i++) {
-                                recipeData = new Recipe("", "", "", "", "", "", "", 0, "", "");
                                 JSONObject recipeJson = (JSONObject) response.get(i);
                                 String title = recipeJson.getString("name");
                                 String ingredients =  recipeJson.getString("ingredients");

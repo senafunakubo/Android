@@ -36,8 +36,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyView> {
 
     @Override
     public MyView onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+//        Context context = parent.getContext();
+//        LayoutInflater inflater = LayoutInflater.from(context);
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
         MyView myView = new MyView(layoutView);
         return myView;

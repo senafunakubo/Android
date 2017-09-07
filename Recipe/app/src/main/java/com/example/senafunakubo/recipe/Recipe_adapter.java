@@ -24,6 +24,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -40,6 +43,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     int lastPosition = -1;
     boolean[] checkBoxState;
     CardView cv;
+    Context context;
 
 
     public Recipe_adapter(List<Recipe> recipe_list){
@@ -66,6 +70,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         ImageView imageView;
         CheckBox checkBox;
 
+
         MyViewHolder(View view) {
             super(view);
             recipe_title = view.findViewById(R.id.re_title);
@@ -79,10 +84,11 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         }
     }
 
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fav_recipe,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
@@ -95,15 +101,19 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
         final Recipe recipe = recipe_list.get(position);
         holder.recipe_title.setText(recipe.getRecipe_title());
-        holder.recipe_ingredients.setText(recipe.getRecipe_ingredients());
+//        holder.recipe_ingredients.setText(recipe.getRecipe_ingredients());
         int cooking_time_int = recipe.getCooking_time();
         String cooking_time = Integer.toString(cooking_time_int);
         holder.recipe_time.setText(cooking_time + " mins");
 
-        String getImage_st = recipe.getImageUrl().substring(11);
+        String getImage_st = recipe.getImageUrl();
+//        String getImage_st = recipe.getImageUrl().substring(11);
         Log.d("Drawable",getImage_st);
-        int getImage = Integer.parseInt(getImage_st);
-        holder.imageView.setImageResource(getImage);
+
+        Picasso.with(this.context).load(getImage_st).error(R.drawable.error).into(holder.imageView);
+
+//        int getImage = Integer.parseInt(getImage_st);
+//        holder.imageView.setImageResource(getImage);
 
         holder.checkBox.setChecked(recipe_list.get(position).isSelected());
 
@@ -158,6 +168,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
                 AnimationUtils.loadAnimation(c, R.anim.slide);
         image.startAnimation(animation1);
     }
+
 
 
 

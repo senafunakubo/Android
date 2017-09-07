@@ -55,6 +55,8 @@ public class Tab1Fragment extends Fragment {
                 "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
                 "drawable://" + R.drawable.onigiri));
 
+        Log.d("Img","drawable://" + R.drawable.shrimpfriedrice);
+
         final CustomListAdapter adapter = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list);
         mListView.setAdapter(adapter);
 

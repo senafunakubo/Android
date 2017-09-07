@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
-
-<android.support.v7.widget.CardView
-android:id="@+id/cardView"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_gravity="center"
-card_view:cardCornerRadius="10dp"
-card_view:contentPadding="10dp">
-
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/stepNum"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        tools:text="Step" />
+        android:layout_gravity="center"
+        card_view:cardElevation="2dp"
+        card_view:contentPadding="10dp">
 
-    <!--<TextView-->
-        <!--android:id="@+id/stepContent"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="25sp"-->
-        <!--android:gravity="start"-->
-        <!--android:textColor="#000"-->
-        <!--android:textSize="10sp"-->
-        <!--tools:text="Content" />-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_edge"
+            android:orientation="vertical">
 
-</LinearLayout>
-</android.support.v7.widget.CardView>
-</FrameLayout>
-    <!--</FrameLayout>-->
+            <TextView
+                android:id="@+id/stepNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Step" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/stepContent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="25sp"-->
+            <!--android:gravity="start"-->
+            <!--android:textColor="#000"-->
+            <!--android:textSize="10sp"-->
+            <!--tools:text="Content" />-->
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout><!--</FrameLayout>-->
