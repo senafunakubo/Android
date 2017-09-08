@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 //implements GreenAdapter2.ListItemClickListener
@@ -45,15 +46,21 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private Recipe_adapter rAdapter;
+    private Recipe_adapter rAdapter,rAdapter1;
     //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
+    String foodName;
     private TextView txt;
     private ImageView img;
+    SharedPreference sharedPreference;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyFavs";
     public static final String Fav = "favKey";
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
+    JSONArray arr;
+    JSONArray myLists;
+    List<Recipe> myFavorite;
+    ArrayList<String> myFavRecipename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +70,14 @@ public class MainActivity extends AppCompatActivity {
         txt = (TextView) findViewById(R.id.txt);
         img = (ImageView) findViewById(R.id.img);
 
+        sharedPreference = new SharedPreference();
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        myFavorite = sharedPreference.getFavorites(getApplicationContext());
+        if (myFavorite!=null) {
+            Log.d("data ", "= " + myFavorite.get(0).getRecipe_title());
+//            Log.d("data ", "= " + myFavorite.get(1).getRecipe_title());
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
@@ -74,8 +88,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(rAdapter);
-
-        prepareRecipeData();
+        if(myFavorite!=null)
+        {
+            rAdapter = new Recipe_adapter(myFavorite);
+            recyclerView.setAdapter(rAdapter);
+        }
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -91,9 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
                         Recipe recipe = recipeList.get(position);
+                        foodName = recipe.getRecipe_title();
                         String recipeUrl = recipe.getWebUrl();
                         String foodImgUrl = recipe.getImageUrl();
                         String cookingTime = String.valueOf(recipe.getCooking_time());
+                        intent.putExtra("foodName", foodName);
                         intent.putExtra("recipeUrl", recipeUrl);
                         intent.putExtra("foodImgUrl",foodImgUrl);
                         intent.putExtra("cookingTime", cookingTime);
@@ -103,6 +122,12 @@ public class MainActivity extends AppCompatActivity {
 
                 })
         );
+
+        try {
+            prepareRecipeData();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.NavBot);
         BottomNavigationViewHelper.disableShiftMode(mBottomNav);
@@ -179,19 +204,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void prepareRecipeData() {
-
-        String name = sharedpreferences.getString(Fav, "");
-        makeJsonArrayRequest(name);
-        Recipe_adapter recipe_adapter = new Recipe_adapter(recipeList);
-        recyclerView.setAdapter(recipe_adapter);
+    public void prepareRecipeData() throws JSONException {
 
         if (recyclerView.equals(null)) {
             txt.setText("You need to add a recipe!");
             img.setImageResource(R.drawable.recipenote);
         }
 
-        rAdapter.notifyDataSetChanged();
+       // String name = sharedpreferences.getString(Fav, "");
+        Set<String> fetch = sharedpreferences.getStringSet(Fav,null);
+        if(fetch!=null) {
+            ArrayList<String> list = new ArrayList<String>(fetch);
+//
+//        try {
+//            arr = new JSONArray(sharedpreferences.getString(Fav, "{}"));
+//            Log.d("len ", "= "+arr.length());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+            // makeJsonArrayRequest(name);
+//        if(arr.length() != 1) {
+            makeJsonArrayRequest(list);
+            Recipe_adapter recipe_adapter = new Recipe_adapter(recipeList);
+            recyclerView.setAdapter(recipe_adapter);
+
+            rAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -226,12 +264,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void makeJsonArrayRequest(final String name) {
+    private void makeJsonArrayRequest(final ArrayList<String> name) throws JSONException {
+
+//        for(int i=0;i<name.size() ;i++) {
+//            JSONObject jsonobject = (JSONObject) myLists.get(i);
+//            String title = jsonobject.optString("name");
+//            String ingredients = jsonobject.optString("ingredients");
+//            String step1 = jsonobject.optString("Step1");
+//            String step2 = jsonobject.optString("Step2");
+//            String step3 = jsonobject.optString("Step3");
+//            String step4 = jsonobject.optString("Step4");
+//            String step5 = jsonobject.optString("Step5");
+//            int cookingTime = jsonobject.optInt("cookingTime");
+//            String imageUrl = jsonobject.optString("imageUrl");
+//            String webUrl = jsonobject.optString("webUrl");
+//            boolean favorite = jsonobject.optBoolean("favorite");
+//            Recipe recipeData = new Recipe();
+//                            recipeData.setRecipe_title(title);
+//                            recipeData.setRecipe_ingredients(ingredients);
+//                            recipeData.setStep1(step1);
+//                            recipeData.setStep2(step2);
+//                            recipeData.setStep3(step3);
+//                            recipeData.setStep4(step4);
+//                            recipeData.setStep5(step5);
+//                            recipeData.setCooking_time(cookingTime);
+//                            recipeData.setImageUrl(imageUrl);
+//                            recipeData.setWebUrl(webUrl);
+//                            recipeData.isFavorite(favorite);
+//                            recipeList.add(recipeData);
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonArray,
                 (String) null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d(TAG, response.toString());
+//                Log.d(TAG, response.toString());
 
                 try {
                     for (int i = 0; i < response.length(); i++) {
@@ -247,22 +313,23 @@ public class MainActivity extends AppCompatActivity {
                         String imageUrl = recipeJson.getString("imageUrl");
                         String webUrl = recipeJson.getString("webUrl");
                         boolean favorite = recipeJson.getBoolean("favorite");
+                        for(String favRecipyName : name ) {
+                            if (title.equals(favRecipyName)) {
+                                Recipe recipeData = new Recipe();
+                                recipeData.setRecipe_title(title);
+                                recipeData.setRecipe_ingredients(ingredients);
+                                recipeData.setStep1(step1);
+                                recipeData.setStep2(step2);
+                                recipeData.setStep3(step3);
+                                recipeData.setStep4(step4);
+                                recipeData.setStep5(step5);
+                                recipeData.setCooking_time(cookingTime);
+                                recipeData.setImageUrl(imageUrl);
+                                recipeData.setWebUrl(webUrl);
+                                recipeData.isFavorite(favorite);
+                                recipeList.add(recipeData);
 
-                        if (title.equals(name)) {
-                            Recipe recipeData = new Recipe();
-                            recipeData.setRecipe_title(title);
-                            recipeData.setRecipe_ingredients(ingredients);
-                            recipeData.setStep1(step1);
-                            recipeData.setStep2(step2);
-                            recipeData.setStep3(step3);
-                            recipeData.setStep4(step4);
-                            recipeData.setStep5(step5);
-                            recipeData.setCooking_time(cookingTime);
-                            recipeData.setImageUrl(imageUrl);
-                            recipeData.setWebUrl(webUrl);
-                            recipeData.isFavorite(favorite);
-                            recipeList.add(recipeData);
-
+                            }
                         }
                     }
 
@@ -279,10 +346,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
+
+
 
 
 }

@@ -88,8 +88,10 @@ public class ItemActivity extends AppCompatActivity {
                         Recipe recipe = recipeList.get(position);
                         String foodName = recipe.getRecipe_title();
                         String cookingTime = String.valueOf(recipe.getCooking_time());
-                        String foodImgUrl = recipe.getImageUrl();
 
+
+                        String foodImgUrl = recipe.getImageUrl();
+                        intent.putExtra("position",position);
                         intent.putExtra("foodName", foodName);
                         intent.putExtra("cookingTime", cookingTime);
                         intent.putExtra("foodImgUrl",foodImgUrl);
@@ -128,17 +130,22 @@ public class ItemActivity extends AppCompatActivity {
                 "drawable://" + R.drawable.shrimpfriedrice);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Fried Udon", "","","","","","", 15, "http://www.bonappetit.com/recipe/stir-fried-udon-with-pork",
-                "drawable://" + R.drawable.friedudon);
+        recipe = new Recipe("Egg Sandwich", "","","","","","", 10,
+                "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
+                "drawable://" + R.drawable.eggsand);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, "http://www.recipetineats.com/dan-dan-noodle-soup-vegetarian/",
+                "drawable://" + R.drawable.nooveg);
         recipeList.add(recipe);
 
         recipe = new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Egg Sandwich", "","","","","","", 10,
-                "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
-                "drawable://" + R.drawable.eggsand);
+        recipe = new Recipe("Japanese Fried Chicken", "","","","","","", 30,
+                "http://www.justonecookbook.com/karaage/",
+                "drawable://" + R.drawable.karaage);
         recipeList.add(recipe);
 
         recipe = new Recipe("Sundubu-jjigae", "", "","","","","",30,
@@ -147,7 +154,7 @@ public class ItemActivity extends AppCompatActivity {
         recipeList.add(recipe);
 
         recipe = new Recipe("Karbonara", "","","","","","", 25,
-                "https://www.coolinarika.com/recept/992495/",
+                "http://www.stvarukusa.rs/recept/spagete-karbonara",
                 "drawable://" + R.drawable.karbonara);
         recipeList.add(recipe);
 
@@ -166,18 +173,34 @@ public class ItemActivity extends AppCompatActivity {
                 "drawable://" + R.drawable.curryudon);
         recipeList.add(recipe);
 
+        recipe = new Recipe("Vegetarian Sushi", "","","","","","", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
+                "drawable://" + R.drawable.vegetariansushi);
+        recipeList.add(recipe);
+
         recipe = new Recipe("Chicken Biryani", "","","","","","", 40, "http://www.food.com/recipe/chicken-biryani-316697",
                 "drawable://" + R.drawable.biryani);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Japanese Fried Chicken", "","","","","","", 30,
-                "http://www.justonecookbook.com/karaage/",
-                "drawable://" + R.drawable.karaage);
+        recipe = new Recipe("Fried Udon", "","","","","","", 15, "https://www.pickledplum.com/recipe/yaki-udon-butter-recipe/",
+                "drawable://" + R.drawable.yakiudon);
         recipeList.add(recipe);
 
         recipe = new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20,
                 "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
                 "drawable://" + R.drawable.vegansand);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Rice Ball", "","","","","","", 15,
+                "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
+                "drawable://" + R.drawable.onigiri);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
+                "drawable://" + R.drawable.inari);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Veg Hakka Noodles", "", "","","","","",40, "http://vegecravings.com/vegetable-hakka-noodles/",
+                "drawable://" + R.drawable.veghakka);
         recipeList.add(recipe);
     }
 

@@ -108,7 +108,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
         String getImage_st = recipe.getImageUrl();
 //        String getImage_st = recipe.getImageUrl().substring(11);
-        Log.d("Drawable",getImage_st);
+//        Log.d("Drawable",getImage_st);
 
         Picasso.with(this.context).load(getImage_st).error(R.drawable.error).into(holder.imageView);
 

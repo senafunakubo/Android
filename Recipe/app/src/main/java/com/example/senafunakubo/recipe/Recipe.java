@@ -125,4 +125,7 @@ public class Recipe {
         this.imageUrl = imageUrl;
     }
 
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 }
