@@ -38,7 +38,6 @@ public class SharedPreference {
         editor.commit();
     }
 
-    //ここがおかしい
     public void addFavorite(Context context, Recipe product) {
         List<Recipe> favorites = getFavorites(context);
         if (favorites == null)

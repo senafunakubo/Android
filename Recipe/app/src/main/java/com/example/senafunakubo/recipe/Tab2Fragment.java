@@ -37,7 +37,7 @@ public class Tab2Fragment extends Fragment {
                 "drawable://" + R.drawable.veghakka));
         list2.add(new Recipe("Spaghetti Meat Sauce", "", "","","","","",30, "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "", "","","","","",40, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
+        list2.add(new Recipe("Curry Udon", "", "","","","","",20, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon));
 
         final CustomListAdapter adapter2 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list2);
@@ -154,9 +154,9 @@ public class Tab2Fragment extends Fragment {
                 "http://vegecravings.com/vegetable-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka));
         list2.add(new Recipe("Spaghetti Meat Sauce", "","","","","","",30,
-                "https://norecipes.com/spaghetti-meat-sauce-recipe",
+                    "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "","","","","","", 40,
+        list2.add(new Recipe("Curry Udon", "","","","","","", 20,
                 "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon));
 

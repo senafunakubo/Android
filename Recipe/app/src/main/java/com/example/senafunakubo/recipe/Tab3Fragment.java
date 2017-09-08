@@ -41,7 +41,7 @@ public class Tab3Fragment extends Fragment {
         list3.add(new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20,
                 "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
                 "drawable://" + R.drawable.vegansand));
-        list3.add(new Recipe("Eggs Benedict", "","","","","","", 30, "https://norecipes.com/eggs-benedict-recipe",
+        list3.add(new Recipe("Eggs Benedict", "","","","","","", 35, "https://norecipes.com/eggs-benedict-recipe",
                 "drawable://" + R.drawable.eggbene));
 
         final CustomListAdapter adapter3 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list3);
@@ -150,7 +150,7 @@ public class Tab3Fragment extends Fragment {
                 "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
                 "drawable://" + R.drawable.breadchana));
         list3.add(new Recipe("Taco Pizza", "","","","","","", 45,
-                "http://www.food.com/recipe/taco-pizza-174145",
+                    "http://www.food.com/recipe/taco-pizza-174145",
                 "drawable://" + R.drawable.tacopi));
         list3.add(new Recipe("French Toast", "","","","","","", 30,
                 "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
@@ -158,7 +158,7 @@ public class Tab3Fragment extends Fragment {
         list3.add(new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20,
                 "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
                 "drawable://" + R.drawable.vegansand));
-        list3.add(new Recipe("Eggs Benedict", "","","","","","", 30,
+        list3.add(new Recipe("Eggs Benedict", "","","","","","", 35,
                 "https://norecipes.com/eggs-benedict-recipe",
                 "drawable://" + R.drawable.eggbene));
 

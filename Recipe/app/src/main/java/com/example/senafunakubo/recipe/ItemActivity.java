@@ -143,6 +143,11 @@ public class ItemActivity extends AppCompatActivity {
                 "drawable://" + R.drawable.asaririce);
         recipeList.add(recipe);
 
+        recipe = new Recipe("Taco Pizza", "","","","","","", 45,
+                "http://www.food.com/recipe/taco-pizza-174145",
+                "drawable://" + R.drawable.tacopi);
+        recipeList.add(recipe);
+
         recipe = new Recipe("Japanese Fried Chicken", "","","","","","", 30,
                 "http://www.justonecookbook.com/karaage/",
                 "drawable://" + R.drawable.karaage);
@@ -190,9 +195,19 @@ public class ItemActivity extends AppCompatActivity {
                 "drawable://" + R.drawable.vegansand);
         recipeList.add(recipe);
 
+        recipe = new Recipe("Spaghetti Meat Sauce", "","","","","","",30,
+                "https://norecipes.com/spaghetti-meat-sauce-recipe",
+                "drawable://" + R.drawable.spaghettimeat);
+        recipeList.add(recipe);
+
         recipe = new Recipe("Rice Ball", "","","","","","", 15,
                 "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
                 "drawable://" + R.drawable.onigiri);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Bread Channa", "", "","","","","",15,
+                "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
+                "drawable://" + R.drawable.breadchana);
         recipeList.add(recipe);
 
         recipe = new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
@@ -201,6 +216,16 @@ public class ItemActivity extends AppCompatActivity {
 
         recipe = new Recipe("Veg Hakka Noodles", "", "","","","","",40, "http://vegecravings.com/vegetable-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("French Toast", "","","","","","", 30,
+                "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
+                "drawable://" + R.drawable.frencht);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Bhindi Masala", "", "","","","","",17,
+                "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
+                "drawable://" + R.drawable.bhindi);
         recipeList.add(recipe);
     }
 

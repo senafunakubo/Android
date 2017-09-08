@@ -26,7 +26,8 @@ public class Tab4Fragment extends Fragment {
         View view4 = inflater.inflate(R.layout.tab4_fragment, container, false);
         mListView4 = (ListView)view4.findViewById(R.id.listView_others);
 
-        list4.add(new Recipe("Bhindi Masala", "","","","","","", 10, "http://foodviva.com/indian-recipes/bhindi-masala-gravy/",
+        list4.add(new Recipe("Bhindi Masala", "","","","","","", 17,
+                "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi));
         list4.add(new Recipe("Sundubu-jjigae", "","","","","","", 30, "https://mykoreankitchen.com/sundubu-jjigae/",
                 "drawable://" + R.drawable.chige));
@@ -138,8 +139,8 @@ public class Tab4Fragment extends Fragment {
     }
 
     public void addList(){
-        list4.add(new Recipe("Bhindi Masala", "", "","","","","",10,
-                "http://foodviva.com/indian-recipes/bhindi-masala-gravy/",
+        list4.add(new Recipe("Bhindi Masala", "", "","","","","",17,
+                "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi));
         list4.add(new Recipe("Sundubu-jjigae", "", "","","","","",30,
                 "https://mykoreankitchen.com/sundubu-jjigae/",

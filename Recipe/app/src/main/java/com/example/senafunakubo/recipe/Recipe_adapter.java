@@ -1,7 +1,5 @@
 /*
-
 Fav page's adapter
-
 */
 
 
@@ -44,7 +42,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     boolean[] checkBoxState;
     CardView cv;
     Context context;
-
+    Recipe recipe;
 
     public Recipe_adapter(List<Recipe> recipe_list){
 
@@ -99,7 +97,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        final Recipe recipe = recipe_list.get(position);
+        recipe = recipe_list.get(position);
         holder.recipe_title.setText(recipe.getRecipe_title());
 //        holder.recipe_ingredients.setText(recipe.getRecipe_ingredients());
         int cooking_time_int = recipe.getCooking_time();

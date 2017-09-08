@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".AppController"> //ここで呼ばないとオワタ
-        <activity android:name=".MainActivity" android:label="Recipe"
+        <activity android:name=".ItemActivity" android:label="Recipe"
             android:configChanges="orientation|screenSize">
 
             <intent-filter>
@@ -25,7 +25,7 @@
         </activity>
 
         <activity android:name=".SearchPage" android:label="Search"/>
-        <activity android:name=".ItemActivity" android:label="RecipeList" />
+        <activity android:name=".MainActivity" android:label="Favorite" />
         <activity android:name=".Recipe_detail" android:label="Recipe_detail"/>
 
     </application>

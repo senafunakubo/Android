@@ -49,34 +49,24 @@ public class Recipe_detail extends AppCompatActivity {
 
     private static String TAG = Recipe_detail.class.getSimpleName();
     private List<Recipe> recipeList = new ArrayList<>();
-    private List<Recipe> recipeListForFav = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecipeMainAdapter recipeMainAdapter;
 
     // json response url
-    private String urlJsonObj = "http://192.168.57.1/recipedata1.json";
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
 
     private Button startButton;
     private Button historyButton;
     private TextView timer;
-    WebView webView;
+//    WebView webView;
     LikeButton likeButton;
     TextView foodName;
     TextView cookingTime;
     ImageView foodImg;
     Recipe recipeData;
     SharedPreference sharedPreference;
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyFavs";
-    public static final String Fav = "favKey";
-    Set<String> arr; // = new JSONArray();
-    SharedPreferences.Editor editor;
-    int position;
-
 
     private Handler customHandler = new Handler();
-
     long startTime = 0L;
     long timeInMilliseconds = 0L;
     long updatedTime = 0L;
@@ -97,9 +87,6 @@ public class Recipe_detail extends AppCompatActivity {
         foodName = (TextView) findViewById(R.id.foodName);
         cookingTime = (TextView) findViewById(R.id.cookingTime);
         foodImg = (ImageView) findViewById(R.id.foodImg);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-         arr = new HashSet<String>() ;
-        editor = sharedpreferences.edit();
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleStep);
@@ -109,7 +96,6 @@ public class Recipe_detail extends AppCompatActivity {
         recyclerView.setLayoutManager(myLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        position = getIntent().getIntExtra("position",0);
         foodNameIntent = getIntent().getStringExtra("foodName");
         final String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
         String cookingTimeIntent = getIntent().getStringExtra("cookingTime");
@@ -137,12 +123,7 @@ public class Recipe_detail extends AppCompatActivity {
             @Override
             public void liked(LikeButton likeButton) {
                 sharedPreference.addFavorite(getApplicationContext(),recipeData);
-//                arr.add(foodNameIntent);
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
-//                editor.putStringSet(Fav,arr);
-//              Log.d("key value" ,"= " + sharedpreferences.getStringSet(Fav,null));
-//                Log.d("position ", "= "+ recipeList.get(position));
-//                editor.apply();
 
                 Intent intent = new Intent(Recipe_detail.this, MainActivity.class);
                 startActivity(intent);
@@ -154,7 +135,6 @@ public class Recipe_detail extends AppCompatActivity {
             }
         });
 
-//        makeJsonObjectRequest();
         makeJsonArrayRequest(foodNameIntent);
 
     }
@@ -195,7 +175,6 @@ public class Recipe_detail extends AppCompatActivity {
                                     recipeData.setImageUrl(imageUrl);
                                     recipeData.setWebUrl(webUrl);
                                     recipeData.isFavorite(favorite);
-                                    recipeListForFav.add(recipeData);
 
                                     Recipe recipeData1 = new Recipe();
                                     Recipe recipeData2 = new Recipe();
@@ -249,7 +228,6 @@ public class Recipe_detail extends AppCompatActivity {
 
             String recipeUrlIntent = getIntent().getStringExtra("cookingTime");
             int recipeUrlIntentInt = Integer.parseInt(recipeUrlIntent);
-//            Log.d("CookingTime", recipeUrlIntent);
 
             timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
             updatedTime = timeInMilliseconds;

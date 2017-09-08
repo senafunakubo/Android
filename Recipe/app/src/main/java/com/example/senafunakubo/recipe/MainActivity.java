@@ -34,6 +34,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -46,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private Recipe_adapter rAdapter,rAdapter1;
+    private Recipe_adapter rAdapter, rAdapter1;
     //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
-    String foodName;
+    String foodName,recipeUrl,foodImgUrl,cookingTime;
     private TextView txt;
     private ImageView img;
     SharedPreference sharedPreference;
@@ -74,10 +76,6 @@ public class MainActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         myFavorite = sharedPreference.getFavorites(getApplicationContext());
-        if (myFavorite!=null) {
-            Log.d("data ", "= " + myFavorite.get(0).getRecipe_title());
-//            Log.d("data ", "= " + myFavorite.get(1).getRecipe_title());
-        }
 
         recyclerView = (RecyclerView) findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
@@ -88,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(rLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(rAdapter);
-        if(myFavorite!=null)
-        {
+        if (myFavorite != null) {
             rAdapter = new Recipe_adapter(myFavorite);
             recyclerView.setAdapter(rAdapter);
         }
+
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
@@ -107,14 +105,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemClick(View view, int position) {
 
                         Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
+
                         Recipe recipe = recipeList.get(position);
                         foodName = recipe.getRecipe_title();
-                        String recipeUrl = recipe.getWebUrl();
-                        String foodImgUrl = recipe.getImageUrl();
-                        String cookingTime = String.valueOf(recipe.getCooking_time());
+                        recipeUrl = recipe.getWebUrl();
+                        foodImgUrl = recipe.getImageUrl();
+                        cookingTime = String.valueOf(recipe.getCooking_time());
                         intent.putExtra("foodName", foodName);
                         intent.putExtra("recipeUrl", recipeUrl);
-                        intent.putExtra("foodImgUrl",foodImgUrl);
+                        intent.putExtra("foodImgUrl", foodImgUrl);
                         intent.putExtra("cookingTime", cookingTime);
                         startActivity(intent);
 
@@ -161,25 +160,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//
-//        mViewPager = (ViewPager)findViewById(R.id.container);
-//        setupViewPager(mViewPager);
-//
-//        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(mViewPager);
-
-
     }
-
-
-//    private void setupViewPager(ViewPager viewPager){
-//        SectionsPageAdapter secAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-//        secAdapter.addFragment(new Tab1Fragment(),"3-15mins");
-//        secAdapter.addFragment(new Tab2Fragment(),"15-30mins");
-//        secAdapter.addFragment(new Tab3Fragment(),"30mins+");
-//        viewPager.setAdapter(secAdapter);
-//    }
 
 
     @Override
@@ -211,23 +192,24 @@ public class MainActivity extends AppCompatActivity {
             img.setImageResource(R.drawable.recipenote);
         }
 
-       // String name = sharedpreferences.getString(Fav, "");
-        Set<String> fetch = sharedpreferences.getStringSet(Fav,null);
-        if(fetch!=null) {
-            ArrayList<String> list = new ArrayList<String>(fetch);
-//
-//        try {
-//            arr = new JSONArray(sharedpreferences.getString(Fav, "{}"));
-//            Log.d("len ", "= "+arr.length());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-            // makeJsonArrayRequest(name);
-//        if(arr.length() != 1) {
+        //Retrieve the data from SharedPreference
+        List<Recipe> fetch = sharedPreference.getFavorites(getApplicationContext());
+        Log.d("check ", " true"+fetch);
+        if (fetch != null) {
+            ArrayList<String> list = new ArrayList<>() ;
+            ArrayAdapter<Recipe> recipeArrayAdapter = new ArrayAdapter<Recipe>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    fetch
+            );
+            for(int i=0; i<recipeArrayAdapter.getCount();i++)
+            {
+                Recipe r = recipeArrayAdapter.getItem(i);
+                list.add(r.getRecipe_title().toString());
+            }
             makeJsonArrayRequest(list);
-            Recipe_adapter recipe_adapter = new Recipe_adapter(recipeList);
+            Recipe_adapter recipe_adapter = new Recipe_adapter(fetch);
             recyclerView.setAdapter(recipe_adapter);
-
             rAdapter.notifyDataSetChanged();
         }
 
@@ -266,91 +248,59 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeJsonArrayRequest(final ArrayList<String> name) throws JSONException {
 
-//        for(int i=0;i<name.size() ;i++) {
-//            JSONObject jsonobject = (JSONObject) myLists.get(i);
-//            String title = jsonobject.optString("name");
-//            String ingredients = jsonobject.optString("ingredients");
-//            String step1 = jsonobject.optString("Step1");
-//            String step2 = jsonobject.optString("Step2");
-//            String step3 = jsonobject.optString("Step3");
-//            String step4 = jsonobject.optString("Step4");
-//            String step5 = jsonobject.optString("Step5");
-//            int cookingTime = jsonobject.optInt("cookingTime");
-//            String imageUrl = jsonobject.optString("imageUrl");
-//            String webUrl = jsonobject.optString("webUrl");
-//            boolean favorite = jsonobject.optBoolean("favorite");
-//            Recipe recipeData = new Recipe();
-//                            recipeData.setRecipe_title(title);
-//                            recipeData.setRecipe_ingredients(ingredients);
-//                            recipeData.setStep1(step1);
-//                            recipeData.setStep2(step2);
-//                            recipeData.setStep3(step3);
-//                            recipeData.setStep4(step4);
-//                            recipeData.setStep5(step5);
-//                            recipeData.setCooking_time(cookingTime);
-//                            recipeData.setImageUrl(imageUrl);
-//                            recipeData.setWebUrl(webUrl);
-//                            recipeData.isFavorite(favorite);
-//                            recipeList.add(recipeData);
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonArray,
+                    (String) null, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonArray,
-                (String) null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-//                Log.d(TAG, response.toString());
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject recipeJson = (JSONObject) response.get(i);
+                            String title = recipeJson.getString("name");
+                            String ingredients = recipeJson.getString("ingredients");
+                            String step1 = recipeJson.getString("Step1");
+                            String step2 = recipeJson.getString("Step2");
+                            String step3 = recipeJson.getString("Step3");
+                            String step4 = recipeJson.getString("Step4");
+                            String step5 = recipeJson.getString("Step5");
+                            int cookingTime = recipeJson.getInt("cookingTime");
+                            String imageUrl = recipeJson.getString("imageUrl");
+                            String webUrl = recipeJson.getString("webUrl");
+                            boolean favorite = recipeJson.getBoolean("favorite");
+                            for (String favRecipyName : name) {
+                                if (title.equals(favRecipyName)) {
+                                    Recipe recipeData = new Recipe();
+                                    recipeData.setRecipe_title(title);
+                                    recipeData.setRecipe_ingredients(ingredients);
+                                    recipeData.setStep1(step1);
+                                    recipeData.setStep2(step2);
+                                    recipeData.setStep3(step3);
+                                    recipeData.setStep4(step4);
+                                    recipeData.setStep5(step5);
+                                    recipeData.setCooking_time(cookingTime);
+                                    recipeData.setImageUrl(imageUrl);
+                                    recipeData.setWebUrl(webUrl);
+                                    recipeData.isFavorite(favorite);
+                                    recipeList.add(recipeData);
 
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject recipeJson = (JSONObject) response.get(i);
-                        String title = recipeJson.getString("name");
-                        String ingredients = recipeJson.getString("ingredients");
-                        String step1 = recipeJson.getString("Step1");
-                        String step2 = recipeJson.getString("Step2");
-                        String step3 = recipeJson.getString("Step3");
-                        String step4 = recipeJson.getString("Step4");
-                        String step5 = recipeJson.getString("Step5");
-                        int cookingTime = recipeJson.getInt("cookingTime");
-                        String imageUrl = recipeJson.getString("imageUrl");
-                        String webUrl = recipeJson.getString("webUrl");
-                        boolean favorite = recipeJson.getBoolean("favorite");
-                        for(String favRecipyName : name ) {
-                            if (title.equals(favRecipyName)) {
-                                Recipe recipeData = new Recipe();
-                                recipeData.setRecipe_title(title);
-                                recipeData.setRecipe_ingredients(ingredients);
-                                recipeData.setStep1(step1);
-                                recipeData.setStep2(step2);
-                                recipeData.setStep3(step3);
-                                recipeData.setStep4(step4);
-                                recipeData.setStep5(step5);
-                                recipeData.setCooking_time(cookingTime);
-                                recipeData.setImageUrl(imageUrl);
-                                recipeData.setWebUrl(webUrl);
-                                recipeData.isFavorite(favorite);
-                                recipeList.add(recipeData);
-
+                                }
                             }
                         }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
-        });
-        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+            });
+            AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
-
-
-
-
 }
