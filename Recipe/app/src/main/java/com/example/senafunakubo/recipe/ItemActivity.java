@@ -154,8 +154,8 @@ public class ItemActivity extends AppCompatActivity {
         recipeList.add(recipe);
 
         recipe = new Recipe("Sundubu-jjigae", "", "","","","","",30,
-                "https://mykoreankitchen.com/sundubu-jjigae/",
-                "drawable://" + R.drawable.chige);
+                "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
+                "drawable://" + R.drawable.chige1);
         recipeList.add(recipe);
 
         recipe = new Recipe("Karbonara", "","","","","","", 25,
@@ -163,8 +163,12 @@ public class ItemActivity extends AppCompatActivity {
                 "drawable://" + R.drawable.karbonara);
         recipeList.add(recipe);
 
+        recipe = new Recipe("Ginger Pork", "", "","","","","",20, "https://norecipes.com/buta-no-shogayaki-ginger-pork",
+                "drawable://" + R.drawable.gingerpork);
+        recipeList.add(recipe);
+
         recipe = new Recipe("Kadai Masala", "", "","","","","",25,
-                "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/",
+                "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
                 "drawable://" + R.drawable.kadai);
         recipeList.add(recipe);
 
@@ -179,7 +183,12 @@ public class ItemActivity extends AppCompatActivity {
         recipeList.add(recipe);
 
         recipe = new Recipe("Vegetarian Sushi", "","","","","","", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
-                "drawable://" + R.drawable.vegetariansushi);
+                "drawable://" + R.drawable.vegetariansushi1);
+        recipeList.add(recipe);
+
+        recipe = new Recipe("Vegan Gyoza", "", "","","","","",50,
+                "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
+                "drawable://" + R.drawable.gyozave);
         recipeList.add(recipe);
 
         recipe = new Recipe("Chicken Biryani", "","","","","","", 40, "http://www.food.com/recipe/chicken-biryani-316697",

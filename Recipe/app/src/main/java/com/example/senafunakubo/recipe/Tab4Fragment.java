@@ -29,13 +29,13 @@ public class Tab4Fragment extends Fragment {
         list4.add(new Recipe("Bhindi Masala", "","","","","","", 17,
                 "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi));
-        list4.add(new Recipe("Sundubu-jjigae", "","","","","","", 30, "https://mykoreankitchen.com/sundubu-jjigae/",
-                "drawable://" + R.drawable.chige));
-        list4.add(new Recipe("Kadai Masala", "", "","","","","",25, "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/",
+        list4.add(new Recipe("Sundubu-jjigae", "","","","","","", 30, "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
+                "drawable://" + R.drawable.chige1));
+        list4.add(new Recipe("Kadai Masala", "", "","","","","",25, "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
                 "drawable://" + R.drawable.kadai));
-        list4.add(new Recipe("Ginger Pork", "", "","","","","",20, "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/",
+        list4.add(new Recipe("Ginger Pork", "", "","","","","",20, "https://norecipes.com/buta-no-shogayaki-ginger-pork",
                 "drawable://" + R.drawable.gingerpork));
-        list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50, "https://norecipes.com/vegan-gyoza-recipe",
+        list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50, "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
                 "drawable://" + R.drawable.gyozave));
         list4.add(new Recipe("Japanese Fried Chicken", "", "","","","","", 30, "http://www.justonecookbook.com/karaage/",
                 "drawable://" + R.drawable.karaage));
@@ -143,16 +143,16 @@ public class Tab4Fragment extends Fragment {
                 "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi));
         list4.add(new Recipe("Sundubu-jjigae", "", "","","","","",30,
-                "https://mykoreankitchen.com/sundubu-jjigae/",
-                "drawable://" + R.drawable.chige));
+                "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
+                "drawable://" + R.drawable.chige1));
         list4.add(new Recipe("Kadai Masala", "", "","","","","",25,
-                "http://indianhealthyrecipes.com/kadai-paneer-gravy-recipe/",
+                "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
                 "drawable://" + R.drawable.kadai));
         list4.add(new Recipe("Ginger Pork", "","","","","","", 20,
-                "http://www.foodiewithfamily.com/easy-garlic-and-ginger-glazed-sticky-pork/",
+                "https://norecipes.com/buta-no-shogayaki-ginger-pork",
                 "drawable://" + R.drawable.gingerpork));
         list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50,
-                "https://norecipes.com/vegan-gyoza-recipe",
+                "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
                 "drawable://" + R.drawable.gyozave));
         list4.add(new Recipe("Japanese Fried Chicken", "","","","","","", 30,
                 "http://www.justonecookbook.com/karaage/",

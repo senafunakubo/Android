@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -119,6 +120,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             @Override
             public void onClick(View view) {
                 recipe_list.get(position).setSelected(true);
+                Toast.makeText(view.getContext(),"item checked " + position ,Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -31,8 +31,8 @@ public class Recipe {
         this.isSelected = false;
     }
 
-    public void setSelected(boolean selected){
-        isSelected = selected;
+    public void setSelected(boolean isSelected){
+        this.isSelected = isSelected;
     }
 
     //getter for isSelected
@@ -41,7 +41,7 @@ public class Recipe {
     }
 
     public boolean isFavorite(boolean fav){
-        return isFavorite;
+        return fav;
     }
 
 

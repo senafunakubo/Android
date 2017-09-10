@@ -34,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -72,6 +73,7 @@ public class Recipe_detail extends AppCompatActivity {
     long updatedTime = 0L;
     int setTime = 1;
     String foodNameIntent;
+    boolean favOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +98,25 @@ public class Recipe_detail extends AppCompatActivity {
         recyclerView.setLayoutManager(myLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        //Intent from the other pages
         foodNameIntent = getIntent().getStringExtra("foodName");
-        final String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
-        String cookingTimeIntent = getIntent().getStringExtra("cookingTime");
         foodName.setText(foodNameIntent);
+
+        String cookingTimeIntent = getIntent().getStringExtra("cookingTime");
         cookingTime.setText(cookingTimeIntent + " mins");
+
+        final String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
 
         if (foodImgIntent.contains("http")){
             Picasso.with(this).load(foodImgIntent).error(R.drawable.error).into(foodImg);
         }
         else {
             foodImg.setImageResource(Integer.parseInt(foodImgIntent.substring(11)));
+        }
+
+        favOK = getIntent().getBooleanExtra("favOK",favOK);
+        if (favOK == true){
+            likeButton.setLiked(true);
         }
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +133,14 @@ public class Recipe_detail extends AppCompatActivity {
             @Override
             public void liked(LikeButton likeButton) {
                 sharedPreference.addFavorite(getApplicationContext(),recipeData);
-                Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Recipe_detail.this, MainActivity.class);
-                startActivity(intent);
+//                List<Recipe> favorites = new ArrayList<Recipe>();
+//                favorites.add(recipeData);
+//                sharedPreference.saveFavorites(getApplicationContext(),favorites);
+
+                Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
+                likeButton.setLiked(true);
+
             }
 
             @Override

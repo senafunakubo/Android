@@ -23,14 +23,18 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyView> {
     private List<Recipe> recipeList = new ArrayList<>();
 
     int[] imgList = {R.drawable.shrimpfriedrice, R.drawable.eggsand, R.drawable.nooveg, R.drawable.asaririce,
-            R.drawable.tacopi, R.drawable.karaage, R.drawable.chige, R.drawable.karbonara, R.drawable.kadai,
-            R.drawable.eggbene, R.drawable.curryudon,R.drawable.vegetariansushi, R.drawable.biryani,
-            R.drawable.yakiudon, R.drawable.vegansand,R.drawable.spaghettimeat, R.drawable.onigiri,
+            R.drawable.tacopi, R.drawable.karaage, R.drawable.chige1, R.drawable.karbonara, R.drawable.gingerpork,
+            R.drawable.kadai, R.drawable.eggbene, R.drawable.curryudon,R.drawable.vegetariansushi1,R.drawable.gyozave,
+            R.drawable.biryani, R.drawable.yakiudon, R.drawable.vegansand,R.drawable.spaghettimeat, R.drawable.onigiri,
             R.drawable.breadchana, R.drawable.inari, R.drawable.veghakka, R.drawable.frencht,
             R.drawable.bhindi};
 
-    String[] nameList = {"1", "2", "3", "4", "5", "6",
-            "7", "8", "9", "10", "11", "12","13","14","15","16","17","18","19","20","21","22"};
+    String[] nameList = {"Shrimp Fried Rice", "Egg Sandwich", "Noodle Soup (VEGETARIAN)", "Clam Rice",
+            "Taco Pizza", "Japanese Fried Chicken", "Sundubu-jjigae", "Karbonara", "Ginger Pork",
+            "Kadai Masala", "Eggs Benedict", "Curry Udon","Vegetarian Sushi","Vegan Gyoza",
+            "Chicken Biryani","Fried Udon","Vegan Sandwich with Tofu","Spaghetti Meat Sauce",
+            "Rice Ball","Bread Channa","Inari Sushi","Veg Hakka Noodles","French Toast",
+            "Bhindi Masala"};
 
     public ItemAdapter(Context context,List<Recipe> recipeList) {
         this.context = context;
