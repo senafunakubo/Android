@@ -13,18 +13,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -195,20 +187,7 @@ public class MainActivity extends AppCompatActivity {
         List<Recipe> fetch = sharedPreference.getFavorites(getApplicationContext());
 //        Log.d("check ", " true" + fetch);
         if (fetch != null) {
-            list = new ArrayList<>() ;
-            ArrayAdapter<Recipe> recipeArrayAdapter = new ArrayAdapter<Recipe>(
-                    this,
-                    android.R.layout.simple_list_item_1,
-                    fetch
-            );
-            for(int i=0; i<recipeArrayAdapter.getCount();i++)
-            {
-                 r = recipeArrayAdapter.getItem(i);
-                list.add(r.getRecipe_title());
-                Log.d("List",r.getRecipe_title());
-            }
-            makeJsonArrayRequest(list);
-
+            recipeList.addAll(fetch);
             Recipe_adapter recipe_adapter = new Recipe_adapter(fetch);
             recyclerView.setAdapter(recipe_adapter);
             rAdapter.notifyDataSetChanged();
@@ -247,73 +226,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void makeJsonArrayRequest(final ArrayList<String> nameList) throws JSONException {
-
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonArray,
-                    (String) null, new Response.Listener<JSONArray>() {
-                @Override
-                public void onResponse(JSONArray response) {
-
-                    try {
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject recipeJson = (JSONObject) response.get(i);
-                            title = recipeJson.getString("name");
-                            ingredients = recipeJson.getString("ingredients");
-                            step1 = recipeJson.getString("Step1");
-                            step2 = recipeJson.getString("Step2");
-                            step3 = recipeJson.getString("Step3");
-                            step4 = recipeJson.getString("Step4");
-                            step5 = recipeJson.getString("Step5");
-                            cookingTimeForJson = recipeJson.getInt("cookingTime");
-                            imageUrl = recipeJson.getString("imageUrl");
-                            webUrl = recipeJson.getString("webUrl");
-                            favorite = recipeJson.getBoolean("favorite");
-
-                            Log.d("title",title);
-
-                            for (String favRecipeName : nameList) {
-                                if (title.equals(favRecipeName)) {
-                                    Recipe recipeData = new Recipe();
-                                    recipeData.setRecipe_title(title);
-                                    recipeData.setRecipe_ingredients(ingredients);
-                                    recipeData.setStep1(step1);
-                                    recipeData.setStep2(step2);
-                                    recipeData.setStep3(step3);
-                                    recipeData.setStep4(step4);
-                                    recipeData.setStep5(step5);
-                                    recipeData.setCooking_time(cookingTimeForJson);
-                                    recipeData.setImageUrl(imageUrl);
-                                    recipeData.setWebUrl(webUrl);
-                                    recipeData.isFavorite(favorite);
-                                    recipeList.add(recipeData);
-                                   Log.d("recipeListJson", recipeData.getRecipe_title());
-
-                                }
-                            }
-                        }
-                        // ArrayList<String> list   ---> get the recipeTitle based on SharedPreferences
-                        // List<Recipe> recipeList  ---> get the recipe based on JSON (need to change the order)
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-                    Toast.makeText(getApplicationContext(),
-                            error.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            });
-            AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-
-    }
-
-//    public static final <T> void swap (List<T> l, int i, int j) {
-//        Collections.<T>swap(l, i, j);
-//    }
 
 }
