@@ -37,10 +37,8 @@ import java.util.List;
 public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHolder>{
 
     private List<Recipe> recipe_list;
-    private  int colorNo;
-    Boolean isSelectedAll;
     int lastPosition = -1;
-    boolean[] checkBoxState;
+//    boolean[] checkBoxState;
     CardView cv;
     Context context;
     Recipe recipe;
@@ -48,18 +46,9 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     public Recipe_adapter(List<Recipe> recipe_list){
 
         this.recipe_list = recipe_list;
-        checkBoxState = new boolean[recipe_list.size()];
-
-        //For background color
-//        colorNo = 0;
+//        checkBoxState = new boolean[recipe_list.size()];
 
     }
-
-    public interface OnItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -79,6 +68,13 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             cv = view.findViewById(R.id.cv);
             imageView = view.findViewById(R.id.recipe_image);
             checkBox = view.findViewById(R.id.checkbox);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int clickedPosition = getAdapterPosition();
+                    Toast.makeText(v.getContext(), "you have clicked an item: "+clickedPosition, Toast.LENGTH_SHORT).show();
+                }
+            });
 
         }
     }
@@ -89,7 +85,9 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.fav_recipe,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.fav_recipe, parent, false);
+//                inflater.inflate(R.layout.fav_recipe,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
         return viewHolder;
@@ -98,16 +96,13 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        recipe = recipe_list.get(position);
-        holder.recipe_title.setText(recipe.getRecipe_title());
-//        holder.recipe_ingredients.setText(recipe.getRecipe_ingredients());
-        int cooking_time_int = recipe.getCooking_time();
+        holder.recipe_title.setText(recipe_list.get(position).getRecipe_title());
+        int cooking_time_int = recipe_list.get(position).getCooking_time();
         String cooking_time = Integer.toString(cooking_time_int);
-        holder.recipe_time.setText(cooking_time + " mins");
+        holder.recipe_time.setText(cooking_time +  "mins");
 
-        String getImage_st = recipe.getImageUrl();
+        String getImage_st = recipe_list.get(position).getImageUrl();
 //        String getImage_st = recipe.getImageUrl().substring(11);
-//        Log.d("Drawable",getImage_st);
 
         Picasso.with(this.context).load(getImage_st).error(R.drawable.error).into(holder.imageView);
 
@@ -168,8 +163,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
                 AnimationUtils.loadAnimation(c, R.anim.slide);
         image.startAnimation(animation1);
     }
-
-
 
 
 }

@@ -40,16 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyFavs";
 //    public static final String Fav = "favKey";
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
-//    JSONArray arr;
-//    JSONArray myLists;
     List<Recipe> myFavorite;
-//    ArrayList<String> myFavRecipename;
-    ArrayList<String> list;
-    Recipe r;
-    String title,ingredients,step1,step2,step3,step4,step5;
-    int cookingTimeForJson;
-    String imageUrl, webUrl;
-    boolean favorite;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.rv1);
         recyclerView.setHasFixedSize(true);
-        rAdapter = new Recipe_adapter(recipeList);
+//        rAdapter = new Recipe_adapter(recipeList);
 
         RecyclerView.LayoutManager rLayoutManager = new LinearLayoutManager(getApplicationContext());
 
@@ -166,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_refresh) {
-            rAdapter = new Recipe_adapter(recipeList);
+            rAdapter = new Recipe_adapter(myFavorite);
             //recyclerView object
             recyclerView.setAdapter(rAdapter);
             return true;
@@ -201,14 +193,14 @@ public class MainActivity extends AppCompatActivity {
     public void selectAll(View view) {
         for (Recipe m : recipeList) {
             m.setSelected(true); //select is true, clear is false
-            rAdapter.notifyDataSetChanged();
         }
+        ((Recipe_adapter) recyclerView.getAdapter()).notifyDataSetChanged();
     }
 
     public void clearAll(View view) {
         for (Recipe m : recipeList) {
             m.setSelected(false);
-            rAdapter.notifyDataSetChanged();
+            ((Recipe_adapter) recyclerView.getAdapter()).notifyDataSetChanged();
         }
     }
 
@@ -216,15 +208,15 @@ public class MainActivity extends AppCompatActivity {
 
         int arraySize = recipeList.size();
         for (int i = 0; i < arraySize; i++) {
-            Log.d("recipeTEST", recipeList.get(i).toString());
             if (recipeList.get(i).isSelected()) {
                 recipeList.remove(i);
                 i -= 1;
                 arraySize -= 1;
-
-                rAdapter.notifyDataSetChanged();
+                ((Recipe_adapter) recyclerView.getAdapter()).notifyDataSetChanged();
             }
         }
+        if (recipeList!=null)
+        Log.d("RecipeList",recipeList.toString());
     }
 
 }
