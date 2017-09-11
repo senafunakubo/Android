@@ -31,13 +31,14 @@ public class Recipe {
         this.isSelected = false;
     }
 
-    public void setSelected(boolean isSelected){
-        this.isSelected = isSelected;
+    public boolean isSelected() {
+
+        return isSelected;
     }
 
-    //getter for isSelected
-    public boolean isSelected(){
-        return isSelected;
+    public void setSelected(boolean selected) {
+
+        isSelected = selected;
     }
 
     public boolean isFavorite(boolean fav){

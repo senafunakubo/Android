@@ -3,10 +3,7 @@ package com.example.senafunakubo.recipe;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,27 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 
 //implements GreenAdapter2.ListItemClickListener
@@ -48,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private Recipe_adapter rAdapter, rAdapter1;
+    private Recipe_adapter rAdapter;
     //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
     String foodName,recipeUrl,foodImgUrl,cookingTime;
@@ -57,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
     SharedPreference sharedPreference;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyFavs";
-    public static final String Fav = "favKey";
+//    public static final String Fav = "favKey";
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
-    JSONArray arr;
-    JSONArray myLists;
+//    JSONArray arr;
+//    JSONArray myLists;
     List<Recipe> myFavorite;
-    ArrayList<String> myFavRecipename;
+//    ArrayList<String> myFavRecipename;
     ArrayList<String> list;
     Recipe r;
     String title,ingredients,step1,step2,step3,step4,step5;
@@ -298,11 +287,13 @@ public class MainActivity extends AppCompatActivity {
                                     recipeData.setWebUrl(webUrl);
                                     recipeData.isFavorite(favorite);
                                     recipeList.add(recipeData);
+                                   Log.d("recipeListJson", recipeData.getRecipe_title());
 
-                                    Log.d("recipeListJson",recipeData.getRecipe_title());
                                 }
                             }
                         }
+                        // ArrayList<String> list   ---> get the recipeTitle based on SharedPreferences
+                        // List<Recipe> recipeList  ---> get the recipe based on JSON (need to change the order)
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -320,4 +311,9 @@ public class MainActivity extends AppCompatActivity {
             AppController.getInstance().addToRequestQueue(jsonArrayRequest);
 
     }
+
+//    public static final <T> void swap (List<T> l, int i, int j) {
+//        Collections.<T>swap(l, i, j);
+//    }
+
 }

@@ -16,6 +16,7 @@
         android:name=".AppController"> //ここで呼ばないとオワタ
         <activity android:name=".ItemActivity" android:label="Recipe"
             android:configChanges="orientation|screenSize">
+            <!--android:theme="@style/splashScreenTheme"-->
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

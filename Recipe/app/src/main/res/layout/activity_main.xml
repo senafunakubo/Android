@@ -42,8 +42,8 @@
             android:id="@+id/clear_all"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_effect"
             android:onClick="clearAll"
+            android:background="@drawable/ripple_effect"
             android:text="clearAll" />
 
         <Button
@@ -53,8 +53,8 @@
             android:id="@+id/select_all"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_effect"
             android:onClick="selectAll"
+            android:background="@drawable/ripple_effect"
             android:text="selectAll" />
 
 
@@ -65,8 +65,8 @@
             android:id="@+id/delete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_effect"
             android:onClick="delete"
+            android:background="@drawable/ripple_effect"
             android:text="delete" />
 
     </LinearLayout>
