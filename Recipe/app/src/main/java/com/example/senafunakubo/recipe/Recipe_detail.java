@@ -133,11 +133,6 @@ public class Recipe_detail extends AppCompatActivity {
             @Override
             public void liked(LikeButton likeButton) {
                 sharedPreference.addFavorite(getApplicationContext(),recipeData);
-
-//                List<Recipe> favorites = new ArrayList<Recipe>();
-//                favorites.add(recipeData);
-//                sharedPreference.saveFavorites(getApplicationContext(),favorites);
-
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
                 likeButton.setLiked(true);
 
@@ -145,6 +140,7 @@ public class Recipe_detail extends AppCompatActivity {
 
             @Override
             public void unLiked(LikeButton likeButton) {
+                sharedPreference.removeFavorite(getApplicationContext(),recipeData);
                 Toast.makeText(Recipe_detail.this, "You unliked it", Toast.LENGTH_SHORT).show();
             }
         });

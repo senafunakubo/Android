@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 //    public static final String Fav = "favKey";
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
     List<Recipe> myFavorite;
+    List<Recipe> fetch;
 
 
     @Override
@@ -176,8 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Retrieve the data from SharedPreference
-        List<Recipe> fetch = sharedPreference.getFavorites(getApplicationContext());
-//        Log.d("check ", " true" + fetch);
+        fetch = sharedPreference.getFavorites(getApplicationContext());
         if (fetch != null) {
             recipeList.addAll(fetch);
             Recipe_adapter recipe_adapter = new Recipe_adapter(fetch);
@@ -210,13 +210,13 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < arraySize; i++) {
             if (recipeList.get(i).isSelected()) {
                 recipeList.remove(i);
+                fetch.remove(i);
                 i -= 1;
                 arraySize -= 1;
                 ((Recipe_adapter) recyclerView.getAdapter()).notifyDataSetChanged();
             }
         }
-        if (recipeList!=null)
-        Log.d("RecipeList",recipeList.toString());
+        sharedPreference.saveFavorites(getApplicationContext(),fetch);
     }
 
 }
