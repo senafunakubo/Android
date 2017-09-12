@@ -73,6 +73,7 @@ public class Recipe_detail extends AppCompatActivity {
     long timeInMilliseconds = 0L;
     long updatedTime = 0L;
     int setTime = 1;
+    long timeSwapBuff = 0L;
     String foodNameIntent;
 
     @Override
@@ -98,6 +99,8 @@ public class Recipe_detail extends AppCompatActivity {
         recyclerView.setLayoutManager(myLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+
+
         //Intent from the other pages
         foodNameIntent = getIntent().getStringExtra("foodName");
         foodName.setText(foodNameIntent);
@@ -120,6 +123,14 @@ public class Recipe_detail extends AppCompatActivity {
                 startTime = SystemClock.uptimeMillis();
                 customHandler.postDelayed(updateTimer, 0);
 
+            }
+        });
+
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timeSwapBuff += timeInMilliseconds;
+                customHandler.removeCallbacks(updateTimer);
             }
         });
 
@@ -235,8 +246,6 @@ public class Recipe_detail extends AppCompatActivity {
 
             for(int i =0; i<recipeList1.size(); i++){
                 recipeList1.get(i).setFavorite(true);
-//                Log.d("foodName", (String) foodName.getText());
-//                Log.d("recipeList1", recipeList1.get(i).getRecipe_title());
 
                 if (recipeList1.get(i).getRecipe_title().equals ((String) foodName.getText())) {
                      likeButton.setLiked(true);
@@ -249,11 +258,12 @@ public class Recipe_detail extends AppCompatActivity {
     public void removeRecipeData(){
         fetch = sharedPreference.getFavorites(getApplicationContext());
 
-        for(int i =0; i<recipeList1.size(); i++)
-        if (recipeList1.get(i).getRecipe_title().equals ((String) foodName.getText())) {
-            recipeList1.remove(i);
-            fetch.remove(i);
-            likeButton.setLiked(false);
+        for(int i =0; i<recipeList1.size(); i++) {
+            if (recipeList1.get(i).getRecipe_title().equals((String) foodName.getText())) {
+                recipeList1.remove(i);
+                fetch.remove(i);
+                likeButton.setLiked(false);
+            }
         }
         sharedPreference.saveFavorites(getApplicationContext(),fetch);
     }

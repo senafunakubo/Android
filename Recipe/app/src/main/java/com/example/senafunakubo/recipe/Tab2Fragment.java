@@ -27,34 +27,18 @@ public class Tab2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab2_fragment, container, false);
         mListView2 = (ListView)view.findViewById(R.id.listView_noodle);
 
-        list2.add(new Recipe("Fried Udon", "","","","","","", 15, "https://www.pickledplum.com/recipe/yaki-udon-butter-recipe/",
-                "drawable://" + R.drawable.yakiudon));
-        list2.add(new Recipe("Karbonara", "","","","","","", 25, "http://www.stvarukusa.rs/recept/spagete-karbonara",
-                "drawable://" + R.drawable.karbonara));
-        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, "http://www.recipetineats.com/dan-dan-noodle-soup-vegetarian/",
-                "drawable://" + R.drawable.nooveg));
-        list2.add(new Recipe("Veg Hakka Noodles", "", "","","","","",40, "http://vegecravings.com/vegetable-hakka-noodles/",
-                "drawable://" + R.drawable.veghakka));
-        list2.add(new Recipe("Spaghetti Meat Sauce", "", "","","","","",30, "https://norecipes.com/spaghetti-meat-sauce-recipe",
-                "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "", "","","","","",20, "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
-                "drawable://" + R.drawable.curryudon));
 
-        final CustomListAdapter adapter2 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list2);
-        mListView2.setAdapter(adapter2);
+        addList();
 
 
-        //たまにダブルクリックしないと動かなくなる
         Button mini2 = (Button) view.findViewById(R.id.mini_noodle);
         mini2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if(list2.isEmpty()){
-                    addList();
-                    adapter2.notifyDataSetChanged();
-                }
+
+                listPrepare();
 
                 int arraySize = list2.size();
                 for(int i=0; i<arraySize; i++){
@@ -62,7 +46,8 @@ public class Tab2Fragment extends Fragment {
                         list2.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter2.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView2.getAdapter()).notifyDataSetChanged();
+//                        adapter2.notifyDataSetChanged();
                     }
                 }
             }
@@ -75,10 +60,7 @@ public class Tab2Fragment extends Fragment {
             public void onClick(View v)
             {
 
-                if(list2.isEmpty()){
-                    addList();
-                    adapter2.notifyDataSetChanged();
-                }
+                listPrepare();
 
                 int arraySize = list2.size();
                 for(int i=0; i<arraySize; i++){
@@ -86,7 +68,8 @@ public class Tab2Fragment extends Fragment {
                         list2.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter2.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView2.getAdapter()).notifyDataSetChanged();
+//                        adapter2.notifyDataSetChanged();
                     }
                 }
 
@@ -99,11 +82,8 @@ public class Tab2Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(list2.isEmpty()){
-                    addList();
-                    adapter2.notifyDataSetChanged();
-                }
 
+                listPrepare();
 
                 int arraySize = list2.size();
                 for(int i=0; i<arraySize; i++){
@@ -111,7 +91,8 @@ public class Tab2Fragment extends Fragment {
                         list2.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter2.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView2.getAdapter()).notifyDataSetChanged();
+//                        adapter2.notifyDataSetChanged();
                     }
                 }
             }
@@ -162,5 +143,11 @@ public class Tab2Fragment extends Fragment {
 
         final CustomListAdapter adapter2 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list2);
         mListView2.setAdapter(adapter2);
+    }
+
+    public void listPrepare(){
+        list2.clear();
+        addList();
+        ((CustomListAdapter)mListView2.getAdapter()).notifyDataSetChanged();
     }
 }

@@ -41,46 +41,26 @@ public class Tab1Fragment extends Fragment {
         mListView = (ListView)view.findViewById(R.id.listView_search);
 
         //タコライス,オムライス
-        list.add(new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
-                "drawable://" + R.drawable.shrimpfriedrice));
-        list.add(new Recipe("Chicken Biryani", "","","","","","", 40, "https://www.bbcgoodfood.com/recipes/4686/chicken-biryani",
-                "drawable://" + R.drawable.biryani));
-        list.add(new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
-                "drawable://" + R.drawable.asaririce));
-        list.add(new Recipe("Vegetarian Sushi", "","","","","","", 40, "https://www.jvs.org.uk/2012/09/19/vegetarian-sushi/",
-                "drawable://" + R.drawable.vegetariansushi1));
-        list.add(new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
-                "drawable://" + R.drawable.inari));
-        list.add(new Recipe("Rice Ball", "","","","","","", 10,
-                "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
-                "drawable://" + R.drawable.onigiri));
-
-        Log.d("Img","drawable://" + R.drawable.shrimpfriedrice);
-
-        final CustomListAdapter adapter = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list);
-        mListView.setAdapter(adapter);
+        addList();
 
 
-
-//     たまにダブルクリックしないと動かなくなる
         Button mini = (Button) view.findViewById(R.id.mini);
         mini.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if(list.isEmpty()){
-                    addList();
-                    adapter.notifyDataSetChanged();
-                }
+
+                listPrepare();
 
                 int arraySize = list.size();
                 for(int i=0; i<arraySize; i++){
+
                     if(list.get(i).getCooking_time()>16){
                         list.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     }
                 }
             }
@@ -93,10 +73,7 @@ public class Tab1Fragment extends Fragment {
             public void onClick(View v)
             {
 
-                if(list.isEmpty()){
-                    addList();
-                    adapter.notifyDataSetChanged();
-                }
+                listPrepare();
 
                 int arraySize = list.size();
                 for(int i=0; i<arraySize; i++){
@@ -104,7 +81,7 @@ public class Tab1Fragment extends Fragment {
                         list.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     }
                 }
 
@@ -117,11 +94,8 @@ public class Tab1Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(list.isEmpty()){
-                    addList();
-                    adapter.notifyDataSetChanged();
-                }
 
+                listPrepare();
 
                 int arraySize = list.size();
                 for(int i=0; i<arraySize; i++){
@@ -129,7 +103,7 @@ public class Tab1Fragment extends Fragment {
                         list.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     }
                 }
             }
@@ -174,5 +148,11 @@ public class Tab1Fragment extends Fragment {
 
         final CustomListAdapter adapter = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list);
         mListView.setAdapter(adapter);
+    }
+
+    public void listPrepare(){
+        list.clear();
+        addList();
+        ((CustomListAdapter)mListView.getAdapter()).notifyDataSetChanged();
     }
 }

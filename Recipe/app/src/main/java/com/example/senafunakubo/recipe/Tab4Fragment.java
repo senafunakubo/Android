@@ -26,23 +26,7 @@ public class Tab4Fragment extends Fragment {
         View view4 = inflater.inflate(R.layout.tab4_fragment, container, false);
         mListView4 = (ListView)view4.findViewById(R.id.listView_others);
 
-        list4.add(new Recipe("Bhindi Masala", "","","","","","", 17,
-                "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
-                "drawable://" + R.drawable.bhindi));
-        list4.add(new Recipe("Sundubu-jjigae", "","","","","","", 30, "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
-                "drawable://" + R.drawable.chige1));
-        list4.add(new Recipe("Kadai Masala", "", "","","","","",25, "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
-                "drawable://" + R.drawable.kadai));
-        list4.add(new Recipe("Ginger Pork", "", "","","","","",20, "https://norecipes.com/buta-no-shogayaki-ginger-pork",
-                "drawable://" + R.drawable.gingerpork));
-        list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50, "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
-                "drawable://" + R.drawable.gyozave));
-        list4.add(new Recipe("Japanese Fried Chicken", "", "","","","","", 30, "http://www.justonecookbook.com/karaage/",
-                "drawable://" + R.drawable.karaage));
-
-        final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
-        mListView4.setAdapter(adapter4);
-
+        addList();
 
         //たまにダブルクリックしないと動かなくなる
         Button mini = (Button) view4.findViewById(R.id.mini_others);
@@ -51,10 +35,7 @@ public class Tab4Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(list4.isEmpty()){
-                    addList();
-                    adapter4.notifyDataSetChanged();
-                }
+                listPrepare();
 
                 int arraySize = list4.size();
                 for(int i=0; i<arraySize; i++){
@@ -62,7 +43,8 @@ public class Tab4Fragment extends Fragment {
                         list4.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter4.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView4.getAdapter()).notifyDataSetChanged();
+//                        adapter4.notifyDataSetChanged();
                     }
                 }
             }
@@ -75,10 +57,7 @@ public class Tab4Fragment extends Fragment {
             public void onClick(View v)
             {
 
-                if(list4.isEmpty()){
-                    addList();
-                    adapter4.notifyDataSetChanged();
-                }
+                listPrepare();
 
                 int arraySize = list4.size();
                 for(int i=0; i<arraySize; i++){
@@ -86,7 +65,8 @@ public class Tab4Fragment extends Fragment {
                         list4.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter4.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView4.getAdapter()).notifyDataSetChanged();
+//                        adapter4.notifyDataSetChanged();
                     }
                 }
 
@@ -99,10 +79,7 @@ public class Tab4Fragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(list4.isEmpty()){
-                    addList();
-                    adapter4.notifyDataSetChanged();
-                }
+                listPrepare();
 
 
                 int arraySize = list4.size();
@@ -111,7 +88,8 @@ public class Tab4Fragment extends Fragment {
                         list4.remove(i);
                         i -= 1;
                         arraySize -= 1;
-                        adapter4.notifyDataSetChanged();
+                        ((CustomListAdapter)mListView4.getAdapter()).notifyDataSetChanged();
+//                        adapter4.notifyDataSetChanged();
                     }
                 }
             }
@@ -160,5 +138,11 @@ public class Tab4Fragment extends Fragment {
 
         final CustomListAdapter adapter4 = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list4);
         mListView4.setAdapter(adapter4);
+    }
+
+    public void listPrepare(){
+        list4.clear();
+        addList();
+        ((CustomListAdapter)mListView4.getAdapter()).notifyDataSetChanged();
     }
 }
