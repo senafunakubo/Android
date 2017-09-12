@@ -50,6 +50,7 @@ public class Recipe_detail extends AppCompatActivity {
 
     private static String TAG = Recipe_detail.class.getSimpleName();
     private List<Recipe> recipeList = new ArrayList<>();
+    private List<Recipe> recipeList1 = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecipeMainAdapter recipeMainAdapter;
 
@@ -57,15 +58,15 @@ public class Recipe_detail extends AppCompatActivity {
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
 
     private Button startButton;
-    private Button historyButton;
+    private Button stopButton;
     private TextView timer;
-//    WebView webView;
     LikeButton likeButton;
     TextView foodName;
     TextView cookingTime;
     ImageView foodImg;
     Recipe recipeData;
     SharedPreference sharedPreference;
+    List<Recipe> fetch;
 
     private Handler customHandler = new Handler();
     long startTime = 0L;
@@ -73,7 +74,7 @@ public class Recipe_detail extends AppCompatActivity {
     long updatedTime = 0L;
     int setTime = 1;
     String foodNameIntent;
-    boolean favOK;
+//    boolean favOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class Recipe_detail extends AppCompatActivity {
         sharedPreference = new SharedPreference();
 
         startButton = (Button) findViewById(R.id.start_clock);
-        historyButton = (Button) findViewById(R.id.cooking_history);
+        stopButton = (Button) findViewById(R.id.stop_clock);
         timer = (TextView) findViewById(R.id.timerValue);
         likeButton = (LikeButton) findViewById(R.id.fav_button);
         foodName = (TextView) findViewById(R.id.foodName);
@@ -114,11 +115,6 @@ public class Recipe_detail extends AppCompatActivity {
             foodImg.setImageResource(Integer.parseInt(foodImgIntent.substring(11)));
         }
 
-        favOK = getIntent().getBooleanExtra("favOK",favOK);
-        if (favOK == true){
-            likeButton.setLiked(true);
-        }
-
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,12 +125,18 @@ public class Recipe_detail extends AppCompatActivity {
         });
 
 
+//        favOK = getIntent().getBooleanExtra("favOK",favOK);
+//        if (favOK == true){
+//            likeButton.setLiked(true);
+//        }
+
+
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
+//                recipeData.isFavorite(true);
                 sharedPreference.addFavorite(getApplicationContext(),recipeData);
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
-                likeButton.setLiked(true);
 
             }
 
@@ -146,6 +148,7 @@ public class Recipe_detail extends AppCompatActivity {
         });
 
         makeJsonArrayRequest(foodNameIntent);
+        prepareRecipeData();
 
     }
 
@@ -154,7 +157,6 @@ public class Recipe_detail extends AppCompatActivity {
                 (String) null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-//                        Log.d(TAG, response.toString());
 
                         try {
                             for (int i = 0; i < response.length(); i++) {
@@ -227,6 +229,26 @@ public class Recipe_detail extends AppCompatActivity {
         });
 
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
+    }
+
+    public void prepareRecipeData(){
+
+        //Retrieve the data from SharedPreference
+        fetch = sharedPreference.getFavorites(getApplicationContext());
+        if (fetch != null) {
+            recipeList1.addAll(fetch);
+
+            for(int i =0; i<recipeList1.size(); i++){
+                recipeList1.get(i).setFavorite(true);
+                Log.d("foodName", (String) foodName.getText());
+                Log.d("recipeList1", recipeList1.get(i).getRecipe_title());
+
+                if (recipeList1.get(i).getRecipe_title().equals ((String) foodName.getText())) {
+                     likeButton.setLiked(true);
+                }
+            }
+        }
 
     }
 

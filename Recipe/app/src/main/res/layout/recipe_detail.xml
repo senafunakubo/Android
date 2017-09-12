@@ -67,12 +67,12 @@
 
         <Button
             android:layout_marginRight="20dp"
-            android:id="@+id/cooking_history"
+            android:id="@+id/stop_clock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/foodName"
             android:layout_below="@+id/start_clock"
-            android:text="History" />
+            android:text="Stop" />
 
     <!--</LinearLayout>-->
 

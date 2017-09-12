@@ -71,8 +71,8 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int clickedPosition = getAdapterPosition();
-                    Toast.makeText(v.getContext(), "you have clicked an item: "+clickedPosition, Toast.LENGTH_SHORT).show();
+//                    int clickedPosition = getAdapterPosition();
+                    Toast.makeText(v.getContext(), "Please do long click to check the recipe.", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -115,8 +115,8 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             @Override
             public void onClick(View view) {
                 recipe_list.get(position).setSelected(true);
-                Toast.makeText(view.getContext(),"item checked " + position ,Toast.LENGTH_SHORT).show();
             }
+
         });
 
         setAnimation(holder.itemView, position);

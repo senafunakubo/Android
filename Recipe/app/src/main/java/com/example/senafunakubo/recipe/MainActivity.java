@@ -13,19 +13,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-//implements GreenAdapter2.ListItemClickListener
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-//    private SectionsPageAdapter mSectionsPageAdapter;
 
     private List<Recipe> recipeList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -33,13 +29,9 @@ public class MainActivity extends AppCompatActivity {
     //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
     String foodName,recipeUrl,foodImgUrl,cookingTime;
-    private TextView txt;
-    private ImageView img;
     SharedPreference sharedPreference;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyFavs";
-//    public static final String Fav = "favKey";
-    private String urlJsonArray = "http://192.168.57.1/recipedata.json";
     List<Recipe> myFavorite;
     List<Recipe> fetch;
 
@@ -48,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        txt = (TextView) findViewById(R.id.txt);
-        img = (ImageView) findViewById(R.id.img);
 
         sharedPreference = new SharedPreference();
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -78,12 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onLongClick(View view, int position) {
-
-                    }
-
-                    @Override
-                    public void onItemClick(View view, int position) {
-
                         Intent intent = new Intent(MainActivity.this, Recipe_detail.class);
 
                         Recipe recipe = recipeList.get(position);
@@ -93,24 +76,28 @@ public class MainActivity extends AppCompatActivity {
                         recipeUrl = recipe.getWebUrl();
                         foodImgUrl = recipe.getImageUrl();
                         cookingTime = String.valueOf(recipe.getCooking_time());
-                        boolean favOK = true;
+//                        boolean favOK = true;
                         intent.putExtra("foodName", foodName);
                         intent.putExtra("recipeUrl", recipeUrl);
                         intent.putExtra("foodImgUrl", foodImgUrl);
                         intent.putExtra("cookingTime", cookingTime);
-                        intent.putExtra("favOK", favOK);
+//                        intent.putExtra("favOK", favOK);
                         startActivity(intent);
+                    }
+
+                    @Override
+                    public void onItemClick(View view, int position) {
 
                     }
 
                 })
         );
 
-        try {
+//        try {
             prepareRecipeData();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.NavBot);
         BottomNavigationViewHelper.disableShiftMode(mBottomNav);
@@ -169,12 +156,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void prepareRecipeData() throws JSONException {
-
-        if (recyclerView.equals(null)) {
-            txt.setText("You need to add a recipe!");
-            img.setImageResource(R.drawable.recipenote);
-        }
+    public void prepareRecipeData(){
 
         //Retrieve the data from SharedPreference
         fetch = sharedPreference.getFavorites(getApplicationContext());
@@ -192,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void selectAll(View view) {
         for (Recipe m : recipeList) {
-            m.setSelected(true); //select is true, clear is false
+            m.setSelected(true);
         }
         ((Recipe_adapter) recyclerView.getAdapter()).notifyDataSetChanged();
     }
