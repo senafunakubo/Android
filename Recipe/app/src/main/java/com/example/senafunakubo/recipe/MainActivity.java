@@ -76,12 +76,10 @@ public class MainActivity extends AppCompatActivity {
                         recipeUrl = recipe.getWebUrl();
                         foodImgUrl = recipe.getImageUrl();
                         cookingTime = String.valueOf(recipe.getCooking_time());
-//                        boolean favOK = true;
                         intent.putExtra("foodName", foodName);
                         intent.putExtra("recipeUrl", recipeUrl);
                         intent.putExtra("foodImgUrl", foodImgUrl);
                         intent.putExtra("cookingTime", cookingTime);
-//                        intent.putExtra("favOK", favOK);
                         startActivity(intent);
                     }
 
@@ -93,11 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 })
         );
 
-//        try {
             prepareRecipeData();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+
 
         BottomNavigationView mBottomNav = (BottomNavigationView) findViewById(R.id.NavBot);
         BottomNavigationViewHelper.disableShiftMode(mBottomNav);

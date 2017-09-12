@@ -74,7 +74,6 @@ public class Recipe_detail extends AppCompatActivity {
     long updatedTime = 0L;
     int setTime = 1;
     String foodNameIntent;
-//    boolean favOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,16 +124,10 @@ public class Recipe_detail extends AppCompatActivity {
         });
 
 
-//        favOK = getIntent().getBooleanExtra("favOK",favOK);
-//        if (favOK == true){
-//            likeButton.setLiked(true);
-//        }
-
 
         likeButton.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
-//                recipeData.isFavorite(true);
                 sharedPreference.addFavorite(getApplicationContext(),recipeData);
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
 
@@ -143,6 +136,7 @@ public class Recipe_detail extends AppCompatActivity {
             @Override
             public void unLiked(LikeButton likeButton) {
                 sharedPreference.removeFavorite(getApplicationContext(),recipeData);
+                removeRecipeData();
                 Toast.makeText(Recipe_detail.this, "You unliked it", Toast.LENGTH_SHORT).show();
             }
         });
@@ -241,8 +235,8 @@ public class Recipe_detail extends AppCompatActivity {
 
             for(int i =0; i<recipeList1.size(); i++){
                 recipeList1.get(i).setFavorite(true);
-                Log.d("foodName", (String) foodName.getText());
-                Log.d("recipeList1", recipeList1.get(i).getRecipe_title());
+//                Log.d("foodName", (String) foodName.getText());
+//                Log.d("recipeList1", recipeList1.get(i).getRecipe_title());
 
                 if (recipeList1.get(i).getRecipe_title().equals ((String) foodName.getText())) {
                      likeButton.setLiked(true);
@@ -250,6 +244,18 @@ public class Recipe_detail extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void removeRecipeData(){
+        fetch = sharedPreference.getFavorites(getApplicationContext());
+
+        for(int i =0; i<recipeList1.size(); i++)
+        if (recipeList1.get(i).getRecipe_title().equals ((String) foodName.getText())) {
+            recipeList1.remove(i);
+            fetch.remove(i);
+            likeButton.setLiked(false);
+        }
+        sharedPreference.saveFavorites(getApplicationContext(),fetch);
     }
 
 
