@@ -7,7 +7,7 @@ package com.example.senafunakubo.recipe;
 public class Recipe {
 
     private String recipe_title,recipe_ingredients;
-    private int cooking_time;
+    private int cooking_time,servings;
     private String step1,step2,step3,step4,step5;
     private String imageUrl,webUrl;
     private boolean isSelected, isFavorite;
@@ -17,7 +17,7 @@ public class Recipe {
     //constructor
     public Recipe(String recipe_title, String recipe_ingredients, String step1, String step2,
                   String step3, String step4, String step5,
-                  int cooking_time, String webUrl, String imageUrl){
+                  int cooking_time,int servings, String webUrl, String imageUrl){
         this.recipe_title = recipe_title;
         this.recipe_ingredients = recipe_ingredients;
         this.step1 = step1;
@@ -26,6 +26,7 @@ public class Recipe {
         this.step4 = step4;
         this.step5 = step5;
         this.cooking_time = cooking_time;
+        this.servings = servings;
         this.imageUrl = imageUrl;
         this.webUrl = webUrl;
         this.isSelected = false;
@@ -108,6 +109,14 @@ public class Recipe {
 
     public void setCooking_time(int cooking_time){
         this.cooking_time = cooking_time;
+    }
+
+    public int getServings(){
+        return servings;
+    }
+
+    public void setServings(int servings){
+        this.servings = servings;
     }
 
     public String getImageUrl(){

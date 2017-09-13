@@ -38,7 +38,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
 
     private List<Recipe> recipe_list;
     int lastPosition = -1;
-//    boolean[] checkBoxState;
     CardView cv;
     Context context;
     Recipe recipe;
@@ -46,7 +45,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     public Recipe_adapter(List<Recipe> recipe_list){
 
         this.recipe_list = recipe_list;
-//        checkBoxState = new boolean[recipe_list.size()];
 
     }
 
@@ -55,6 +53,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
         TextView recipe_title;
         TextView recipe_ingredients;
         TextView recipe_time;
+//        TextView servings;
         ImageView imageView;
         CheckBox checkBox;
 
@@ -64,6 +63,7 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             recipe_title = view.findViewById(R.id.re_title);
             recipe_ingredients = view.findViewById(R.id.re_ingre);
             recipe_time = view.findViewById(R.id.re_time);
+//            servings = view.findViewById(R.id.servings);
 
             cv = view.findViewById(R.id.cv);
             imageView = view.findViewById(R.id.recipe_image);
@@ -71,7 +71,6 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    int clickedPosition = getAdapterPosition();
                     Toast.makeText(v.getContext(), "Please do long click to check the recipe.", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -84,10 +83,9 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+//        LayoutInflater inflater = LayoutInflater.from(context);
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.fav_recipe, parent, false);
-//                inflater.inflate(R.layout.fav_recipe,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
         return viewHolder;
@@ -97,8 +95,10 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.recipe_title.setText(recipe_list.get(position).getRecipe_title());
+
         int cooking_time_int = recipe_list.get(position).getCooking_time();
         String cooking_time = Integer.toString(cooking_time_int);
+//        String servings = String.valueOf(recipe_list.get(position).getServings());
         holder.recipe_time.setText(cooking_time +  "mins");
 
         String getImage_st = recipe_list.get(position).getImageUrl();

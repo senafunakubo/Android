@@ -100,15 +100,15 @@ public class Tab4Fragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
                 Recipe recipe = list4.get(position);
-//                         String recipeUrl = recipe.getWebUrl();
                 String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
                 String foodImgUrl = recipe.getImageUrl();
+                String servings = String.valueOf(recipe.getServings());
 
-//                         intent.putExtra("recipeUrl", recipeUrl);
                 intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
                 intent.putExtra("foodImgUrl",foodImgUrl);
+                intent.putExtra("servings", servings);
                 startActivity(intent);
             }
         });
@@ -117,22 +117,22 @@ public class Tab4Fragment extends Fragment {
     }
 
     public void addList(){
-        list4.add(new Recipe("Bhindi Masala", "", "","","","","",17,
+        list4.add(new Recipe("Bhindi Masala", "", "","","","","", 17, 2,
                 "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi));
-        list4.add(new Recipe("Sundubu-jjigae", "", "","","","","",30,
+        list4.add(new Recipe("Sundubu-jjigae", "", "","","","","", 30, 2,
                 "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
                 "drawable://" + R.drawable.chige1));
-        list4.add(new Recipe("Kadai Masala", "", "","","","","",25,
+        list4.add(new Recipe("Kadai Masala", "", "","","","","", 25, 2,
                 "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
                 "drawable://" + R.drawable.kadai));
-        list4.add(new Recipe("Ginger Pork", "","","","","","", 20,
+        list4.add(new Recipe("Ginger Pork", "","","","","","", 20, 2,
                 "https://norecipes.com/buta-no-shogayaki-ginger-pork",
                 "drawable://" + R.drawable.gingerpork));
-        list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50,
+        list4.add(new Recipe("Vegan Gyoza", "", "","","","","",50, 12,
                 "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
                 "drawable://" + R.drawable.gyozave));
-        list4.add(new Recipe("Japanese Fried Chicken", "","","","","","", 30,
+        list4.add(new Recipe("Japanese Fried Chicken", "","","","","","", 30, 3,
                 "http://www.justonecookbook.com/karaage/",
                 "drawable://" + R.drawable.karaage));
 

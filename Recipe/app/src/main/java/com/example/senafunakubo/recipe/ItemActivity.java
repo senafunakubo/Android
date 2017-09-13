@@ -89,13 +89,14 @@ public class ItemActivity extends AppCompatActivity {
                         Recipe recipe = recipeList.get(position);
                         String foodName = recipe.getRecipe_title();
                         String cookingTime = String.valueOf(recipe.getCooking_time());
-
+                        String servings = String.valueOf(recipe.getServings());
 
                         String foodImgUrl = recipe.getImageUrl();
                         intent.putExtra("position",position);
                         intent.putExtra("foodName", foodName);
                         intent.putExtra("cookingTime", cookingTime);
                         intent.putExtra("foodImgUrl",foodImgUrl);
+                        intent.putExtra("servings",servings);
                         startActivity(intent);
 
                     }
@@ -127,113 +128,122 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     public void prepareRecipeData(){
-        Recipe recipe = new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
+        Recipe recipe = new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, 4,
+                "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Egg Sandwich", "","","","","","", 10,
+        recipe = new Recipe("Egg Sandwich", "","","","","","", 10, 1,
                 "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
                 "drawable://" + R.drawable.eggsand);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, "http://www.recipetineats.com/dan-dan-noodle-soup-vegetarian/",
+        recipe = new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, 4,
+                "http://www.recipetineats.com/dan-dan-noodle-soup-vegetarian/",
                 "drawable://" + R.drawable.nooveg);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
+        recipe = new Recipe("Clam Rice", "","","","","","", 50, 4,
+                "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Taco Pizza", "","","","","","", 45,
+        recipe = new Recipe("Taco Pizza", "","","","","","", 45, 1,
                 "http://www.food.com/recipe/taco-pizza-174145",
                 "drawable://" + R.drawable.tacopi);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Japanese Fried Chicken", "","","","","","", 30,
+        recipe = new Recipe("Japanese Fried Chicken", "","","","","","", 30, 3,
                 "http://www.justonecookbook.com/karaage/",
                 "drawable://" + R.drawable.karaage);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Sundubu-jjigae", "", "","","","","",30,
+        recipe = new Recipe("Sundubu-jjigae", "", "","","","","", 30, 2,
                 "http://www.koreanbapsang.com/2015/01/kimchi-soondubu-jjigae-soft-tofu-stew-kimchi.html",
                 "drawable://" + R.drawable.chige1);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Karbonara", "","","","","","", 25,
+        recipe = new Recipe("Karbonara", "","","","","","", 25, 4,
                 "http://www.stvarukusa.rs/recept/spagete-karbonara",
                 "drawable://" + R.drawable.karbonara);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Ginger Pork", "", "","","","","",20, "https://norecipes.com/buta-no-shogayaki-ginger-pork",
+        recipe = new Recipe("Ginger Pork", "", "","","","","",20, 2,
+                "https://norecipes.com/buta-no-shogayaki-ginger-pork",
                 "drawable://" + R.drawable.gingerpork);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Kadai Masala", "", "","","","","",25,
+        recipe = new Recipe("Kadai Masala", "", "","","","","", 25, 2,
                 "http://www.mareenasrecipecollections.com/maharashtrian-style-chicken-recipe/",
                 "drawable://" + R.drawable.kadai);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Eggs Benedict", "","","","","","", 30,
+        recipe = new Recipe("Eggs Benedict", "","","","","","", 30, 4,
                 "https://norecipes.com/eggs-benedict-recipe",
                 "drawable://" + R.drawable.eggbene);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Curry Udon", "","","","","","", 40,
+        recipe = new Recipe("Curry Udon", "","","","","","", 40, 1,
                 "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Vegetarian Sushi", "","","","","","", 25, "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
+        recipe = new Recipe("Vegetarian Sushi", "","","","","","", 25, 6,
+                "http://www.epicurious.com/recipes/food/views/veggie-sushi-rolls-367009",
                 "drawable://" + R.drawable.vegetariansushi1);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Vegan Gyoza", "", "","","","","",50,
+        recipe = new Recipe("Vegan Gyoza", "", "","","","","", 50, 12,
                 "http://www.myrecipes.com/recipe/vegetarian-gyoza-with-spicy-dipping-sauce",
                 "drawable://" + R.drawable.gyozave);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Chicken Biryani", "","","","","","", 40, "http://www.food.com/recipe/chicken-biryani-316697",
+        recipe = new Recipe("Chicken Biryani", "","","","","","", 40, 4,
+                "http://www.food.com/recipe/chicken-biryani-316697",
                 "drawable://" + R.drawable.biryani);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Fried Udon", "","","","","","", 15, "https://www.pickledplum.com/recipe/yaki-udon-butter-recipe/",
+        recipe = new Recipe("Fried Udon", "","","","","","", 15, 1,
+                "https://www.pickledplum.com/recipe/yaki-udon-butter-recipe/",
                 "drawable://" + R.drawable.yakiudon);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20,
+        recipe = new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20, 2,
                 "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
                 "drawable://" + R.drawable.vegansand);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Spaghetti Meat Sauce", "","","","","","",30,
+        recipe = new Recipe("Spaghetti Meat Sauce", "","","","","","", 30, 2,
                 "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Rice Ball", "","","","","","", 15,
+        recipe = new Recipe("Rice Ball", "","","","","","", 15, 2,
                 "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
                 "drawable://" + R.drawable.onigiri);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Bread Channa", "", "","","","","",15,
+        recipe = new Recipe("Bread Channa", "", "","","","","",15, 2,
                 "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
                 "drawable://" + R.drawable.breadchana);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
+        recipe = new Recipe("Inari Sushi", "","","","","","", 20, 1,
+                "https://www.japancentre.com/en/recipes/53-inari-sushi",
                 "drawable://" + R.drawable.inari);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Veg Hakka Noodles", "", "","","","","",40, "http://vegecravings.com/vegetable-hakka-noodles/",
+        recipe = new Recipe("Veg Hakka Noodles", "", "","","","","",40, 4,
+                "http://vegecravings.com/vegetable-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka);
         recipeList.add(recipe);
 
-        recipe = new Recipe("French Toast", "","","","","","", 30,
+        recipe = new Recipe("French Toast", "","","","","","", 30, 4,
                 "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
                 "drawable://" + R.drawable.frencht);
         recipeList.add(recipe);
 
-        recipe = new Recipe("Bhindi Masala", "", "","","","","",17,
+        recipe = new Recipe("Bhindi Masala", "", "","","","","", 17, 2,
                 "http://kalimirchbysmita.com/bhindi-masala-in-microwave/",
                 "drawable://" + R.drawable.bhindi);
         recipeList.add(recipe);

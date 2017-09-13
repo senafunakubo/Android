@@ -114,15 +114,15 @@ public class Tab1Fragment extends Fragment {
 
                          Intent intent = new Intent(getActivity(), Recipe_detail.class);
                          Recipe recipe = list.get(position);
-//                         String recipeUrl = recipe.getWebUrl();
                          String foodName = recipe.getRecipe_title();
                          String cookingTime = String.valueOf(recipe.getCooking_time());
                          String foodImgUrl = recipe.getImageUrl();
+                         String servings = String.valueOf(recipe.getServings());
 
-//                         intent.putExtra("recipeUrl", recipeUrl);
                          intent.putExtra("foodName", foodName);
                          intent.putExtra("cookingTime", cookingTime);
                          intent.putExtra("foodImgUrl",foodImgUrl);
+                         intent.putExtra("servings", servings);
                          startActivity(intent);
              }
         });
@@ -132,18 +132,18 @@ public class Tab1Fragment extends Fragment {
 
 
     public void addList(){
-        list.add(new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
+        list.add(new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, 4, "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice));
-        list.add(new Recipe("Chicken Biryani", "","","","","","", 40, "http://www.food.com/recipe/chicken-biryani-316697",
+        list.add(new Recipe("Chicken Biryani", "","","","","","", 40, 4, "http://www.food.com/recipe/chicken-biryani-316697",
                 "drawable://" + R.drawable.biryani));
-        list.add(new Recipe("Clam Rice", "","","","","","", 50, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
+        list.add(new Recipe("Clam Rice", "","","","","","", 50, 4, "https://toirokitchen.com/blogs/recipes/47899203-clam-rice",
                 "drawable://" + R.drawable.asaririce));
-        list.add(new Recipe("Vegetarian Sushi", "","","","","","", 25, "https://www.jvs.org.uk/2012/09/19/vegetarian-sushi/",
+        list.add(new Recipe("Vegetarian Sushi", "","","","","","", 25, 6, "https://www.jvs.org.uk/2012/09/19/vegetarian-sushi/",
                 "drawable://" + R.drawable.vegetariansushi1));
-        list.add(new Recipe("Inari Sushi", "","","","","","", 20, "https://www.japancentre.com/en/recipes/53-inari-sushi",
+        list.add(new Recipe("Inari Sushi", "","","","","","", 20, 1, "https://www.japancentre.com/en/recipes/53-inari-sushi",
                 "drawable://" + R.drawable.inari));
-        list.add(new Recipe("Rice Ball", "","","","","","", 15,
-                "http://j-simplerecipes.com/recipes_metric/rice/rice_balls/karashi-mentaiko-rice-ball.html",
+        list.add(new Recipe("Rice Ball", "","","","","","", 15, 2,
+                "http://www.wandercooks.com/simple-onigiri-recipe/",
                 "drawable://" + R.drawable.onigiri));
 
         final CustomListAdapter adapter = new CustomListAdapter(getActivity(), R.layout.card_layout_main, list);

@@ -101,15 +101,15 @@ public class Tab3Fragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
                 Recipe recipe = list3.get(position);
-//                         String recipeUrl = recipe.getWebUrl();
                 String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
                 String foodImgUrl = recipe.getImageUrl();
+                String servings = String.valueOf(recipe.getServings());
 
-//                         intent.putExtra("recipeUrl", recipeUrl);
                 intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
                 intent.putExtra("foodImgUrl",foodImgUrl);
+                intent.putExtra("servings", servings);
                 startActivity(intent);
             }
         });
@@ -118,22 +118,22 @@ public class Tab3Fragment extends Fragment {
     }
 
     public void addList(){
-        list3.add(new Recipe("Egg Sandwich", "","","","","","", 10,
+        list3.add(new Recipe("Egg Sandwich", "","","","","","", 10, 1,
                 "https://www.pamperedchef.com/recipe/Breakfast%7CBrunch/American/Fried+Egg+Sandwich/985997",
                 "drawable://" + R.drawable.eggsand));
-        list3.add(new Recipe("Bread Channa", "", "","","","","",15,
+        list3.add(new Recipe("Bread Channa", "", "","","","","",15, 2,
                 "https://www.ticklingpalates.com/bread-channa-recipe-healthy-snacks-recipes/",
                 "drawable://" + R.drawable.breadchana));
-        list3.add(new Recipe("Taco Pizza", "","","","","","", 45,
+        list3.add(new Recipe("Taco Pizza", "","","","","","", 45, 1,
                     "http://www.food.com/recipe/taco-pizza-174145",
                 "drawable://" + R.drawable.tacopi));
-        list3.add(new Recipe("French Toast", "","","","","","", 30,
+        list3.add(new Recipe("French Toast", "","","","","","", 30, 4,
                 "http://www.foodnetwork.com/recipes/robert-irvine/french-toast-recipe-1951408",
                 "drawable://" + R.drawable.frencht));
-        list3.add(new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20,
+        list3.add(new Recipe("Vegan Sandwich with Tofu", "","","","","","", 20, 2,
                 "http://kblog.lunchboxbunch.com/2016/01/vegan-lunch-sandwich-with-sizzling.html",
                 "drawable://" + R.drawable.vegansand));
-        list3.add(new Recipe("Eggs Benedict", "","","","","","", 35,
+        list3.add(new Recipe("Eggs Benedict", "","","","","","", 35, 4,
                 "https://norecipes.com/eggs-benedict-recipe",
                 "drawable://" + R.drawable.eggbene));
 

@@ -63,6 +63,7 @@ public class Recipe_detail extends AppCompatActivity {
     LikeButton likeButton;
     TextView foodName;
     TextView cookingTime;
+    TextView servings;
     ImageView foodImg;
     Recipe recipeData;
     SharedPreference sharedPreference;
@@ -90,6 +91,7 @@ public class Recipe_detail extends AppCompatActivity {
         foodName = (TextView) findViewById(R.id.foodName);
         cookingTime = (TextView) findViewById(R.id.cookingTime);
         foodImg = (ImageView) findViewById(R.id.foodImg);
+        servings = (TextView) findViewById(R.id.servings);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleStep);
@@ -107,6 +109,9 @@ public class Recipe_detail extends AppCompatActivity {
 
         String cookingTimeIntent = getIntent().getStringExtra("cookingTime");
         cookingTime.setText(cookingTimeIntent + " mins");
+
+        String servingsIntent = getIntent().getStringExtra("servings");
+        servings.setText(servingsIntent + " servings");
 
         final String foodImgIntent = getIntent().getStringExtra("foodImgUrl");
 
@@ -174,6 +179,7 @@ public class Recipe_detail extends AppCompatActivity {
                                 String step4 = recipeJson.getString("Step4");
                                 String step5 = recipeJson.getString("Step5");
                                 int cookingTime = recipeJson.getInt("cookingTime");
+                                int servingsJson = recipeJson.getInt("servings");
                                 String imageUrl = recipeJson.getString("imageUrl");
                                 String webUrl = recipeJson.getString("webUrl");
                                 boolean favorite = recipeJson.getBoolean("favorite");
@@ -189,6 +195,7 @@ public class Recipe_detail extends AppCompatActivity {
                                     recipeData.setStep4(step4);
                                     recipeData.setStep5(step5);
                                     recipeData.setCooking_time(cookingTime);
+                                    recipeData.setServings(servingsJson);
                                     recipeData.setImageUrl(imageUrl);
                                     recipeData.setWebUrl(webUrl);
                                     recipeData.isFavorite(favorite);

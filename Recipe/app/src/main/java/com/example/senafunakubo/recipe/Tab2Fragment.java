@@ -103,15 +103,15 @@ public class Tab2Fragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), Recipe_detail.class);
                 Recipe recipe = list2.get(position);
-//                         String recipeUrl = recipe.getWebUrl();
                 String foodName = recipe.getRecipe_title();
                 String cookingTime = String.valueOf(recipe.getCooking_time());
                 String foodImgUrl = recipe.getImageUrl();
+                String servings = String.valueOf(recipe.getServings());
 
-//                         intent.putExtra("recipeUrl", recipeUrl);
                 intent.putExtra("foodName", foodName);
                 intent.putExtra("cookingTime", cookingTime);
                 intent.putExtra("foodImgUrl",foodImgUrl);
+                intent.putExtra("servings", servings);
                 startActivity(intent);
             }
         });
@@ -122,22 +122,22 @@ public class Tab2Fragment extends Fragment {
     }
 
     public void addList(){
-        list2.add(new Recipe("Fried Udon", "","","","","","", 15,
+        list2.add(new Recipe("Fried Udon", "","","","","","", 15, 1,
                 "https://www.pickledplum.com/recipe/yaki-udon-butter-recipe/",
                 "drawable://" + R.drawable.yakiudon));
-        list2.add(new Recipe("Karbonara", "","","","","","", 25,
+        list2.add(new Recipe("Karbonara", "","","","","","", 25, 4,
                 "https://www.coolinarika.com/recept/992495/",
                 "drawable://" + R.drawable.karbonara));
-        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15,
+        list2.add(new Recipe("Noodle Soup (VEGETARIAN)", "", "","","","","",15, 4,
                 "https://www.vegetariantimes.com/recipes/vegan-chicken-noodle-soup",
                 "drawable://" + R.drawable.nooveg));
-        list2.add(new Recipe("Veg Hakka Noodles", "","","","","","", 40,
+        list2.add(new Recipe("Veg Hakka Noodles", "","","","","","", 40, 4,
                 "http://vegecravings.com/vegetable-hakka-noodles/",
                 "drawable://" + R.drawable.veghakka));
-        list2.add(new Recipe("Spaghetti Meat Sauce", "","","","","","",30,
+        list2.add(new Recipe("Spaghetti Meat Sauce", "","","","","","", 30, 2,
                     "https://norecipes.com/spaghetti-meat-sauce-recipe",
                 "drawable://" + R.drawable.spaghettimeat));
-        list2.add(new Recipe("Curry Udon", "","","","","","", 20,
+        list2.add(new Recipe("Curry Udon", "","","","","","", 20, 1,
                 "http://www.closetcooking.com/2008/03/kare-udon-curry-udon-soup.html",
                 "drawable://" + R.drawable.curryudon));
 

@@ -27,15 +27,26 @@
 
 
     <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/cookingTime"
+    android:textSize="10dp"
+    android:text="cookingTime"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_alignStart="@+id/foodName"
+    android:layout_below="@+id/foodName"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cookingTime"
+        android:id="@+id/servings"
         android:textSize="10dp"
-        android:text="cookingTime"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/foodName"
-        android:layout_below="@+id/foodName"/>
+        android:text="servings"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/cookingTime"
+        android:layout_below="@+id/cookingTime"/>
+
 
     <com.like.LikeButton
         app:icon_type="heart"
@@ -43,7 +54,7 @@
         android:id="@+id/fav_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/cookingTime"
+        android:layout_toEndOf="@+id/servings"
         android:layout_below="@+id/foodName"/>
 
 

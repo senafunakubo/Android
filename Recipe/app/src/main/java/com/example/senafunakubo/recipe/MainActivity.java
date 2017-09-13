@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Recipe_adapter rAdapter;
     //    ArrayAdapter<String> searchAdapter;
     Recipe recipe;
-    String foodName,recipeUrl,foodImgUrl,cookingTime;
+    String foodName,foodImgUrl,cookingTime;
     SharedPreference sharedPreference;
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyFavs";
@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Recipe",recipeList.get(position).getRecipe_title());
 
                         foodName = recipe.getRecipe_title();
-                        recipeUrl = recipe.getWebUrl();
                         foodImgUrl = recipe.getImageUrl();
                         cookingTime = String.valueOf(recipe.getCooking_time());
+                        String servings = String.valueOf(recipe.getServings());
                         intent.putExtra("foodName", foodName);
-                        intent.putExtra("recipeUrl", recipeUrl);
                         intent.putExtra("foodImgUrl", foodImgUrl);
                         intent.putExtra("cookingTime", cookingTime);
+                        intent.putExtra("servings", servings);
                         startActivity(intent);
                     }
 
