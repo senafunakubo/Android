@@ -49,7 +49,7 @@ public class Recipe_detail extends AppCompatActivity {
     private List<Recipe> recipeList1 = new ArrayList<>();
     private Timer timer1;
     private TimerTask timerTask;
-
+    private boolean isRunning = false;
     // json response url
     private String urlJsonArray = "http://192.168.57.1/recipedata.json";
     private Button startButton;
@@ -71,9 +71,19 @@ public class Recipe_detail extends AppCompatActivity {
     //    int setTime = 1;
     long timeSwapBuff = 0L;
     String foodNameIntent;
-     int count = -1;
+    int count = -1;
     public TextView content;
     public TextView stepNumber;
+
+    String recipeUrlIntent;
+    int recipeUrlIntentInt;
+    int secs;
+    int mins;
+    double stopTime;
+    int stopTimeInt;
+    int addTime = 0;
+//    boolean isFirst = false;
+    double stopTimeCutDecimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,11 +123,27 @@ public class Recipe_detail extends AppCompatActivity {
             foodImg.setImageResource(Integer.parseInt(foodImgIntent.substring(11)));
         }
 
+        makeJsonArrayRequest(foodNameIntent);
+        prepareRecipeData();
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isRunning = true;
                 startTime = SystemClock.uptimeMillis();
+
                 customHandler.postDelayed(updateTimer, 0);
+//                Log.d("TimerCheck", Long.toString(timeSwapBuff));
+
+                timer1 = new Timer();
+                timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        timerMethod();
+                        count++;
+                    }
+                };
+                timer1.scheduleAtFixedRate(timerTask, 1000, 10000);
 
             }
         });
@@ -125,9 +151,12 @@ public class Recipe_detail extends AppCompatActivity {
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timeSwapBuff += timeInMilliseconds;
-                Log.d("time ", " = " + timeSwapBuff);
+                isRunning = false;
+                stopTime = timeInMilliseconds;
+//              timeSwapBuff += timeInMilliseconds;
+                Log.d("stop the time ", " = " + stopTime);
                 customHandler.removeCallbacks(updateTimer);
+                timer1.cancel();
             }
         });
 
@@ -148,16 +177,16 @@ public class Recipe_detail extends AppCompatActivity {
             }
         });
 
-        makeJsonArrayRequest(foodNameIntent);
-        prepareRecipeData();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                timerMethod();
-                count++;
-            }
-        };
-        timer1.scheduleAtFixedRate(timerTask, 2000, 10000);
+//        makeJsonArrayRequest(foodNameIntent);
+//        prepareRecipeData();
+//        timerTask = new TimerTask() {
+//            @Override
+//            public void run() {
+//                timerMethod();
+//                count++;
+//            }
+//        };
+//        timer1.scheduleAtFixedRate(timerTask, 2000, 10000);
 
     }
 
@@ -199,29 +228,7 @@ public class Recipe_detail extends AppCompatActivity {
                             recipeData.setWebUrl(webUrl);
                             recipeData.isFavorite(favorite);
 
-//                                    Recipe recipeData1 = new Recipe();
-//                                    Recipe recipeData2 = new Recipe();
-//                                    Recipe recipeData3 = new Recipe();
-//                                    Recipe recipeData4 = new Recipe();
-//                                    Recipe recipeData5 = new Recipe();
-//                                    Recipe recipeData6 = new Recipe();
-
-//                                    recipeData1.setStep1(ingredients);
-//                                    recipeData2.setStep1(step1);
-//                                    recipeData3.setStep1(step2);
-//                                    recipeData4.setStep1(step3);
-//                                    recipeData5.setStep1(step4);
-//                                    recipeData6.setStep1(step5);
-
                             recipeList.add(recipeData);
-//                                    recipeList.add(recipeData1);
-//                                    recipeList.add(recipeData2);
-//                                    recipeList.add(recipeData3);
-//                                    recipeList.add(recipeData4);
-//                                    recipeList.add(recipeData5);
-//                                    recipeList.add(recipeData6);
-//                                    recipeMainAdapter = new RecipeMainAdapter(recipeList);
-//                                    recyclerView.setAdapter(recipeMainAdapter);
 
                         }
                     }
@@ -279,69 +286,59 @@ public class Recipe_detail extends AppCompatActivity {
     private Runnable updateTimer = new Runnable() {
         @Override
         public void run() {
+            if (isRunning == true) {
 
-            String recipeUrlIntent = getIntent().getStringExtra("cookingTime");
-            int recipeUrlIntentInt = Integer.parseInt(recipeUrlIntent);
+                if(stopTime==0) //stop押したことないとき
+                {
+                    timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+                    updatedTime = timeInMilliseconds;
+                    secs = (int) (updatedTime / 1000);
+                    mins = secs / 60;
+                    secs = secs % 60;
 
-            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
-            updatedTime = timeInMilliseconds;
-            int secs = (int) (updatedTime / 1000);
-            int mins = secs / 60;
-            secs = secs % 60;
-            if (mins < recipeUrlIntentInt) {
-                timer.setText("" + mins + ":" + String.format("%02d", secs));
+                    timer.setText("" + mins + ":" + String.format("%02d", secs));
+                }
+                else if(stopTime > 0) //1度でもストップが押されたら
+                {
+                    if (addTime<59)
+                    {
+                        stopTimeCutDecimal = Math.floor(stopTime / 1000); // stopTime is millisecond so 小数点以下切り捨て
+                    }
+                    else
+                    {
+                        stopTimeInt = 59;
+                    }
+
+                    if (mins>=1 && addTime==0){
+                        stopTimeInt = 1;
+                    }
+
+                    timer.setText("" + mins + ":" + String.format("%02d", stopTimeInt));
+                    Log.d("timerSet", "" + mins + ":" + String.format("%02d", stopTimeInt));
+
+                    if (stopTimeInt==59){
+                        stopTimeInt = 0;
+                        addTime = 0;
+                        ++mins;
+                        timer.setText("" + mins + ":" + String.format("%02d", stopTimeInt));
+                        Log.d("timerSet", "" + mins + ":" + String.format("%02d", stopTimeInt));
+                    }
+
+                    else if (addTime<59)
+                    {
+                        addTime = ++stopTimeInt;
+                    }
+                    else if(addTime==59)
+                    {
+                        stopTimeInt = 0;
+                        addTime = 0;
+                    }
+                }
+                customHandler.postDelayed(this, 0); //これないとグチャる
             }
-            customHandler.postDelayed(this, 0); //これないとグチャる
         }
     };
 
-    //           if(count==0)
-//    {
-//        while (count<6) {
-//            try {
-//                switch (count) {
-//                    case 0:
-//                        content.setText(recipeData.getRecipe_ingredients());
-//                        Log.d("data ", "= " + recipeData.getRecipe_ingredients());
-//
-//                        break;
-//                    case 1:
-//                        content.setText(recipeData.getStep1());
-//                        Log.d("data ", "= " + recipeData.getStep1());
-//                        break;
-//                    case 2:
-//                        content.setText(recipeData.getStep2());
-//                        Log.d("data ", "= " + recipeData.getStep2());
-//                        break;
-//                    case 3:
-//                        content.setText(recipeData.getStep3());
-//                        Log.d("data ", "= " + recipeData.getStep3());
-//                        break;
-//                    case 4:
-//                        content.setText(recipeData.getStep4());
-//                        Log.d("data ", "= " + recipeData.getStep4());
-//                        break;
-//                    case 5:
-//                        content.setText(recipeData.getStep5());
-//                        Log.d("data ", "= " + recipeData.getStep5());
-//                        break;
-//                }
-//                count++;
-//            }catch (Exception e)
-//            {
-//                content.setText(e.getMessage());
-//            }
-//        }
-//
-//    }
-//    private final Handler handler = new Handler();
-//    private final Runnable finishTask = new Runnable() {
-//        @Override
-//        public void run() {
-//            count++;
-//            Log.d("TEST", "zzz...");
-//        }
-//    };
 
     private void timerMethod() {
 
@@ -363,22 +360,18 @@ public class Recipe_detail extends AppCompatActivity {
                 case 2:
                     content.setText(recipeData.getStep2());
                     Log.d("data ", "= " + recipeData.getStep2());
-//                    handler.postDelayed(finishTask, 5000);
                     break;
                 case 3:
                     content.setText(recipeData.getStep3());
                     Log.d("data ", "= " + recipeData.getStep3());
-//                    handler.postDelayed(finishTask, 5000);
                     break;
                 case 4:
                     content.setText(recipeData.getStep4());
                     Log.d("data ", "= " + recipeData.getStep4());
-//                    handler.postDelayed(finishTask, 5000);
                     break;
                 case 5:
                     content.setText(recipeData.getStep5());
                     Log.d("data ", "= " + recipeData.getStep5());
-//                    handler.postDelayed(finishTask, 5000);
                     break;
             }
         }
