@@ -156,13 +156,13 @@ public class Recipe_adapter extends RecyclerView.Adapter<Recipe_adapter.MyViewHo
     }
 
 
-    public void slide(View view){
-        Context c = view.getContext();
-        ImageView image = view.findViewById(R.id.recipe_image);
-        Animation animation1 =
-                AnimationUtils.loadAnimation(c, R.anim.slide);
-        image.startAnimation(animation1);
-    }
+//    public void slide(View view){
+//        Context c = view.getContext();
+//        ImageView image = view.findViewById(R.id.recipe_image);
+//        Animation animation1 =
+//                AnimationUtils.loadAnimation(c, R.anim.slide);
+//        image.startAnimation(animation1);
+//    }
 
 
 }

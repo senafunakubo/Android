@@ -4,6 +4,8 @@ package com.example.senafunakubo.recipe;
  * Created by senafunakubo on 2017-09-06.
  */
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ItemActivity extends AppCompatActivity {
@@ -128,6 +131,7 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     public void prepareRecipeData(){
+        //JSONで書き直す
         Recipe recipe = new Recipe("Shrimp Fried Rice", "" ,"","","","","", 20, 4,
                 "http://allrecipes.com/recipe/21561/shrimp-fried-rice-ii/",
                 "drawable://" + R.drawable.shrimpfriedrice);
