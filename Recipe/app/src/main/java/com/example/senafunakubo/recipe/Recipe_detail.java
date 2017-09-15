@@ -79,11 +79,7 @@ public class Recipe_detail extends AppCompatActivity {
     int recipeUrlIntentInt;
     int secs;
     int mins;
-    double stopTime;
-    int stopTimeInt;
-    int addTime = 0;
-//    boolean isFirst = false;
-    double stopTimeCutDecimal;
+    long stopTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +129,6 @@ public class Recipe_detail extends AppCompatActivity {
                 startTime = SystemClock.uptimeMillis();
 
                 customHandler.postDelayed(updateTimer, 0);
-//                Log.d("TimerCheck", Long.toString(timeSwapBuff));
 
                 timer1 = new Timer();
                 timerTask = new TimerTask() {
@@ -144,7 +139,7 @@ public class Recipe_detail extends AppCompatActivity {
                     }
                 };
                 timer1.scheduleAtFixedRate(timerTask, 1000, 10000);
-
+                // 1秒後に開始、10秒で次の画面へ
             }
         });
 
@@ -166,7 +161,6 @@ public class Recipe_detail extends AppCompatActivity {
             public void liked(LikeButton likeButton) {
                 sharedPreference.addFavorite(getApplicationContext(), recipeData);
                 Toast.makeText(Recipe_detail.this, "You liked it", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -300,39 +294,14 @@ public class Recipe_detail extends AppCompatActivity {
                 }
                 else if(stopTime > 0) //1度でもストップが押されたら
                 {
-                    if (addTime<59)
-                    {
-                        stopTimeCutDecimal = Math.floor(stopTime / 1000); // stopTime is millisecond so 小数点以下切り捨て
-                    }
-                    else
-                    {
-                        stopTimeInt = 59;
-                    }
+                    timeInMilliseconds = SystemClock.uptimeMillis() - startTime + stopTime;
+                    updatedTime = timeInMilliseconds;
+                    secs = (int) (updatedTime / 1000);
+                    mins = secs / 60;
+                    secs = secs % 60;
 
-                    if (mins>=1 && addTime==0){
-                        stopTimeInt = 1;
-                    }
+                    timer.setText("" + mins + ":" + String.format("%02d", secs));
 
-                    timer.setText("" + mins + ":" + String.format("%02d", stopTimeInt));
-                    Log.d("timerSet", "" + mins + ":" + String.format("%02d", stopTimeInt));
-
-                    if (stopTimeInt==59){
-                        stopTimeInt = 0;
-                        addTime = 0;
-                        ++mins;
-                        timer.setText("" + mins + ":" + String.format("%02d", stopTimeInt));
-                        Log.d("timerSet", "" + mins + ":" + String.format("%02d", stopTimeInt));
-                    }
-
-                    else if (addTime<59)
-                    {
-                        addTime = ++stopTimeInt;
-                    }
-                    else if(addTime==59)
-                    {
-                        stopTimeInt = 0;
-                        addTime = 0;
-                    }
                 }
                 customHandler.postDelayed(this, 0); //これないとグチャる
             }
