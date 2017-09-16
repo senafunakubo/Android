@@ -1,23 +1,17 @@
 package com.example.senafunakubo.recipe;
 
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,11 +20,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -63,20 +55,15 @@ public class Recipe_detail extends AppCompatActivity {
     Recipe recipeData;
     SharedPreference sharedPreference;
     List<Recipe> fetch;
-
     private Handler customHandler = new Handler();
     long startTime = 0L;
     long timeInMilliseconds = 0L;
     long updatedTime = 0L;
-    //    int setTime = 1;
-    long timeSwapBuff = 0L;
     String foodNameIntent;
     int count = -1;
     public TextView content;
     public TextView stepNumber;
-
-    String recipeUrlIntent;
-    int recipeUrlIntentInt;
+    FragmentManager fm = getFragmentManager();
     int secs;
     int mins;
     long stopTime;
@@ -122,24 +109,35 @@ public class Recipe_detail extends AppCompatActivity {
         makeJsonArrayRequest(foodNameIntent);
         prepareRecipeData();
 
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isRunning = true;
-                startTime = SystemClock.uptimeMillis();
 
-                customHandler.postDelayed(updateTimer, 0);
+                if (stopTime == 0) //初回
+                {
+                    AlertDialogFragment aFragment = new AlertDialogFragment();
+                    aFragment.show(fm, " Attention");
+                    handler.postDelayed(finishTask, 10000); //10秒後に開始
+                }
+                else //2度目以降
+                {
+                    isRunning = true;
+                    startTime = SystemClock.uptimeMillis();
 
-                timer1 = new Timer();
-                timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        timerMethod();
-                        count++;
-                    }
-                };
-                timer1.scheduleAtFixedRate(timerTask, 1000, 10000);
-                // 1秒後に開始、10秒で次の画面へ
+                    customHandler.postDelayed(updateTimer, 0);
+
+                    timer1 = new Timer();
+                    timerTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            timerMethod();
+                            count++;
+                        }
+                    };
+                    timer1.scheduleAtFixedRate(timerTask, 0, 10000);
+                    // 0秒後に開始、10秒で次の画面へ
+                }
             }
         });
 
@@ -170,17 +168,6 @@ public class Recipe_detail extends AppCompatActivity {
                 Toast.makeText(Recipe_detail.this, "You unliked it", Toast.LENGTH_SHORT).show();
             }
         });
-
-//        makeJsonArrayRequest(foodNameIntent);
-//        prepareRecipeData();
-//        timerTask = new TimerTask() {
-//            @Override
-//            public void run() {
-//                timerMethod();
-//                count++;
-//            }
-//        };
-//        timer1.scheduleAtFixedRate(timerTask, 2000, 10000);
 
     }
 
@@ -222,6 +209,7 @@ public class Recipe_detail extends AppCompatActivity {
                             recipeData.setWebUrl(webUrl);
                             recipeData.isFavorite(favorite);
 
+                            content.setText(recipeData.getRecipe_ingredients()); //to add top view
                             recipeList.add(recipeData);
 
                         }
@@ -282,7 +270,7 @@ public class Recipe_detail extends AppCompatActivity {
         public void run() {
             if (isRunning == true) {
 
-                if(stopTime==0) //stop押したことないとき
+                if (stopTime == 0) //stop押したことないとき
                 {
                     timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
                     updatedTime = timeInMilliseconds;
@@ -291,8 +279,7 @@ public class Recipe_detail extends AppCompatActivity {
                     secs = secs % 60;
 
                     timer.setText("" + mins + ":" + String.format("%02d", secs));
-                }
-                else if(stopTime > 0) //1度でもストップが押されたら
+                } else if (stopTime > 0) //1度でもストップが押されたら
                 {
                     timeInMilliseconds = SystemClock.uptimeMillis() - startTime + stopTime;
                     updatedTime = timeInMilliseconds;
@@ -319,30 +306,48 @@ public class Recipe_detail extends AppCompatActivity {
         public void run() {
             switch (count) {
                 case 0:
-                    content.setText(recipeData.getRecipe_ingredients());
-                    Log.d("data ", "= " + recipeData.getRecipe_ingredients());
-                    break;
-                case 1:
                     content.setText(recipeData.getStep1());
                     Log.d("data ", "= " + recipeData.getStep1());
                     break;
-                case 2:
+                case 1:
                     content.setText(recipeData.getStep2());
                     Log.d("data ", "= " + recipeData.getStep2());
                     break;
-                case 3:
+                case 2:
                     content.setText(recipeData.getStep3());
                     Log.d("data ", "= " + recipeData.getStep3());
                     break;
-                case 4:
+                case 3:
                     content.setText(recipeData.getStep4());
                     Log.d("data ", "= " + recipeData.getStep4());
                     break;
-                case 5:
+                case 4:
                     content.setText(recipeData.getStep5());
                     Log.d("data ", "= " + recipeData.getStep5());
                     break;
             }
+        }
+    };
+
+    private final Handler handler = new Handler();
+    private final Runnable finishTask = new Runnable() {
+        @Override
+        public void run() {
+            Log.d("Test","zzz...");
+            isRunning = true;
+            startTime = SystemClock.uptimeMillis();
+
+            customHandler.postDelayed(updateTimer, 0);
+
+            timer1 = new Timer();
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    timerMethod();
+                    count++;
+                }
+            };
+            timer1.scheduleAtFixedRate(timerTask, 0, 10000); // 0秒後に開始、10秒で次の画面へ
         }
     };
 
