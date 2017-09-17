@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
@@ -34,7 +35,7 @@ import java.util.TimerTask;
  */
 
 //レシピ詳細
-public class Recipe_detail extends AppCompatActivity {
+public class Recipe_detail extends AppCompatActivity implements AlertDialogFragment.AlertDialogFragmentListener{
 
     private static String TAG = Recipe_detail.class.getSimpleName();
     private List<Recipe> recipeList = new ArrayList<>();
@@ -67,6 +68,12 @@ public class Recipe_detail extends AppCompatActivity {
     int secs;
     int mins;
     long stopTime;
+    private ProgressBar progressBar;
+    private int progressStatus = 0;
+    private TextView textView;
+    private Handler handlerP = new Handler();
+    String alertResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +94,8 @@ public class Recipe_detail extends AppCompatActivity {
         content = (TextView) findViewById(R.id.stepContent);
         stepNumber = (TextView) findViewById(R.id.stepNum);
         timer1 = new Timer();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        textView = (TextView) findViewById(R.id.textView);
 
         //Intent from the other pages
         foodNameIntent = getIntent().getStringExtra("foodName");
@@ -118,7 +127,12 @@ public class Recipe_detail extends AppCompatActivity {
                 {
                     AlertDialogFragment aFragment = new AlertDialogFragment();
                     aFragment.show(fm, " Attention");
-                    handler.postDelayed(finishTask, 10000); //10秒後に開始
+
+//                    // if it is true
+//                    if (alertResult.equals("ok"))
+//                    handler.postDelayed(finishTask, 10000); //10秒後に開始
+//
+//                    // cancel is cancel
                 }
                 else //2度目以降
                 {
@@ -135,9 +149,16 @@ public class Recipe_detail extends AppCompatActivity {
                             count++;
                         }
                     };
-                    timer1.scheduleAtFixedRate(timerTask, 0, 10000);
-                    // 0秒後に開始、10秒で次の画面へ
+
+                    if (stopTime < 10000) {
+                        timer1.scheduleAtFixedRate(timerTask, 10000 - stopTime, 10000);
+                    } else {
+                        timer1.scheduleAtFixedRate(timerTask,
+                                10000 - (stopTime - (long) Math.floor(stopTime / 10000) * 10000), 10000);
+                    }
+                    // X秒後に開始、10秒で次の画面へ
                 }
+
             }
         });
 
@@ -169,6 +190,18 @@ public class Recipe_detail extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onFinishAlertDialogFragment(String result) {
+        Log.d("result",result);
+
+        alertResult = result;
+
+        if (alertResult.equals("ok"))
+            handler.postDelayed(finishTask, 1000); //1秒後に開始
+
+        // cancel is cancel
     }
 
     private void makeJsonArrayRequest(final String foodNameIntent) {
@@ -279,7 +312,8 @@ public class Recipe_detail extends AppCompatActivity {
                     secs = secs % 60;
 
                     timer.setText("" + mins + ":" + String.format("%02d", secs));
-                } else if (stopTime > 0) //1度でもストップが押されたら
+                }
+                else if (stopTime > 0) //1度でもストップが押されたら
                 {
                     timeInMilliseconds = SystemClock.uptimeMillis() - startTime + stopTime;
                     updatedTime = timeInMilliseconds;
@@ -306,22 +340,27 @@ public class Recipe_detail extends AppCompatActivity {
         public void run() {
             switch (count) {
                 case 0:
+                    stepNumber.setText("1.");
                     content.setText(recipeData.getStep1());
                     Log.d("data ", "= " + recipeData.getStep1());
                     break;
                 case 1:
+                    stepNumber.setText("2.");
                     content.setText(recipeData.getStep2());
                     Log.d("data ", "= " + recipeData.getStep2());
                     break;
                 case 2:
+                    stepNumber.setText("3.");
                     content.setText(recipeData.getStep3());
                     Log.d("data ", "= " + recipeData.getStep3());
                     break;
                 case 3:
+                    stepNumber.setText("4.");
                     content.setText(recipeData.getStep4());
                     Log.d("data ", "= " + recipeData.getStep4());
                     break;
                 case 4:
+                    stepNumber.setText("5.");
                     content.setText(recipeData.getStep5());
                     Log.d("data ", "= " + recipeData.getStep5());
                     break;
@@ -329,11 +368,13 @@ public class Recipe_detail extends AppCompatActivity {
         }
     };
 
+    //スタート初回用
     private final Handler handler = new Handler();
     private final Runnable finishTask = new Runnable() {
         @Override
         public void run() {
             Log.d("Test","zzz...");
+
             isRunning = true;
             startTime = SystemClock.uptimeMillis();
 
@@ -351,5 +392,36 @@ public class Recipe_detail extends AppCompatActivity {
         }
     };
 
+    public void resultAlert(){
 
+//        if (alertIntent.equals("Ok")) {
+            if (stopTime == 0) //初回
+            {
+                handler.postDelayed(finishTask, 10000); //10秒後に開始
+            } else //2度目以降
+            {
+                isRunning = true;
+                startTime = SystemClock.uptimeMillis();
+
+                customHandler.postDelayed(updateTimer, 0);
+
+                timer1 = new Timer();
+                timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        timerMethod();
+                        count++;
+                    }
+                };
+
+                if (stopTime < 10000) {
+                    timer1.scheduleAtFixedRate(timerTask, 10000 - stopTime, 10000);
+                } else {
+                    timer1.scheduleAtFixedRate(timerTask,
+                            10000 - (stopTime - (long) Math.floor(stopTime / 10000) * 10000), 10000);
+                }
+                // X秒後に開始、10秒で次の画面へ
+            }
+//        }
+    }
 }
