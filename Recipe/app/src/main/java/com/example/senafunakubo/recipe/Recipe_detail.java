@@ -73,6 +73,9 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
     private TextView textView;
     private Handler handlerP = new Handler();
     String alertResult;
+    private boolean run = true;
+    int startCount = 0;
+    int stopCount = 0;
 
 
     @Override
@@ -123,18 +126,16 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
             @Override
             public void onClick(View view) {
 
-                if (stopTime == 0) //初回
+                run = true;
+
+                if (stopTime == 0 && startCount == 0) //初回
                 {
+                    startCount = 1;
                     AlertDialogFragment aFragment = new AlertDialogFragment();
                     aFragment.show(fm, " Attention");
 
-//                    // if it is true
-//                    if (alertResult.equals("ok"))
-//                    handler.postDelayed(finishTask, 10000); //10秒後に開始
-//
-//                    // cancel is cancel
                 }
-                else //2度目以降
+                else if (stopTime > 0 && stopCount == 1) //2度目以降
                 {
                     isRunning = true;
                     startTime = SystemClock.uptimeMillis();
@@ -167,10 +168,11 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
             public void onClick(View view) {
                 isRunning = false;
                 stopTime = timeInMilliseconds;
-//              timeSwapBuff += timeInMilliseconds;
                 Log.d("stop the time ", " = " + stopTime);
                 customHandler.removeCallbacks(updateTimer);
                 timer1.cancel();
+                run = false;
+                stopCount = 1;
             }
         });
 
@@ -198,10 +200,10 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
 
         alertResult = result;
 
-        if (alertResult.equals("ok"))
+        if (alertResult.equals("ok")) {
             handler.postDelayed(finishTask, 1000); //1秒後に開始
+        }
 
-        // cancel is cancel
     }
 
     private void makeJsonArrayRequest(final String foodNameIntent) {
@@ -342,26 +344,31 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
                 case 0:
                     stepNumber.setText("1.");
                     content.setText(recipeData.getStep1());
+                    startProgressBar();
                     Log.d("data ", "= " + recipeData.getStep1());
                     break;
                 case 1:
                     stepNumber.setText("2.");
                     content.setText(recipeData.getStep2());
+                    startProgressBar();
                     Log.d("data ", "= " + recipeData.getStep2());
                     break;
                 case 2:
                     stepNumber.setText("3.");
                     content.setText(recipeData.getStep3());
+                    startProgressBar();
                     Log.d("data ", "= " + recipeData.getStep3());
                     break;
                 case 3:
                     stepNumber.setText("4.");
                     content.setText(recipeData.getStep4());
+                    startProgressBar();
                     Log.d("data ", "= " + recipeData.getStep4());
                     break;
                 case 4:
                     stepNumber.setText("5.");
                     content.setText(recipeData.getStep5());
+                    startProgressBar();
                     Log.d("data ", "= " + recipeData.getStep5());
                     break;
             }
@@ -392,36 +399,35 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
         }
     };
 
-    public void resultAlert(){
+    public void startProgressBar() {
 
-//        if (alertIntent.equals("Ok")) {
-            if (stopTime == 0) //初回
-            {
-                handler.postDelayed(finishTask, 10000); //10秒後に開始
-            } else //2度目以降
-            {
-                isRunning = true;
-                startTime = SystemClock.uptimeMillis();
+        if (run) {
 
-                customHandler.postDelayed(updateTimer, 0);
+            new Thread(new Runnable() {
+                public void run() {
 
-                timer1 = new Timer();
-                timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        timerMethod();
-                        count++;
+                    while (progressStatus < 100) {
+                        progressStatus += 2;
+
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progressBar.setProgress(progressStatus);
+                                Log.d("p", Integer.toString(progressStatus));
+                            }
+                        });
+                        try {
+                            // Sleep for 200 milliseconds.
+                            Thread.sleep(200);
+                            Log.d("zzz", "zzz");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                };
-
-                if (stopTime < 10000) {
-                    timer1.scheduleAtFixedRate(timerTask, 10000 - stopTime, 10000);
-                } else {
-                    timer1.scheduleAtFixedRate(timerTask,
-                            10000 - (stopTime - (long) Math.floor(stopTime / 10000) * 10000), 10000);
+                    progressStatus = 0;
                 }
-                // X秒後に開始、10秒で次の画面へ
-            }
-//        }
+            }).start();
+
+        }
     }
+
 }
