@@ -70,8 +70,8 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
     long stopTime;
     private ProgressBar progressBar;
     private int progressStatus = 0;
-    private TextView textView;
-    private Handler handlerP = new Handler();
+//    private TextView textView;
+//    private Handler handlerP = new Handler();
     String alertResult;
     private boolean run = true;
     int startCount = 0;
@@ -98,7 +98,8 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
         stepNumber = (TextView) findViewById(R.id.stepNum);
         timer1 = new Timer();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        textView = (TextView) findViewById(R.id.textView);
+        progressBar.setVisibility(View.INVISIBLE);
+//        textView = (TextView) findViewById(R.id.textView);
 
         //Intent from the other pages
         foodNameIntent = getIntent().getStringExtra("foodName");
@@ -201,6 +202,7 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
         alertResult = result;
 
         if (alertResult.equals("ok")) {
+            progressBar.setVisibility(View.VISIBLE);
             handler.postDelayed(finishTask, 1000); //1秒後に開始
         }
 
@@ -401,24 +403,22 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
 
     public void startProgressBar() {
 
-        if (run) {
-
             new Thread(new Runnable() {
                 public void run() {
 
                     while (progressStatus < 100) {
-                        progressStatus += 2;
+                        if (run) {
+                            progressStatus += 2;
+                        }
 
                         handler.post(new Runnable() {
                             public void run() {
                                 progressBar.setProgress(progressStatus);
-                                Log.d("p", Integer.toString(progressStatus));
                             }
                         });
                         try {
                             // Sleep for 200 milliseconds.
                             Thread.sleep(200);
-                            Log.d("zzz", "zzz");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -428,6 +428,5 @@ public class Recipe_detail extends AppCompatActivity implements AlertDialogFragm
             }).start();
 
         }
-    }
 
 }

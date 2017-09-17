@@ -120,12 +120,12 @@
         android:layout_above="@+id/linearLayout"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/progressBar"
-        android:layout_below="@+id/progressBar"/>
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/progressBar"-->
+        <!--android:layout_below="@+id/progressBar"/>-->
 
     <!--<android.support.v7.widget.RecyclerView-->
         <!--android:id="@+id/recycleStep"-->
