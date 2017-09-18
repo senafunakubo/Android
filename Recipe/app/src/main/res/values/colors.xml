@@ -8,4 +8,5 @@
     <color name="material">#292F36</color>
     <color name="white">#fff</color>
     <color name="background">#EBEBEB</color>
+    <color name="gray">#C0C0C0</color>
 </resources>

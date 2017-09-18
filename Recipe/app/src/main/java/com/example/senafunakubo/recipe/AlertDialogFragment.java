@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -43,7 +45,7 @@ public class AlertDialogFragment extends DialogFragment {
         AlertDialog ad = new AlertDialog.Builder(getActivity())
                 .setTitle("Attention")
                 .setMessage("Did you prepare ingredients before start cooking?")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //show a toast message
@@ -52,7 +54,7 @@ public class AlertDialogFragment extends DialogFragment {
 
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //show a toast message
@@ -64,4 +66,15 @@ public class AlertDialogFragment extends DialogFragment {
 
         return ad;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Button positive = ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+        positive.setTextColor(getResources().getColor(R.color.colorAccent));
+
+        Button negative = ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_NEGATIVE);
+        negative.setTextColor(getResources().getColor(R.color.gray));
+    }
+
 }
