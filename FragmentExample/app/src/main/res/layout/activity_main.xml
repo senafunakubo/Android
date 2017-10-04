@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/quizLinearLayout">
+
+
+    <fragment
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/pm_fragment"
+        android:name="com.example.senafunakubo.fragmentexample.PM_fragment"
+        tools:layout="@layout/portrait" />
+
+    <!--<fragment-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/lm_fragment"-->
+        <!--android:name="com.example.senafunakubo.fragmentexample.LM_fragment"-->
+        <!--tools:layout="@layout/landscape" />-->
+
+</LinearLayout>
